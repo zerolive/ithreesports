@@ -20,4 +20,10 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  sign_in: "Sign in"
+  log_out: "Log out"
+  admin_users: "Admin Users"
+  admin_courses: "Admin Courses"
+  create_user: "Create a user"
+  delete_user: "Delete user"
+  are_you_sure: "Are you sure?"
