@@ -27,3 +27,6 @@ en:
   create_user: "Create a user"
   delete_user: "Delete user"
   are_you_sure: "Are you sure?"
+  edit_user: "Edit user"
+  save: "Save"
+  back: "Back"
