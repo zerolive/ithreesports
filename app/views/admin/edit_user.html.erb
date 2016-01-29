@@ -1,0 +1,16 @@
+<h1>EDIT USER</h1>
+
+<%= form_for @user, url: update_user_path do |u| %>
+	<p>
+		<%= u.label :name %>
+		<%= u.text_field :name %>
+	</p>
+	<p>
+		<%= u.label :password %>
+		<%= u.text_field :password %>
+	<p>
+		<%= u.label :level %>
+		<%= u.select :level, options_for_select(@levels, @levels) %>
+	<p><%= u.submit value="#{t(:save)}" %></p>
+<% end %>
+<p><%= link_to t(:back), admin_users_path %></p>
