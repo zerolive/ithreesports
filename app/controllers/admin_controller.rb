@@ -22,6 +22,18 @@ class AdminController < ApplicationController
 		redirect_to admin_users_path
 	end
 
+	def edit_user
+		@user = User.find(params[:id])
+		@levels = User.levels
+	end
+
+	def update_user
+		@user = User.find(params[:id])
+		@user.update_attributes(user_params)
+		@user.save
+		redirect_to admin_users_path
+	end
+
 	private
 
 		def user_params
