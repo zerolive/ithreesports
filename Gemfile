@@ -8,13 +8,13 @@ gem 'jbuilder', '~> 2.0'
 gem 'rails', '4.2.4'
 gem 'jquery-rails'
 gem 'turbolinks'
-gem 'sqlite3'
 gem 'puma'
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.0'
   gem 'factory_girl_rails'
   gem 'byebug'
+  gem 'sqlite3'
   gem 'figaro'
   gem 'faker'
 end
