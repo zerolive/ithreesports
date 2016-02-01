@@ -1,0 +1,9 @@
+<%= form_for @exam, url: create_exam_path(@exam) do |f| %>
+	<%= f.label :title %>
+	<%= f.text_field :title %>
+	<%= f.label :video %>
+	<%= f.text_field :video %>
+	<%= f.label :level %>
+	<%= f.select :level, options_for_select(@levels, @levels) %>
+	<%= submit_tag value="#{t(:create_exam)}" %>
+<% end %>
