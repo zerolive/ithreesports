@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-	describe 'Model' do
+	describe 'Validations' do
 
 		it 'can create a user' do
 			newuser = build(:user)
