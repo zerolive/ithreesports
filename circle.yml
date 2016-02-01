@@ -1,0 +1,10 @@
+deployment:
+  staging:
+    branch: master
+    heroku:
+      appname: gentle-waters-42879
+
+database:
+  override:
+    - bundle exec rake db:drop
+    - bundle exec rake db:setup
