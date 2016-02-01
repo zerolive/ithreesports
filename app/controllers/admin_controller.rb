@@ -46,6 +46,24 @@ class AdminController < ApplicationController
 		redirect_to admin_exams_path
 	end
 
+	def edit_exam
+		@exam = Exam.find(params[:id])
+		@levels = Exam.levels
+	end
+
+	def update_exam
+		@exam = Exam.find(params[:id])
+		@exam.update_attributes(exam_params)
+		@exam.save
+		redirect_to admin_exams_path
+	end
+
+	def delete_exam
+		@exam = Exam.find(params[:id])
+		@exam.destroy
+		redirect_to admin_exams_path
+	end
+
 	private
 
 		def user_params
@@ -53,6 +71,6 @@ class AdminController < ApplicationController
 		end
 
 		def exam_params
-			params.require(:exam).permit(:title, :video, :level)
+			params.require(:exam).permit(:title, :video, :level, :comment)
 		end
 end
