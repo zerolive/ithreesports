@@ -34,9 +34,25 @@ class AdminController < ApplicationController
 		redirect_to admin_users_path
 	end
 
+	def admin_exams
+		@exam = Exam.new
+		@exams = Exam.all
+		@levels = Exam.levels
+	end
+
+	def create_exam
+		@exam = Exam.new(exam_params)
+		@exam.save
+		redirect_to admin_exams_path
+	end
+
 	private
 
 		def user_params
 			params.require(:user).permit(:name, :password, :level)
+		end
+
+		def exam_params
+			params.require(:exam).permit(:title, :video, :level)
 		end
 end
