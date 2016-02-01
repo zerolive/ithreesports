@@ -1,11 +1,9 @@
 <h1>EXAMS INDEX</h1>
 <h1>ADMIN EXAMS</h1>
 
-<p><%= link_to t(:log_out), logout_path %></p>
+<p><%= link_to t(:home), admin_path%> <%= link_to t(:log_out), logout_path %></p>
 <p><%= render 'create_exam_form' %></p>
 <p><%= render @exams %></p>
-<p>edit exams</p>
-<p>delete exams</p>
 <p>Add questions</p>
 <p>edit questions</p>
-<p>add questions</p>
+<p>Preview exam</p>
