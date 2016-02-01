@@ -1,9 +1,9 @@
 class SessionsController < ApplicationController
 	def new
+		session.delete(:user_id) if session[:user_id]
 	end
 
 	def create
-		session.delete(:user_id) if session[:user_id]
 		@user = User.find_by(name: params[:name])
 		if user_authenticate
 			session[:user_id] = @user.id
