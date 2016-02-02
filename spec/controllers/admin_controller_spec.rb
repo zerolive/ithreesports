@@ -295,4 +295,16 @@ RSpec.describe AdminController, type: :controller do
 			expect(assigns(:question).errors.size).to_not eq 0
 		end
 	end
+
+	describe 'delete#delete_question' do
+		let(:exam_with_10_questions){create(:exam_with_questions)}
+
+		it 'can delete a question and redirects to exams questions' do
+			delete :delete_question, id: exam_with_10_questions.questions.first
+
+			expect(response.status).to eq 302
+			expect(response).to redirect_to exam_questions_path(exam_with_10_questions)
+			expect(exam_with_10_questions.questions.count).to_not eq 10
+		end
+	end
 end
