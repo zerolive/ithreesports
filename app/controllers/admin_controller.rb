@@ -91,6 +91,13 @@ class AdminController < ApplicationController
 		redirect_to exam_questions_path(@question.exam_id)
 	end
 
+	def delete_question
+		@question = Question.find(params[:id])
+		@exam = Exam.find(@question.exam_id)
+		@question.destroy
+		redirect_to exam_questions_path(@exam)
+	end
+
 	private
 
 		def user_params
