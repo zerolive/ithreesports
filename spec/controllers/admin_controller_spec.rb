@@ -227,7 +227,7 @@ RSpec.describe AdminController, type: :controller do
 			post :create_question, id: exam.id, question: {title: new_question.title, answer: new_question.answer}
 
 			expect(response.status).to eq 302
-			expect(response).to redirect_to admin_exams_path
+			expect(response).to redirect_to exam_questions_path(exam)
 			expect(assigns(:question).errors.size).to eq 0
 		end
 
@@ -235,7 +235,7 @@ RSpec.describe AdminController, type: :controller do
 			post :create_question, id: exam.id, question: {title: nil, answer: new_question.answer}
 
 			expect(response.status).to eq 302
-			expect(response).to redirect_to admin_exams_path
+			expect(response).to redirect_to exam_questions_path(exam)
 			expect(assigns(:question).errors.size).to_not eq 0
 		end
 
@@ -243,7 +243,7 @@ RSpec.describe AdminController, type: :controller do
 			post :create_question, id: exam.id, question: {title: new_question.title, answer: nil}
 
 			expect(response.status).to eq 302
-			expect(response).to redirect_to admin_exams_path
+			expect(response).to redirect_to exam_questions_path(exam)
 			expect(assigns(:question).errors.size).to_not eq 0
 		end
 	end
@@ -255,6 +255,44 @@ RSpec.describe AdminController, type: :controller do
 			get :exam_questions, id: exam.id
 
 			expect(response.status).to eq 200
+		end
+	end
+
+	describe 'get#edit_question' do
+		let(:question){create(:question)}
+
+		it 'response with status OK' do
+			get :edit_question, id: question
+
+			expect(response.status).to eq 200
+		end
+	end
+
+	describe 'patch#update_question' do
+		let(:question){create(:question)}
+
+		it 'can update a question and redirects to exam questions' do
+			patch :update_question, id: question, question: { title: 'NewTitle', answer: true }
+
+			expect(response.status).to eq 302
+			expect(response).to redirect_to exam_questions_path(question.exam_id)
+			expect(assigns(:question).errors.size).to eq 0
+		end
+
+		it 'cannot update a question without title' do
+			patch :update_question, id: question, question: { title: nil, answer: true }
+
+			expect(response.status).to eq 302
+			expect(response).to redirect_to exam_questions_path(question.exam_id)
+			expect(assigns(:question).errors.size).to_not eq 0
+		end
+
+		it 'cannot update a question without answer' do
+			patch :update_question, id: question, question: { title: 'NewTitle', answer: nil }
+
+			expect(response.status).to eq 302
+			expect(response).to redirect_to exam_questions_path(question.exam_id)
+			expect(assigns(:question).errors.size).to_not eq 0
 		end
 	end
 end
