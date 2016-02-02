@@ -18,4 +18,7 @@ Rails.application.routes.draw do
   get '/edit_exam/:id' => 'admin#edit_exam', as: :edit_exam
   patch '/update_exam/:id' => 'admin#update_exam', as: :update_exam
   delete '/delete_exam/:id' => 'admin#delete_exam', as: :delete_exam
+
+  get '/new_question/:id' => 'admin#new_question', as: :new_question
+  post '/create_question/:id' => 'admin#create_question', as: :create_question
 end
