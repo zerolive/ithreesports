@@ -209,4 +209,42 @@ RSpec.describe AdminController, type: :controller do
 			expect(response).to redirect_to admin_exams_path
 		end
 	end
+
+	describe 'get#new_question' do
+		let(:exam_to_add_question){ create(:exam) }
+		it 'response with status OK' do
+			get :new_question, id: exam_to_add_question.id
+
+			expect(response.status).to eq 200
+		end
+	end
+
+	describe 'post#create_question' do
+		let(:exam){ create(:exam) }
+		let(:new_question){ build(:question) }
+
+		it 'can create a question for an exam and redirects to admin exams' do
+			post :create_question, id: exam.id, question: {title: new_question.title, answer: new_question.answer}
+
+			expect(response.status).to eq 302
+			expect(response).to redirect_to admin_exams_path
+			expect(assigns(:question).errors.size).to eq 0
+		end
+
+		it 'cannot create a question without title' do
+			post :create_question, id: exam.id, question: {title: nil, answer: new_question.answer}
+
+			expect(response.status).to eq 302
+			expect(response).to redirect_to admin_exams_path
+			expect(assigns(:question).errors.size).to_not eq 0
+		end
+
+		it 'cannot create a question without answer' do
+			post :create_question, id: exam.id, question: {title: new_question.title, answer: nil}
+
+			expect(response.status).to eq 302
+			expect(response).to redirect_to admin_exams_path
+			expect(assigns(:question).errors.size).to_not eq 0
+		end
+	end
 end
