@@ -19,6 +19,12 @@ RSpec.describe Question, type: :model do
 
 		expect(new_question.save).to_not eq true
 	end
+
+      it 'cannot create a new question without exam id' do
+          new_question.exam_id = nil
+
+          expect(new_question.save).to_not eq true
+      end
   end
 
   describe 'Associations' do
