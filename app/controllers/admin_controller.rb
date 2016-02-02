@@ -4,7 +4,7 @@ class AdminController < ApplicationController
 
 	end
 
-	def users_index
+	def admin_users
 		@users = User.all
 		@user = User.new
 		@levels = User.levels
@@ -74,6 +74,11 @@ class AdminController < ApplicationController
 		@question.exam_id = params[:id]
 		@question.save
 		redirect_to admin_exams_path
+	end
+
+	def exam_questions
+		@exam = Exam.find(params[:id])
+		@questions = @exam.questions
 	end
 
 	private
