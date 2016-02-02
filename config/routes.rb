@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   get '/admin' => 'admin#index'
 
-  get '/admin_users' => 'admin#users_index'
+  get '/admin_users' => 'admin#admin_users'
   post '/create_user' => 'admin#create_user'
   delete '/delete_user/:id' => 'admin#delete_user', as: :delete_user
   get '/edit_user/:id' => 'admin#edit_user', as: :edit_user
@@ -21,4 +21,5 @@ Rails.application.routes.draw do
 
   get '/new_question/:id' => 'admin#new_question', as: :new_question
   post '/create_question/:id' => 'admin#create_question', as: :create_question
+  get '/exam_questions/:id' => 'admin#exam_questions', as: :exam_questions
 end
