@@ -1,1 +1,8 @@
-<p><%= exam.title %> - <%= t(:level) %>: <%= exam.level %> - <%= t(:numer_of_questions)%>: <%= exam.questions.count %> - <%= link_to t(:edit_exam), edit_exam_path(exam) %> - <%= link_to t(:delete_exam), delete_exam_path(exam), method: :delete, data: { confirm: "#{t(:are_you_sure)}" } %></p>
+<p>
+	<%= exam.title %> - 
+	<%= t(:level) %>: <%= exam.level %> - 
+	<%= t(:numer_of_questions)%>: <%= exam.questions.count %> - 
+	<%= link_to t(:edit_exam), edit_exam_path(exam) %> - 
+	<%= link_to t(:delete_exam), delete_exam_path(exam), method: :delete, data: { confirm: "#{t(:are_you_sure)}" } %> - 
+	<%= link_to t(:add_question), new_question_path(exam) %>
+</p>
