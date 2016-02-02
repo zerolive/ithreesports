@@ -22,4 +22,6 @@ Rails.application.routes.draw do
   get '/new_question/:id' => 'admin#new_question', as: :new_question
   post '/create_question/:id' => 'admin#create_question', as: :create_question
   get '/exam_questions/:id' => 'admin#exam_questions', as: :exam_questions
+  get '/edit_question/:id' => 'admin#edit_question', as: :edit_question
+  patch '/update_question/:id' => 'admin#update_question', as: :update_question
 end
