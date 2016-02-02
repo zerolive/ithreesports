@@ -9,9 +9,9 @@ RSpec.describe AdminController, type: :controller do
 		end
 	end
 
-	describe 'get#users_index' do
+	describe 'get#admin_users' do
 		it 'response with status OK' do
-			get :users_index
+			get :admin_users
 
 			expect(response.status).to eq(200)
 		end
@@ -245,6 +245,16 @@ RSpec.describe AdminController, type: :controller do
 			expect(response.status).to eq 302
 			expect(response).to redirect_to admin_exams_path
 			expect(assigns(:question).errors.size).to_not eq 0
+		end
+	end
+
+	describe 'get#exam_questions' do
+		let(:exam){create(:exam)}
+
+		it 'response with status OK' do
+			get :exam_questions, id: exam.id
+
+			expect(response.status).to eq 200
 		end
 	end
 end
