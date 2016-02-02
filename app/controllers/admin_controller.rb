@@ -64,6 +64,18 @@ class AdminController < ApplicationController
 		redirect_to admin_exams_path
 	end
 
+	def new_question
+		@exam = Exam.find(params[:id])
+		@question = Question.new
+	end
+
+	def create_question
+		@question = Question.new(question_params)
+		@question.exam_id = params[:id]
+		@question.save
+		redirect_to admin_exams_path
+	end
+
 	private
 
 		def user_params
@@ -72,5 +84,9 @@ class AdminController < ApplicationController
 
 		def exam_params
 			params.require(:exam).permit(:title, :video, :level, :comment)
+		end
+
+		def question_params
+			params.require(:question).permit(:title, :answer)
 		end
 end
