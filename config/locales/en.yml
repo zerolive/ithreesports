@@ -36,3 +36,6 @@ en:
   home: "Home"
   edit_exam: "Edit Exam"
   update_exam: "Update Exam"
+  add_question: "Add Question"
+  exam_questions: "Questions"
+  answer: "Answer"
