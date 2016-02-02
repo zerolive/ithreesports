@@ -15,5 +15,6 @@
 		<%= f.label :comment %>
 		<%= f.text_area :comment %>
 	</p>
-	<p><%= submit_tag value="#{t(:update_exam)}" %>
+	<p><%= submit_tag value="#{t(:update_exam)}" %></p>
 <% end %>
+<%= link_to t(:back), admin_exams_path %>
