@@ -73,12 +73,22 @@ class AdminController < ApplicationController
 		@question = Question.new(question_params)
 		@question.exam_id = params[:id]
 		@question.save
-		redirect_to admin_exams_path
+		redirect_to exam_questions_path(@question.exam_id)
 	end
 
 	def exam_questions
 		@exam = Exam.find(params[:id])
 		@questions = @exam.questions
+	end
+
+	def edit_question
+		@question = Question.find(params[:id])
+	end
+
+	def update_question
+		@question = Question.find(params[:id])
+		@question.update_attributes(question_params)
+		redirect_to exam_questions_path(@question.exam_id)
 	end
 
 	private
