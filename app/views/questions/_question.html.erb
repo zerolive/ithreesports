@@ -1,4 +1,5 @@
 <p>
-<%= question.title %> - 
-<%= t(:answer) %>: <%= question.answer %>
+	<%= question.title %> - 
+	<%= t(:answer) %>: <%= question.answer %> - 
+	<%= link_to t(:edit), edit_question_path(question) %>
 </p>

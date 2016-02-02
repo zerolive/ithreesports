@@ -1,0 +1,14 @@
+<%= form_for @question, url: update_question_path(@question) do |f| %>
+	<p>
+		<%= f.label :title %>
+		<%= f.text_field :title %>
+	</p>
+	<p>
+		<%= f.label :answer %>
+		<%= f.check_box :answer %>
+	</p>
+	<p>
+		<%= f.submit %>
+	</p>
+<% end %>
+<%= link_to t(:back), exam_questions_path(@question.exam) %>
