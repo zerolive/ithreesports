@@ -1,0 +1,5 @@
+<h1>ADMIN USERS</h1>
+
+<p><%= link_to t(:home), admin_path%> <%= link_to t(:log_out), logout_path %></p>
+<p><%= render 'create_user_form' %></p>
+<p><%= render @users.order(:level).reverse_order %></p>
