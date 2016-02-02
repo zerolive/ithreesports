@@ -24,4 +24,5 @@ Rails.application.routes.draw do
   get '/exam_questions/:id' => 'admin#exam_questions', as: :exam_questions
   get '/edit_question/:id' => 'admin#edit_question', as: :edit_question
   patch '/update_question/:id' => 'admin#update_question', as: :update_question
+  delete '/delete_question/:id' => 'admin#delete_question', as: :delete_question
 end
