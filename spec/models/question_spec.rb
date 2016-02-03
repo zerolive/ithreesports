@@ -14,7 +14,7 @@ RSpec.describe Question, type: :model do
 		expect(new_question.save).to_not eq true
 	end
 
-	it 'cannot create a new question without asnwer' do
+	it 'cannot create a new question without true or false in answer' do
 		new_question.answer = nil
 
 		expect(new_question.save).to_not eq true
