@@ -98,6 +98,11 @@ class AdminController < ApplicationController
 		redirect_to exam_questions_path(@exam)
 	end
 
+	def preview_exam
+		@exam = Exam.find(params[:id])
+		@questions = @exam.questions
+	end
+
 	private
 
 		def user_params
