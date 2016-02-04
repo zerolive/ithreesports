@@ -307,4 +307,13 @@ RSpec.describe AdminController, type: :controller do
 			expect(exam_with_10_questions.questions.count).to_not eq 10
 		end
 	end
+
+	describe 'get#preview_exam' do
+		let(:exam){ create(:exam) }
+		it 'response with status OK' do
+			get :preview_exam, id: exam.id
+
+			expect(response.status).to eq 200
+		end
+	end
 end
