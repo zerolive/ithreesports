@@ -10,7 +10,9 @@ RSpec.describe SessionsController, type: :controller do
 	end
 
 	describe 'post#create' do
-		let(:new_admin){ create(:user) }
+		let(:new_admin){ create(:admin) }
+		let(:new_user){ create(:user) }
+		
 		it 'redirects to root path if params are empty' do
 			post :create
 
@@ -25,11 +27,18 @@ RSpec.describe SessionsController, type: :controller do
 			expect(response).to redirect_to root_path
 		end
 
-		it ' redirects to admin path if userexist' do
+		it ' redirects to admin path if user has level admin' do
 			post :create, name: new_admin.name , password: new_admin.password
 
 			expect(response.status).to eq(302)
 			expect(response).to redirect_to admin_path
+		end
+
+		it ' redirects to user path if user has not level admin' do
+			post :create, name: new_user.name , password: new_user.password
+
+			expect(response.status).to eq(302)
+			expect(response).to redirect_to user_path(new_user)
 		end
 	end
 
