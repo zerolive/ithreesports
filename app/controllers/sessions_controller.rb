@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+
 	def new
 		session.delete(:user_id) if session[:user_id]
 	end
