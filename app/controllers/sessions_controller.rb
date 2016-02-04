@@ -8,7 +8,8 @@ class SessionsController < ApplicationController
 		@user = User.find_by(name: params[:name])
 		if user_authenticate
 			session[:user_id] = @user.id
-			redirect_to admin_path
+			redirect_to admin_path if @user.level == 'Admin'
+			redirect_to user_path(@user) if @user.level != 'Admin'
 		else
 			redirect_to root_path
 		end
