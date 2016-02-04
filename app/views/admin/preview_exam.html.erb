@@ -1,0 +1,8 @@
+<h1><%= @exam.title %></h1>
+
+<p><iframe id="ytplayer" type="text/html" width="640" height="390"
+  src=<%= "http://www.youtube.com/embed/" + @exam.video_id + "?autoplay" %>=1="0"/></iframe></p>
+
+  <%= render partial: 'questions_preview' %>
+
+  <p><%= link_to t(:back), admin_exams_path %></p>
