@@ -5,6 +5,8 @@ class User < ActiveRecord::Base
 	validates :password, presence: true, length: { in: 8..12 }
 	validates :level, presence: true, inclusion: LEVELS
 
+	has_many :completed_exam
+
 	def self.levels
 		LEVELS
 	end
