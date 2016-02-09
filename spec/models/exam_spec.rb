@@ -57,4 +57,20 @@ RSpec.describe Exam, type: :model do
       expect(exam_with_questions.questions.count).to eq 10
     end
   end
+
+  describe "Methods" do
+    it 'knows its levels' do
+      levels = Exam.levels
+
+      expect(levels).to eq [ '1', '2', '3']
+    end
+
+    it 'knows extrac an id from youtube video' do
+      sort_url = build(:exam, video: 'https://youtu.be/l8PQVZBR4w0?t=9s')
+      long_url = build(:exam, video: 'https://www.youtube.com/watch?v=hpFZWeQq_EU')
+
+      expect(sort_url.video_id).to eq 'l8PQVZBR4w0'
+      expect(long_url.video_id).to eq 'hpFZWeQq_EU'
+    end
+  end
 end
