@@ -1,0 +1,5 @@
+<% if @exams %>
+	<% @exams.each do |exam| %>
+		<p><%= link_to exam.title, '' %></p>
+	<% end %>
+<% end %>
