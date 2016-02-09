@@ -73,9 +73,17 @@ RSpec.describe User, type: :model do
 			newuser = build(:user, level: 'Admin')
 			expect(newuser.save).to eq true
 		end
-
-		it 'knows the differents levels' do
-			expect(User.levels).to eq [ '1', '2', '3', 'Admin']
-		end
 	end	
+
+  describe 'Associations' do
+      it 'has many completed exam' do
+        	expect(User.reflect_on_association(:completed_exam).macro).to eq(:has_many)
+      end
+   end 
+
+	describe 'Methods' do
+		it 'knows the differents levels' do
+			expect(User.levels).to eq([ '1', '2', '3', 'Admin'])
+		end
+	end
 end
