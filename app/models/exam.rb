@@ -1,6 +1,6 @@
 class Exam < ActiveRecord::Base
 	YOUTUBE_SORT = 'youtu.be'
-	YOUTUBE_LONG = 'youtube.com'
+	YOUTUBE_LONG = 'youtube.'
 	LEVELS = [ '1', '2', '3']
 
 	validates :title, presence: true
