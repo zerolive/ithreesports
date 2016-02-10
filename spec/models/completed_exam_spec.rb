@@ -1,6 +1,16 @@
 require 'rails_helper'
 
 RSpec.describe CompletedExam, type: :model do
+	describe 'Serializers' do
+	let(:completed_exam){build(:completed_exam)}
+
+		it 'allow to have a hash in answers' do
+			completed_exam.answers = { 1 => true}
+
+			expect(completed_exam.save).to eq true
+		end
+	end
+
   describe 'Validations' do
   	let(:completed_exam){build(:completed_exam)}
 
