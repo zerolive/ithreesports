@@ -38,7 +38,7 @@ RSpec.describe SessionsController, type: :controller do
 			post :create, name: new_user.name , password: new_user.password
 
 			expect(response.status).to eq(302)
-			expect(response).to redirect_to user_path(new_user)
+			expect(response).to redirect_to user_path
 		end
 	end
 
