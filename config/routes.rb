@@ -27,5 +27,7 @@ Rails.application.routes.draw do
   delete '/delete_question/:id' => 'admin#delete_question', as: :delete_question
   get '/preview_exam/:id' => 'admin#preview_exam', as: :preview_exam
 
-  get '/user/' => 'user#index'
+  get '/user' => 'user#index'
+  get '/user_exam/:id' => 'user#user_exam', as: :user_exam
+  post '/user_exam_save' => 'user#user_exam_save'
 end
