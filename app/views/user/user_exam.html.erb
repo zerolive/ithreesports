@@ -1,0 +1,7 @@
+<h1><%= @exam.title %></h1>
+<p><iframe id="ytplayer" type="text/html" width="640" height="390"
+  src=<%= "http://www.youtube.com/embed/" + @exam.video_id + "?autoplay" %>=1="0"/></iframe></p>
+
+<%= form_for @completed_exam, url: user_exam_save_path(@completed_exam) do |f| %>
+
+<% end %>
