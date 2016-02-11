@@ -29,5 +29,5 @@ Rails.application.routes.draw do
 
   get '/user' => 'user#index'
   get '/user_exam/:id' => 'user#user_exam', as: :user_exam
-  post '/user_exam_save' => 'user#user_exam_save'
+  post '/user_exam_save/:id' => 'user#user_exam_save', as: :user_exam_save
 end
