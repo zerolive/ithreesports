@@ -2,6 +2,10 @@
 <p><iframe id="ytplayer" type="text/html" width="640" height="390"
   src=<%= "http://www.youtube.com/embed/" + @exam.video_id + "?autoplay" %>=1="0"/></iframe></p>
 
-<%= form_for @completed_exam, url: user_exam_save_path(@completed_exam) do |f| %>
-
+<%= form_tag user_exam_save_path(@exam.id) do %>
+	<% @questions.each do |question| %>
+		<%= hidden_field_tag "#{question.id}", '0'%>
+		<p><%= question.title %> - <%= check_box_tag question.id %></p>
+	<% end %>
+	<%= submit_tag t(:evaluate) %>
 <% end %>
