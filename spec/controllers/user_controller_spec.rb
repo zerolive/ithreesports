@@ -13,4 +13,25 @@ RSpec.describe UserController, type: :controller do
 			expect(response.status).to eq 200
 		end
 	end
+
+	describe 'get#user_exam' do
+		let(:exam){ create(:exam) }
+
+		it 'respond with status OK' do
+			get :user_exam, id: exam.id
+
+			expect(response.status).to eq 200
+		end
+	end
+
+	describe 'post#user_exam_save' do
+		let(:exam){ create(:exam) }
+
+		it 'redirects to user path' do
+			post :user_exam_save, id: exam.id
+
+			expect(response.status).to eq 302
+			expect(response).to redirect_to user_path
+		end
+	end
 end
