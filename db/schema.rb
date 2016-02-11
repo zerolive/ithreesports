@@ -11,14 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160209172407) do
+ActiveRecord::Schema.define(version: 20160211172348) do
 
   create_table "completed_exams", force: :cascade do |t|
     t.integer  "user_id"
-    t.text     "answers"
+    t.integer  "answers"
     t.integer  "score"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "exam_id"
   end
 
   create_table "exams", force: :cascade do |t|
