@@ -2,7 +2,7 @@
 	<%= f.label :title %>
 	<%= f.text_field :title, required: true %>
 	<%= f.label :video %>
-	<%= f.text_field :video %>
+	<%= f.text_field :video, required: true %>
 	<%= f.label :level %>
 	<%= f.select :level, options_for_select(@levels, @levels) %>
 	<%= f.label :comment %>

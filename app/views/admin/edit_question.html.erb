@@ -1,7 +1,7 @@
 <%= form_for @question, url: update_question_path(@question) do |f| %>
 	<p>
 		<%= f.label :title %>
-		<%= f.text_field :title %>
+		<%= f.text_field :title, required: true %>
 	</p>
 	<p>
 		<%= f.label :answer %>

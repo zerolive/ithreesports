@@ -1,11 +1,11 @@
 <%= form_for @question, url: create_question_path(@exam) do |f| %>
 	<p>
 		<%= f.label :title %>
-		<%= f.text_field :title %>
+		<%= f.text_field :title, required: true %>
 	</p>
 	<p>
 		<%= f.label :answer %>
-		<%= f.check_box :answer %>
+		<%= f.check_box :answer, required: true %>
 	</p>
 	<p><%= f.submit %></p>
 <% end %>
