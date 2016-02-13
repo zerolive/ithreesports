@@ -1,4 +1,5 @@
 class UserController < ApplicationController
+	before_action :user_logged?
 
 	def index
 		@user = User.find(session[:user_id])
@@ -54,6 +55,12 @@ class UserController < ApplicationController
 				:exam_id => exam.id 
 			})
 		completed_exam.save
+	end
+
+	private
+
+	def user_logged?
+		redirect_to signin_path unless session[:user_id]
 	end
 
 end
