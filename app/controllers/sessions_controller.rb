@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
 	end
 
 	def create
-		@user = User.find_by(name: params[:name])
+		@user = User.find_by(name: params[:name].downcase)
 		if user_authenticate
 			session[:user_id] = @user.id
 			redirect_to admin_path if @user.level == 'Admin'
