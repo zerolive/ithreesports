@@ -1,4 +1,5 @@
 class AdminController < ApplicationController
+	before_action :authenticate_admin
 
 	def index
 
@@ -12,6 +13,7 @@ class AdminController < ApplicationController
 
 	def create_user
 		@user = User.new(user_params)
+		@user.name = @user.name.downcase
 		@user.save
 		redirect_to admin_users_path
 	end
@@ -115,5 +117,10 @@ class AdminController < ApplicationController
 
 		def question_params
 			params.require(:question).permit(:title, :answer)
+		end
+
+		def authenticate_admin
+			@admin = User.find(session[:user_id])
+			redirect_to signin_path unless @admin.level == 'Admin'
 		end
 end
