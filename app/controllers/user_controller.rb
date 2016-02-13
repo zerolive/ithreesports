@@ -44,7 +44,7 @@ class UserController < ApplicationController
 
 	def delete_old_completed_exam exam_id
 		old_completed_exam = CompletedExam.where(user_id: session[:user_id]).where(exam_id: exam_id)
-		old_completed_exam.destroy if old_completed_exam.nil?
+		old_completed_exam.first.destroy unless old_completed_exam.empty?
 	end
 
 	def new_completed_exam exam, score
