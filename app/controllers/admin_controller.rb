@@ -13,7 +13,7 @@ class AdminController < ApplicationController
 
 	def create_user
 		@user = User.new(user_params)
-		@user.name = @user.name.downcase
+		@user.name = @user.name.downcase if @user.name
 		@user.save
 		redirect_to admin_users_path
 	end
@@ -120,7 +120,11 @@ class AdminController < ApplicationController
 		end
 
 		def authenticate_admin
-			@admin = User.find(session[:user_id])
-			redirect_to signin_path unless @admin.level == 'Admin'
+			redirect_to signin_path unless session[:user_id]
+				
+			if session[:user_id]
+				@admin = User.find(session[:user_id])
+				redirect_to signin_path unless @admin.level == 'Admin'				
+			end
 		end
 end

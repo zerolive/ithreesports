@@ -2,36 +2,80 @@ require 'rails_helper'
 
 RSpec.describe UserController, type: :controller do
 
-	describe 'get#index' do
-		let(:user){ create(:user)}
+	context 'If user is not logged' do
 
-		it 'respond with status OK' do
-			session[:user_id] = user.id
+		before do
+			session[:user_id] = nil
+		end
 
-			get :index
+		describe 'get#index' do
+			it 'redirects to sign path' do
 
-			expect(response.status).to eq 200
+				get :index
+
+				expect(response.status).to eq 302
+				expect(response).to redirect_to signin_path
+			end
+		end
+
+		describe 'get#user_exam' do
+			let(:exam){ create(:exam) }
+
+			it 'redirects to sign path' do
+				get :user_exam, id: exam.id
+
+				expect(response.status).to eq 302
+				expect(response).to redirect_to signin_path
+			end
+		end
+
+		describe 'post#user_exam_save' do
+			let(:exam){ create(:exam) }
+
+			it 'redirects to sign path' do
+				post :user_exam_save, id: exam.id
+
+				expect(response.status).to eq 302
+				expect(response).to redirect_to signin_path
+			end
 		end
 	end
 
-	describe 'get#user_exam' do
-		let(:exam){ create(:exam) }
+	context 'If user is logged' do
+		let(:logged_user){create(:user)}
 
-		it 'respond with status OK' do
-			get :user_exam, id: exam.id
-
-			expect(response.status).to eq 200
+		before do
+			session[:user_id] = logged_user.id
 		end
-	end
 
-	describe 'post#user_exam_save' do
-		let(:exam){ create(:exam) }
+		describe 'get#index' do
+			it 'respond with status OK' do
 
-		it 'redirects to user path' do
-			post :user_exam_save, id: exam.id
+				get :index
 
-			expect(response.status).to eq 302
-			expect(response).to redirect_to user_path
+				expect(response.status).to eq 200
+			end
+		end
+
+		describe 'get#user_exam' do
+			let(:exam){ create(:exam) }
+
+			it 'respond with status OK' do
+				get :user_exam, id: exam.id
+
+				expect(response.status).to eq 200
+			end
+		end
+
+		describe 'post#user_exam_save' do
+			let(:exam){ create(:exam) }
+
+			it 'redirects to user path' do
+				post :user_exam_save, id: exam.id
+
+				expect(response.status).to eq 302
+				expect(response).to redirect_to user_path
+			end
 		end
 	end
 end
