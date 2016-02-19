@@ -21,21 +21,21 @@ RSpec.describe SessionsController, type: :controller do
 		end
 
 		it ' redirects to root path if user does not exist' do
-			post :create, name: 'userdoesnotexistindatabase', password: 'userdoesnotexistindatabase'
+			post :create, email: 'userdoesnotexist@database.com', password_digest: 'userdoesnotexistindatabase'
 
 			expect(response.status).to eq(302)
 			expect(response).to redirect_to root_path
 		end
 
 		it ' redirects to admin path if user has level admin' do
-			post :create, name: new_admin.name , password: new_admin.password
+			post :create, email: new_admin.email , password_digest: new_admin.password_digest
 
 			expect(response.status).to eq(302)
 			expect(response).to redirect_to admin_path
 		end
 
 		it ' redirects to user path if user has not level admin' do
-			post :create, name: new_user.name , password: new_user.password
+			post :create, email: new_user.email , password_digest: new_user.password_digest
 
 			expect(response.status).to eq(302)
 			expect(response).to redirect_to user_path

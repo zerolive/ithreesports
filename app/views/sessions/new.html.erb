@@ -1,7 +1,7 @@
 <%= form_tag signin_path do %>
-  <%= label_tag :name %>
-  <%= text_field_tag :name, nil, required: true %>
-  <%= label_tag :password %>
-  <%= password_field_tag :password, nil, required: true %>
+  <%= label_tag :email %>
+  <%= text_field_tag :email, nil, required: true %>
+  <%= label_tag :password_digest, t(:password) %>
+  <%= password_field_tag :password_digest, nil, required: true %>
   <%= submit_tag value="#{t(:sign_in)}" %>
 <% end %>

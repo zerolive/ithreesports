@@ -108,7 +108,7 @@ class AdminController < ApplicationController
 	private
 
 		def user_params
-			params.require(:user).permit(:name, :password, :level)
+			params.require(:user).permit(:email, :name, :password_digest, :level)
 		end
 
 		def exam_params
