@@ -13,6 +13,7 @@ class UserController < ApplicationController
 
 	def user_exam
 		@exam = Exam.find(params[:id])
+		@video = @exam.video_id
 		@questions = @exam.questions
 	end
 
