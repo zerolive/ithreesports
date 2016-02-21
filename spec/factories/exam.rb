@@ -3,7 +3,7 @@ require 'faker'
 FactoryGirl.define do
   factory :exam do
   	title Faker::Name.title
-      position Faker::Number.number
+      position Faker::Number.number(1)
   	video Faker::Internet.url
   	comment Faker::Lorem.characters(200)
    level '1'
