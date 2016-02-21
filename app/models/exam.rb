@@ -18,4 +18,8 @@ class Exam < ActiveRecord::Base
 		result = video.match(/(?:^.*\=)(.*)/)[1] if video.include? YOUTUBE_LONG
 		result
 	end
+
+	def self.order_by_position
+		self.all.order(:position)
+	end
 end

@@ -3,11 +3,7 @@ class UserController < ApplicationController
 
 	def index
 		@user = User.find(session[:user_id])
-		level = @user.level.to_i
-		@exams = []
-		Exam.all.each do |exam|
-			@exams << exam if exam.level.to_i <= level
-		end
+		@exams = exams_belonging_user
 		@completed_exam = CompletedExam.where(user_id: @user.id)
 	end
 
@@ -64,4 +60,12 @@ class UserController < ApplicationController
 		redirect_to signin_path unless session[:user_id]
 	end
 
+	def exams_belonging_user
+		level = @user.level.to_i
+		exams = []
+		Exam.order_by_position.each do |exam|
+			exams << exam if exam.level.to_i <= level
+		end
+		exams
+	end
 end

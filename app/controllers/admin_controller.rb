@@ -38,7 +38,7 @@ class AdminController < ApplicationController
 
 	def admin_exams
 		@exam = Exam.new
-		@exams = Exam.all
+		@exams = Exam.order_by_position
 		@levels = Exam.levels
 	end
 
@@ -113,7 +113,7 @@ class AdminController < ApplicationController
 		end
 
 		def exam_params
-			params.require(:exam).permit(:title, :video, :level, :comment)
+			params.require(:exam).permit(:title, :video, :level, :comment, :position)
 		end
 
 		def question_params
