@@ -6,8 +6,8 @@
 		<%= u.text_field :name, required: true %>
 	</p>
 	<p>
-		<%= u.label :password %>
-		<%= u.text_field :password, required: true %>
+		<%= u.label :password_digest %>
+		<%= u.password_field :password_digest, required: true, value: "#{@user.password_digest}" %>
 	<p>
 		<%= u.label :level %>
 		<%= u.select :level, options_for_select(@levels, @levels) %>
