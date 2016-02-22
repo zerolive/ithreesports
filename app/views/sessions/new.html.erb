@@ -1,7 +1,15 @@
-<%= form_tag signin_path do %>
-  <%= label_tag :email %>
-  <%= text_field_tag :email, nil, required: true %>
-  <%= label_tag :password_digest, t(:password) %>
-  <%= password_field_tag :password_digest, nil, required: true %>
-  <%= submit_tag value="#{t(:sign_in)}" %>
-<% end %>
+<p>
+	<%= form_tag signin_path do %>
+	  <%= label_tag :email %>
+	  <%= text_field_tag :email, nil, required: true %>
+	  <%= label_tag :password_digest, t(:password) %>
+	  <%= password_field_tag :password_digest, nil, required: true %>
+	  <%= submit_tag value="#{t(:sign_in)}" %>
+	<% end %>
+</p>
+
+<p>
+	<%= paypal_url(10) %>
+	<%= paypal_url(15) %>
+	<%= paypal_url(25) %>
+</p> 
