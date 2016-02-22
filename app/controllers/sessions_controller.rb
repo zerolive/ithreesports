@@ -23,6 +23,9 @@ class SessionsController < ApplicationController
 	def buy
 	end
 
+	def reset_password
+	end
+
 	private
 
 	def user_authenticate
