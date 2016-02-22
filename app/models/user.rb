@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
 
 	has_secure_password
 	
-	validates :name, presence: true, uniqueness: true, length: { in: 5..12 }
+	validates :name, presence: true, length: { in: 5..12 }
 	validates :password_digest, presence: true, length: { in: 8..12 }
 	validates :level, presence: true, inclusion: LEVELS
 	validates :email, presence: true, uniqueness: true
