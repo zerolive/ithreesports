@@ -23,14 +23,13 @@ RSpec.describe User, type: :model do
 			expect(newuser.save).to eq false
 		end
 
-		it 'cannot create two users with same name' do
-			newuser = create(:user, name: 'JohnDoe')
-			newuser2 = build(:user, name: 'JohnDoe')
-			expect(newuser2.save).to eq false
-		end
-
 		it 'cannot create a user without password' do
 			newuser = build(:user, password: nil)
+			expect(newuser.save).to eq false
+		end
+
+		it 'cannot create a user without email' do
+			newuser = build(:user, email: nil)
 			expect(newuser.save).to eq false
 		end
 
