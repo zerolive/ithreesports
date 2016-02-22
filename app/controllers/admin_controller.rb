@@ -14,7 +14,7 @@ class AdminController < ApplicationController
 	def create_user
 		@user = User.new(user_params)
 		@user.name = @user.name.downcase if @user.name
-		@user.save
+		UserMailer.welcome_email(@user).deliver_later if @user.save
 		redirect_to admin_users_path
 	end
 
