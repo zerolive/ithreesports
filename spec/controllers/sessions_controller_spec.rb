@@ -61,4 +61,12 @@ RSpec.describe SessionsController, type: :controller do
 			expect(response.status).to eq(200)
 		end
 	end
+
+	describe 'get#reset_password' do
+		it 'response with status OK' do
+			get :reset_password
+
+			expect(response.status).to eq(200)
+		end
+	end
 end
