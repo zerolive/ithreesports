@@ -26,7 +26,21 @@ class SessionsController < ApplicationController
 	def reset_password
 	end
 
+	def send_password
+		@user = User.find_by(email: params[:email])
+		if @user
+			@user.update(password_digest: new_password)
+			@user.save
+			UserMailer.reset_password_email(@user).deliver_later if @user.save
+		end
+		redirect_to root_path
+	end
+
 	private
+
+	def new_password
+		(Random.rand(100) + Time.now.to_i).to_s
+	end
 
 	def user_authenticate
 		return false unless @user
