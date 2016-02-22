@@ -24,3 +24,6 @@ en:
   password: "Password"
   position: "Position"
   welcome_email_subject: "Welcome to i3sports"
+  forgot_your_password: "Forgot your password?"
+  buy_course: "Buy a course"
+  recover: "Recover"
