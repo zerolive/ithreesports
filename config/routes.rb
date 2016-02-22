@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   post '/signin' => 'sessions#create'
   get '/logout' => 'sessions#destroy'
   get '/buy' => 'sessions#buy'
+  get '/reset_password' => 'sessions#reset_password'
+  post '/send_password/:email' => 'sessions#send_password', as: :send_password
 
   get '/admin' => 'admin#index'
 
