@@ -69,4 +69,21 @@ RSpec.describe SessionsController, type: :controller do
 			expect(response.status).to eq(200)
 		end
 	end
+
+	describe 'post#send_password' do
+		let(:user){ create(:user, password_digest: 'old_password')}
+
+		it 'redirects to root path' do
+			post :send_password, email: user.email
+
+			expect(response.status).to eq(302)
+			expect(response).to redirect_to root_path
+		end
+
+		it "changes user's password" do
+			post :send_password, email: user.email
+
+			expect(user.password_digest).to_not be 'old_password'
+		end
+	end
 end
