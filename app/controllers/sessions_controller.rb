@@ -20,6 +20,9 @@ class SessionsController < ApplicationController
    		redirect_to root_path
 	end
 
+	def buy
+	end
+
 	private
 
 	def user_authenticate

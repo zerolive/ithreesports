@@ -53,4 +53,12 @@ RSpec.describe SessionsController, type: :controller do
 			expect(response).to redirect_to root_path
 		end
 	end
+
+	describe 'get#buy' do
+		it 'response with status OK' do
+			get :buy
+
+			expect(response.status).to eq(200)
+		end
+	end
 end

@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get '/signin' => 'sessions#new'
   post '/signin' => 'sessions#create'
   get '/logout' => 'sessions#destroy'
+  get '/buy' => 'sessions#buy'
 
   get '/admin' => 'admin#index'
 
@@ -31,5 +32,5 @@ Rails.application.routes.draw do
   get '/user_exam/:id' => 'user#user_exam', as: :user_exam
   post '/user_exam_save/:id' => 'user#user_exam_save', as: :user_exam_save
 
-  match 'payed', to: 'payment#payed', via: [:get, :post], as: :got
+  match 'payed', to: 'payment#payed', via: [:get, :post], as: :payed
 end
