@@ -8,8 +8,7 @@ class PaymentController < ApplicationController
 		@user.password_digest = new_password
 		@user.level = level(params[:payment_gross])
 		if params[:payment_status] == 'Completed'
-			@user.save
-			#UserMailer.welcome_email(@user).deliver_later
+			UserMailer.welcome_email(@user).deliver_later if @user.save
 		end
 		redirect_to root_path
 	end
