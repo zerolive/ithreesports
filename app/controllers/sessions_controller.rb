@@ -30,7 +30,6 @@ class SessionsController < ApplicationController
 		@user = User.find_by(email: params[:email])
 		if @user
 			@user.update(password_digest: new_password)
-			@user.save
 			UserMailer.reset_password_email(@user).deliver_later if @user.save
 		end
 		redirect_to root_path
