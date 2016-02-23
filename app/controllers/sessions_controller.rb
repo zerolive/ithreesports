@@ -38,10 +38,6 @@ class SessionsController < ApplicationController
 
 	private
 
-	def new_password
-		(Random.rand(100) + Time.now.to_i).to_s
-	end
-
 	def user_authenticate
 		return false unless @user
 		return false unless @user.password_digest == params[:password_digest]
