@@ -7,10 +7,10 @@ class PaymentController < ApplicationController
 		@user.name = params[:first_name] + " " + params[:last_name]
 		@user.password_digest = params[:txn_id]
 		@user.level = level(params[:mc_gross])
-		if params[:payment_status] == 'Completed'
+		#if params[:payment_status] == 'Completed'
 			UserMailer.welcome_email(@user).deliver_later if @user.save
-		end
-		render nothing: true
+		#end
+		redirect_to root_path
 	end
 
 	private
