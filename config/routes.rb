@@ -37,4 +37,5 @@ Rails.application.routes.draw do
   post '/update_password' => 'user#update_password', as: :update_password
 
   match 'payed', to: 'payment#payed', via: [:get, :post], as: :payed
+  get '/thanks' => 'payment#thanks', as: :thanks
 end
