@@ -33,6 +33,8 @@ Rails.application.routes.draw do
   get '/user' => 'user#index'
   get '/user_exam/:id' => 'user#user_exam', as: :user_exam
   post '/user_exam_save/:id' => 'user#user_exam_save', as: :user_exam_save
+  get '/change_password' => 'user#change_password', as: :change_password
+  post '/update_password' => 'user#update_password', as: :update_password
 
   match 'payed', to: 'payment#payed', via: [:get, :post], as: :payed
 end
