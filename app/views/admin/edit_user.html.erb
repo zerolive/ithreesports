@@ -2,6 +2,10 @@
 
 <%= form_for @user, url: update_user_path do |u| %>
 	<p>
+		<%= u.label :email %>
+		<%= u.text_field :email, required: true %>
+	</p>
+	<p>
 		<%= u.label :name %>
 		<%= u.text_field :name, required: true %>
 	</p>
