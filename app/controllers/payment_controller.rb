@@ -10,7 +10,10 @@ class PaymentController < ApplicationController
 		if params[:payment_status] == 'Completed'
 			UserMailer.welcome_email(@user).deliver_later if @user.save
 		end
-		redirect_to root_path
+		redirect_to thanks_path
+	end
+
+	def thanks
 	end
 
 	private
