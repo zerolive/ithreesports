@@ -1,5 +1,8 @@
 <h1><%= @user.name %></h1>
-<p><%= t(:level) %> : <%= @user.level %></p>
+<p>
+	<%= t(:level) %> : <%= @user.level %> - 
+	<%= link_to t(:change_password), change_password_path %>
+</p>
 <p><%= link_to t(:log_out), logout_path %></p>
 
 <%= render partial: 'user_exams' %>
