@@ -2,7 +2,7 @@ require 'faker'
 
 FactoryGirl.define do
   factory :user, class: User do
-    email Faker::Internet.email
+    sequence(:email) { |n| "admin#{n}@admin.com" }
     name Faker::Lorem.characters(8)
     password_digest Faker::Internet.password(8)
     level '1'
@@ -11,7 +11,7 @@ end
 
 FactoryGirl.define do
   factory :admin, class: User do
-    email Faker::Internet.email
+    sequence(:email) { |n| "user#{n}@user.com" }
     name Faker::Lorem.characters(8)
     password_digest Faker::Internet.password(8)
     level 'Admin'
