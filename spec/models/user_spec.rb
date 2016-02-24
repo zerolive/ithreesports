@@ -33,6 +33,12 @@ RSpec.describe User, type: :model do
 			expect(newuser.save).to eq false
 		end
 
+		it 'cannot create two users with same email' do
+			olduser = create(:user)
+			newuser = build(:user, email: olduser.email)
+			expect(newuser.save).to eq false
+		end
+
 		it 'cannot create a user with password sorter than 8 characters' do
 			newuser = build(:user, password: '1234')
 			expect(newuser.save).to eq false
