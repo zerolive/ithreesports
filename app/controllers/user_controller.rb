@@ -24,7 +24,32 @@ class UserController < ApplicationController
 		redirect_to user_path
 	end
 
+	def change_password
+		@user = User.find(session[:user_id])
+	end
+
+	def update_password
+		@user = User.find(session[:user_id])
+		if can_change_password?
+			@user.password_digest = params[:new_password]
+			@user.save
+		end
+		redirect_to user_path
+	end
+
 	private
+
+	def can_change_password?
+		old_password_is_right? and new_password_is_right?
+	end
+
+	def new_password_is_right?
+		params[:new_password] == params[:repeat_new_password]
+	end
+
+	def old_password_is_right?
+		@user.password_digest == params[:old_password]
+	end
 
 	def calculate_score params
 		score = 0
@@ -53,8 +78,6 @@ class UserController < ApplicationController
 			})
 		completed_exam.save
 	end
-
-	private
 
 	def user_logged?
 		redirect_to signin_path unless session[:user_id]
