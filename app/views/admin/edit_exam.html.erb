@@ -1,5 +1,9 @@
 <%= form_for @exam, url: update_exam_path(@exam) do |f| %>
 	<p>
+		<%= f.label :position %>
+		<%= f.number_field :position, required: true %>
+	</p>
+	<p>
 		<%= f.label :title %>
 		<%= f.text_field :title, required: true %>
 	</p>
