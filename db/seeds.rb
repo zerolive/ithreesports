@@ -1,7 +1,7 @@
-User.create!(name: "admin", email: "admin@test.com", password: "12345678", password_digest: "12345678", level: "Admin")
-User.create!(name: "user1", email: "user1@test.com", password: "12345678", password_digest: "12345678", level: "1")
-User.create!(name: "user2", email: "user2@test.com", password: "12345678", password_digest: "12345678", level: "2")
-User.create!(name: "user3", email: "user3@test.com", password: "12345678", password_digest: "12345678", level: "3")
+User.create!(name: "admin", email: "admin@test.com", password: "12345678", password_digest: "12345678", gender: 'Male', level: "Admin")
+User.create!(name: "user1", email: "user1@test.com", password: "12345678", password_digest: "12345678", gender: 'Male', level: "1")
+User.create!(name: "user2", email: "user2@test.com", password: "12345678", password_digest: "12345678", gender: 'Male', level: "2")
+User.create!(name: "user3", email: "user3@test.com", password: "12345678", password_digest: "12345678", gender: 'Male', level: "3")
 
 (1..3).each do |t|
 	first = Exam.create!(position: (1+t), title: "First exam for level #{t}", level: t.to_s, video: "https://www.youtube.com/watch?v=g6p7eTejWRY", comment: "Comment for first exam level #{t}")
