@@ -14,7 +14,7 @@
 		<%= u.password_field :password_digest, required: true, value: "#{@user.password_digest}" %>
 	<p>
 		<%= u.label :level %>
-		<%= u.select :level, options_for_select(@levels, @levels) %>
+		<%= u.select :level, options_for_select(@levels, @user.level) %>
 	<p><%= u.submit value="#{t(:save)}" %></p>
 <% end %>
 <p><%= link_to t(:back), admin_users_path %></p>

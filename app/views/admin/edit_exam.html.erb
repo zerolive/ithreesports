@@ -9,7 +9,7 @@
 	</p>
 	<p>
 		<%= f.label :level %>
-		<%= f.select :level, options_for_select(@levels, @levels) %>
+		<%= f.select :level, options_for_select(@levels, @exam.level) %>
 	</p>
 	<p>
 		<%= f.label :comment %>
