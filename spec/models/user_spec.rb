@@ -78,6 +78,13 @@ RSpec.describe User, type: :model do
 			newuser = build(:user, level: 'Admin')
 			expect(newuser.save).to eq true
 		end
+
+		it 'fills gender field with Hombre by default' do
+			newuser = build(:user, gender: nil)
+
+			expect(newuser.save).to eq true
+			expect(newuser.gender).to eq 'Hombre'
+		end
 	end	
 
   describe 'Associations' do
@@ -89,6 +96,10 @@ RSpec.describe User, type: :model do
 	describe 'Methods' do
 		it 'knows the differents levels' do
 			expect(User.levels).to eq([ '1', '2', '3', 'Admin'])
+		end
+
+		it 'knows the differents genders' do
+			expect(User.genders).to eq(['Hombre', 'Mujer'])
 		end
 	end
 end
