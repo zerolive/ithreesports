@@ -34,6 +34,21 @@ class UserController < ApplicationController
 			@user.password_digest = params[:new_password]
 			@user.save
 		end
+		redirect_to user_edit_info_path
+	end
+
+	def user_edit_info
+		@user = User.find(session[:user_id])
+		@genders = User.genders
+	end
+
+	def user_update_info
+		@user = User.find(session[:user_id])
+		if @user.id.to_s == params[:id]
+			@user.name = params[:user][:name]
+			@user.gender = params[:user][:gender]
+			@user.save
+		end
 		redirect_to user_path
 	end
 
