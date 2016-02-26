@@ -59,6 +59,26 @@ RSpec.describe UserController, type: :controller do
 				expect(response).to redirect_to signin_path
 			end
 		end
+
+		describe 'get#user_edit_info' do
+			it 'redirects to sign path' do
+				get :user_edit_info
+
+				expect(response.status).to eq 302
+				expect(response).to redirect_to signin_path
+			end
+		end
+
+		describe 'post#user_update_info' do
+			let(:user){ create(:user) }
+
+			it 'redirects to sign path' do
+				patch :user_update_info, id: user.id
+
+				expect(response.status).to eq 302
+				expect(response).to redirect_to signin_path
+			end
+		end
 	end
 
 	context 'If user is logged' do
@@ -115,7 +135,7 @@ RSpec.describe UserController, type: :controller do
 				post :update_password, old_password: logged_user.password_digest, new_password: newpassword, repeat_new_password: newpassword
 
 				expect(response.status).to eq 302
-				expect(response).to redirect_to user_path
+				expect(response).to redirect_to user_edit_info_path
 			end
 
 			it 'change password if old and new password are right' do
@@ -140,6 +160,35 @@ RSpec.describe UserController, type: :controller do
 				post :update_password, old_password: logged_user.password_digest, new_password: 'new_password_one', repeat_new_password: 'new_password_two'
 
 				expect(assigns(:user).password_digest).to_not eq newpassword
+			end
+		end
+
+		describe 'get#user_edit_info' do
+			it 'responses with status ok' do
+				get :user_edit_info
+
+				expect(response.status).to eq 200
+			end
+		end
+
+		describe 'post#user_update_info' do
+
+			it 'redirects to user path' do
+				new_info = { name: 'new_name', gender: 'Mujer'}
+
+				patch :user_update_info, id: logged_user.id, user: new_info
+
+				expect(response.status).to eq 302
+				expect(response).to redirect_to user_path
+			end
+
+			it 'updates a user info' do
+				new_info = { name: 'new_name', gender: 'Mujer'}
+
+				patch :user_update_info, id: logged_user.id, user: new_info
+
+				expect(assigns(:user).name).to eq  'new_name'
+				expect(assigns(:user).gender).to eq  'Mujer'
 			end
 		end
 	end
