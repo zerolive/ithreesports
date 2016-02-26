@@ -1,0 +1,13 @@
+<%= form_for @user, url: user_update_info_path(@user) do |f| %>
+<p>
+	<%= f.label :name %><%= f.text_field :name %>
+</p>
+<p>
+	<%= f.label :gender %>
+	<%= f.select :gender, options_for_select(@genders, @user.gender) %>
+</p>
+<p><%= f.submit value="#{t(:update_info)}" %></p>
+<% end %>
+<p><%= link_to t(:change_password), change_password_path %></p>
+
+<p><%= link_to t(:back), user_path %></p>
