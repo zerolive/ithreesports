@@ -1,11 +1,11 @@
 class SessionsController < ApplicationController
+	before_action :set_user, only: [:create, :send_password]
 
 	def new
 		session.delete(:user_id) if session[:user_id]
 	end
 
 	def create
-		@user = User.find_by(email: params[:email])
 		if user_authenticate
 			session[:user_id] = @user.id
 			redirect_to admin_path if @user.level == 'Admin'
@@ -27,7 +27,6 @@ class SessionsController < ApplicationController
 	end
 
 	def send_password
-		@user = User.find_by(email: params[:email])
 		if @user
 			@user.update(password_digest: new_password)
 			UserMailer.reset_password_email(@user).deliver_later if @user.save
@@ -41,5 +40,9 @@ class SessionsController < ApplicationController
 		return false unless @user
 		return false unless @user.password_digest == params[:password_digest]
 		true
+	end
+
+	def set_user
+		@user = User.find_by(email: params[:email])
 	end
 end
