@@ -29,6 +29,8 @@ Rails.application.routes.draw do
   patch '/update_question/:id' => 'admin#update_question', as: :update_question
   delete '/delete_question/:id' => 'admin#delete_question', as: :delete_question
   get '/preview_exam/:id' => 'admin#preview_exam', as: :preview_exam
+  get '/new_answer/:id' => 'admin#new_answer', as: :new_answer
+  post '/create_answer/:id' => 'admin#create_answer', as: :create_answer
 
   get '/user' => 'user#index'
   get '/user_exam/:id' => 'user#user_exam', as: :user_exam
