@@ -31,3 +31,6 @@ en:
   change_password: "Change password"
   edit_profile: "Edit profile"
   update_info: "Update info"
+  add_answer: "Add answer"
+  true: "True"
+  false: "False"
