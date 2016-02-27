@@ -1,8 +1,9 @@
 require 'faker'
 
 FactoryGirl.define do
-  factory :question do
+  factory :answer do
+  	question_id 1
   	title Faker::Name.title
-  	exam_id 1
+  	right '1'
   end
 end
