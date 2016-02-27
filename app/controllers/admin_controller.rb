@@ -106,10 +106,26 @@ class AdminController < ApplicationController
 		@questions = @exam.questions
 	end
 
+	def new_answer
+		@question = Question.find(params[:id])
+		@answer = Answer.new
+	end
+
+	def create_answer
+		@answer = Answer.new(answer_params)
+		@answer.question_id = params[:id]
+		@answer.save
+		redirect_to exam_questions_path
+	end
+
 	private
 
 		def user_params
 			params.require(:user).permit(:email, :name, :password_digest, :level)
+		end
+
+		def answer_params
+			params.require(:answer).permit(:title, :right)
 		end
 
 		def exam_params
