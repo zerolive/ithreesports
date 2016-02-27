@@ -34,3 +34,5 @@ en:
   add_answer: "Add answer"
   true: "True"
   false: "False"
+  edit_question: "Edit question"
+  edit_answer: "Edit answer"
