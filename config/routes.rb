@@ -45,4 +45,6 @@ Rails.application.routes.draw do
 
   match 'payed', to: 'payment#payed', via: [:get, :post], as: :payed
   get '/thanks' => 'payment#thanks', as: :thanks
+
+  get '*path' => redirect('/')
 end
