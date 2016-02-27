@@ -540,7 +540,7 @@ RSpec.describe AdminController, type: :controller do
 				delete :delete_question, id: exam_with_10_questions.questions.first
 
 				expect(response.status).to eq 302
-				expect(response).to redirect_to exam_questions_path
+				expect(response).to redirect_to exam_questions_path(exam_with_10_questions)
 				expect(exam_with_10_questions.questions.count).to_not eq 10
 			end
 		end
@@ -577,7 +577,7 @@ RSpec.describe AdminController, type: :controller do
 			it 'redirects to exam questions path' do
 				post :create_answer, id: question.id, answer: { title: answer.title , right: answer.right}
 
-				expect(response).to redirect_to exam_questions_path
+				expect(response).to redirect_to exam_questions_path(question.exam_id)
 			end
 		end
 
@@ -610,7 +610,7 @@ RSpec.describe AdminController, type: :controller do
 				patch :update_answer, id: answer.id, answer: { title: 'new title', right: answer.right }
 
 				expect(response.status).to eq(302)
-				expect(response).to redirect_to exam_questions_path
+				expect(response).to redirect_to exam_questions_path(question_with_answers.exam_id)
 			end
 		end
 
@@ -623,7 +623,7 @@ RSpec.describe AdminController, type: :controller do
 				patch :delete_answer, id: answer.id
 
 				expect(response.status).to eq(302)
-				expect(response).to redirect_to exam_questions_path
+				expect(response).to redirect_to exam_questions_path(question_with_answers.exam_id)
 			end
 
 			it 'deletes an answer' do
