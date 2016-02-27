@@ -218,6 +218,18 @@ RSpec.describe AdminController, type: :controller do
 				expect(response).to redirect_to signin_path
 			end
 		end
+
+		describe 'patch#update_answer' do
+			let(:question_with_answers){ create(:question_with_answers) }
+
+			it 'redirects to signin path' do
+				answer = question_with_answers.answer.first
+				patch :update_answer, id: answer.id, answer: { title: 'new title', right: answer.right }
+
+				expect(response.status).to eq(302)
+				expect(response).to redirect_to signin_path
+			end
+		end
 	end
 
 	context 'If admin is logged' do
@@ -563,6 +575,25 @@ RSpec.describe AdminController, type: :controller do
 				get :edit_answer, id: answer.id
 
 				expect(response.status).to eq(200)
+			end
+		end
+
+		describe 'patch#update_answer' do
+			let(:question_with_answers){ create(:question_with_answers) }
+
+			it 'update answer attributes' do
+				answer = question_with_answers.answer.first
+				patch :update_answer, id: answer.id, answer: { title: 'new title', right: answer.right }
+
+				expect(assigns(:answer).errors.size).to eq 0
+			end
+
+			it 'redirects to exam questions' do
+				answer = question_with_answers.answer.first
+				patch :update_answer, id: answer.id, answer: { title: 'new title', right: answer.right }
+
+				expect(response.status).to eq(302)
+				expect(response).to redirect_to exam_questions_path
 			end
 		end
 	end
