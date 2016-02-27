@@ -14,12 +14,6 @@ RSpec.describe Question, type: :model do
 		expect(new_question.save).to_not eq true
 	end
 
-	it 'cannot create a new question without true or false in answer' do
-		new_question.answer = nil
-
-		expect(new_question.save).to_not eq true
-	end
-
       it 'cannot create a new question without exam id' do
           new_question.exam_id = nil
 
@@ -32,11 +26,15 @@ RSpec.describe Question, type: :model do
         	expect(Question.reflect_on_association(:exam).macro).to eq(:belongs_to)
       end
 
-      it 'can access to its question' do
+      it 'can access to its exam' do
         exam = create(:exam_with_questions)
         question = exam.questions.first
 
         expect(question.exam_id).to eq exam.id
+      end
+
+      it 'must have many answers' do
+          expect(Question.reflect_on_association(:answer).macro).to eq(:has_many)
       end
   end
 end

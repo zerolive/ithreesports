@@ -14,8 +14,8 @@ RSpec.describe CompletedExam, type: :model do
   		expect(completed_exam.save).to eq false
   	end
 
-  	it 'cannot create a new completed exam without answers' do
-  		completed_exam.answers = nil
+  	it 'cannot create a new completed exam without questions' do
+  		completed_exam.questions = nil
   		
   		expect(completed_exam.save).to eq false
   	end
