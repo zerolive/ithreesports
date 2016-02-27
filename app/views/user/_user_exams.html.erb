@@ -3,7 +3,7 @@
 		<p>
 			<%= link_to exam.title, user_exam_path(exam) %> - 
 			<% @completed_exam.each do |ce| %>
-				<%= "#{ce.score}/#{ce.answers}" if ce.exam_id == exam.id %>
+				<%= "#{ce.score}/#{ce.questions}" if ce.exam_id == exam.id %>
 			<% end %>
 		</p>
 	<% end %>

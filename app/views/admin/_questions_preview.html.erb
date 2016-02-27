@@ -1,4 +1,7 @@
 <p><%= t(:title) %> - <%= t(:answer) %></p>
 <% @questions.each do |q| %>
-	<p><%= q.title %> - <%= checked(q.answer) %></p>
+	<p><%= q.title %></p>
+	<% q.answer.each do |a| %>
+		<p><%= a.title %> - <%= checked a.right %></p>
+	<% end %>
 <% end %>

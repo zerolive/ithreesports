@@ -1,6 +1,8 @@
 <p>
 	<%= question.title %> - 
-	<%= t(:answer) %>: <%= question.answer %> - 
 	<%= link_to t(:edit), edit_question_path(question) %> - 
 	<%= link_to t(:delete), delete_question_path(question), method: :delete, data: { confirm: "#{t(:are_you_sure)}" } %>
+	<% question.answer.each do |a| %>
+		<p><%= a.title %> - <%= checked a.right %></p>
+	<% end %>
 </p>

@@ -3,10 +3,6 @@
 		<%= f.label :title %>
 		<%= f.text_field :title, required: true %>
 	</p>
-	<p>
-		<%= f.label :answer %>
-		<%= f.check_box :answer, required: true %>
-	</p>
 	<p><%= f.submit %></p>
 <% end %>
 <%= link_to t(:back), exam_questions_path(@exam) %>
