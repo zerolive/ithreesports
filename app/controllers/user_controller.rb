@@ -1,8 +1,8 @@
 class UserController < ApplicationController
 	before_action :user_logged?
+	before_action :set_user, only: [:index, :change_password, :update_password, :user_edit_info, :user_update_info]
 
 	def index
-		@user = User.find(session[:user_id])
 		@exams = exams_belonging_user
 		@completed_exam = CompletedExam.where(user_id: @user.id)
 	end
@@ -25,11 +25,9 @@ class UserController < ApplicationController
 	end
 
 	def change_password
-		@user = User.find(session[:user_id])
 	end
 
 	def update_password
-		@user = User.find(session[:user_id])
 		if can_change_password?
 			@user.password_digest = params[:new_password]
 			@user.save
@@ -38,12 +36,10 @@ class UserController < ApplicationController
 	end
 
 	def user_edit_info
-		@user = User.find(session[:user_id])
 		@genders = User.genders
 	end
 
 	def user_update_info
-		@user = User.find(session[:user_id])
 		if @user.id.to_s == params[:id]
 			@user.name = params[:user][:name]
 			@user.gender = params[:user][:gender]
@@ -53,6 +49,10 @@ class UserController < ApplicationController
 	end
 
 	private
+
+	def set_user
+		@user = User.find(session[:user_id])
+	end
 
 	def can_change_password?
 		old_password_is_right? and new_password_is_right?
