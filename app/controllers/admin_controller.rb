@@ -1,5 +1,6 @@
 class AdminController < ApplicationController
 	before_action :authenticate_admin
+	before_action :set_exam, only: [:edit_exam, :update_exam, :delete_exam, :new_question, :exam_questions, :preview_exam]
 
 	def index
 
@@ -49,25 +50,21 @@ class AdminController < ApplicationController
 	end
 
 	def edit_exam
-		@exam = Exam.find(params[:id])
 		@levels = Exam.levels
 	end
 
 	def update_exam
-		@exam = Exam.find(params[:id])
 		@exam.update_attributes(exam_params)
 		@exam.save
 		redirect_to admin_exams_path
 	end
 
 	def delete_exam
-		@exam = Exam.find(params[:id])
 		@exam.destroy
 		redirect_to admin_exams_path
 	end
 
 	def new_question
-		@exam = Exam.find(params[:id])
 		@question = Question.new
 	end
 
@@ -79,7 +76,6 @@ class AdminController < ApplicationController
 	end
 
 	def exam_questions
-		@exam = Exam.find(params[:id])
 		@questions = @exam.questions
 	end
 
@@ -101,7 +97,6 @@ class AdminController < ApplicationController
 	end
 
 	def preview_exam
-		@exam = Exam.find(params[:id])
 		@video = @exam.video_id
 		@questions = @exam.questions
 	end
@@ -139,6 +134,9 @@ class AdminController < ApplicationController
 	end
 
 	private
+		def set_exam
+			@exam = Exam.find(params[:id])
+		end
 
 		def user_params
 			params.require(:user).permit(:email, :name, :password_digest, :level)
