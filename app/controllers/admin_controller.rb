@@ -1,9 +1,9 @@
 class AdminController < ApplicationController
 	before_action :authenticate_admin
 	before_action :set_exam, only: [:edit_exam, :update_exam, :delete_exam, :new_question, :exam_questions, :preview_exam]
+	before_action :set_user, only: [:delete_user, :edit_user, :update_user]
 
 	def index
-
 	end
 
 	def admin_users
@@ -20,18 +20,15 @@ class AdminController < ApplicationController
 	end
 
 	def delete_user
-		@user = User.find(params[:id])
 		@user.destroy
 		redirect_to admin_users_path
 	end
 
 	def edit_user
-		@user = User.find(params[:id])
 		@levels = User.levels
 	end
 
 	def update_user
-		@user = User.find(params[:id])
 		@user.update_attributes(user_params)
 		@user.save
 		redirect_to admin_users_path
@@ -134,6 +131,11 @@ class AdminController < ApplicationController
 	end
 
 	private
+
+		def set_user
+			@user = User.find(params[:id])
+		end
+
 		def set_exam
 			@exam = Exam.find(params[:id])
 		end
