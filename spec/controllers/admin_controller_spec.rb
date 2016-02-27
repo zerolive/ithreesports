@@ -184,6 +184,16 @@ RSpec.describe AdminController, type: :controller do
 				expect(response).to redirect_to signin_path
 			end
 		end
+
+		describe 'get#new_answer' do
+			let(:question){ create(:question) }
+			it 'redirects to signin path' do
+				get :new_answer, id: question.id
+
+				expect(response.status).to eq(302)
+				expect(response).to redirect_to signin_path
+			end
+		end
 	end
 
 	context 'If admin is logged' do
@@ -490,6 +500,15 @@ RSpec.describe AdminController, type: :controller do
 				get :preview_exam, id: exam.id
 
 				expect(response.status).to eq 200
+			end
+		end
+
+		describe 'get#new_answer' do
+			let(:question){ create(:question) }
+			it 'response with status OK' do
+				get :new_answer, id: question.id
+
+				expect(response.status).to eq(200)
 			end
 		end
 	end
