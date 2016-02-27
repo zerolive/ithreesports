@@ -2,7 +2,7 @@
 
 <p><%= youtube_iframe @video %></p>
 
-<p><%= @exam.comment %></p>
+<p><%= @exam.comment if @exam.comment %></p>
 
 <%= render partial: 'questions_preview' %>
 
