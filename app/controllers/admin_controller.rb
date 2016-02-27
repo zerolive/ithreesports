@@ -115,13 +115,13 @@ class AdminController < ApplicationController
 	def update_answer
 		@question = Question.find(@answer.question_id)
 		@answer.update_attributes(answer_params)
-		redirect_to exam_questions_path(@question.id)
+		redirect_to exam_questions_path(@question.exam_id)
 	end
 
 	def delete_answer
 		@question = Question.find(@answer.question_id)
 		@answer.destroy
-		redirect_to exam_questions_path(@question.id)
+		redirect_to exam_questions_path(@question.exam_id)
 	end
 
 	private
