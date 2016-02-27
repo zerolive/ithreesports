@@ -14,7 +14,6 @@ class UserController < ApplicationController
 	end
 
 	def user_exam_save
-		puts "*"*100, params
 		exam = Exam.find(params[:id])
 
 		delete_old_completed_exam exam.id
