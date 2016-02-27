@@ -14,6 +14,7 @@ class UserController < ApplicationController
 	end
 
 	def user_exam_save
+		puts "*"*100, params
 		exam = Exam.find(params[:id])
 
 		delete_old_completed_exam exam.id
@@ -70,10 +71,8 @@ class UserController < ApplicationController
 		score = 0
 		params.each do | key, value |
 			if key.to_i != 0
-				question = Question.find(key.to_i)
-				answer = false
-				answer = true if value == '1'
-				score += 1 if answer == question.answer
+				answer = Answer.find(value.to_i)
+				score += 1 if answer.right == '1'
 			end
 		end
 		score
@@ -87,7 +86,7 @@ class UserController < ApplicationController
 	def new_completed_exam exam, score
 		completed_exam = CompletedExam.new({
 				:user_id => session[:user_id], 
-				:answers => exam.questions.count, 
+				:questions => exam.questions.count, 
 				:score => score, 
 				:exam_id => exam.id 
 			})

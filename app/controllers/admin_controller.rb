@@ -6,7 +6,7 @@ class AdminController < ApplicationController
 	end
 
 	def admin_users
-		@users = User.all
+		@users = User.all.order(:level).reverse_order
 		@user = User.new
 		@levels = User.levels
 	end
@@ -117,7 +117,7 @@ class AdminController < ApplicationController
 		end
 
 		def question_params
-			params.require(:question).permit(:title, :answer)
+			params.require(:question).permit(:title)
 		end
 
 		def authenticate_admin
