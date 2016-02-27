@@ -112,10 +112,11 @@ class AdminController < ApplicationController
 	end
 
 	def create_answer
+		@question = Question.find(params[:id])
 		@answer = Answer.new(answer_params)
-		@answer.question_id = params[:id]
+		@answer.question_id = @question.id
 		@answer.save
-		redirect_to exam_questions_path
+		redirect_to exam_questions_path(@question.exam_id)
 	end
 
 	private
