@@ -119,6 +119,14 @@ class AdminController < ApplicationController
 		redirect_to exam_questions_path(@question.exam_id)
 	end
 
+	def edit_answer
+		@answer = Answer.find(params[:id])
+		@question = Question.find(@answer.question_id)
+	end
+
+	def update_answer
+	end
+
 	private
 
 		def user_params
