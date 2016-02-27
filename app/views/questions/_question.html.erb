@@ -6,7 +6,8 @@
 		<p>
 			<%= a.title %> - 
 			<%= checked a.right %> - 
-			<%= link_to t(:edit_answer), edit_answer_path(a.id) %>
+			<%= link_to t(:edit_answer), edit_answer_path(a.id) %> - 
+			<%= link_to t(:delete), delete_answer_path(a.id),method: :delete, data: { confirm: "#{t(:are_you_sure)}" } %>
 		</p>
 	<% end %>
 </p>
