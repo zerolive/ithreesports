@@ -1,0 +1,14 @@
+<%= form_for @answer, url: update_answer_path(@answer) do |f| %>
+	<p>
+		<%= f.label :title %>
+		<%= f.text_field :title %>
+	</p>
+	<p>
+		<%= f.label :right %>
+		<%= f.select :right, options_for_select({ t(:false)=>"0", t(:true)=>"1" }, @answer.right) %>
+	</p>
+	<p>
+		<%= f.submit t(:edit_answer) %>
+	</p>
+<% end %>
+<p><%= link_to t(:back), exam_questions_path(@question.exam_id) %></p>
