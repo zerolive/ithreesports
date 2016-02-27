@@ -540,7 +540,7 @@ RSpec.describe AdminController, type: :controller do
 				delete :delete_question, id: exam_with_10_questions.questions.first
 
 				expect(response.status).to eq 302
-				expect(response).to redirect_to exam_questions_path(exam_with_10_questions)
+				expect(response).to redirect_to exam_questions_path
 				expect(exam_with_10_questions.questions.count).to_not eq 10
 			end
 		end
