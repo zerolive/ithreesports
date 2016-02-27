@@ -3,16 +3,20 @@ RSpec.describe ApplicationHelper, type: :helper do
 	context 'Methods' do
 
 	   describe 'checked' do
-		  	it 'responds with unckecked check box if its false' do
-		  		unckeckedbox = "<input type='checkbox'>"
+		  	it 'responds with unckecked radio if its field right is 0' do
+		  		right = '0'
 
-		  		expect(checked(false)).to eq unckeckedbox
+		  		unckeckedbox = "<input type='radio' disabled='true'>"
+
+		  		expect(checked(right)).to eq unckeckedbox
 		  	end
 
-		  	it 'responds with ckecked check box if its true' do
-		  		unckeckedbox = "<input type='checkbox' checked>"
+		  	it 'responds with ckecked radio if its  field right is 1' do
+		  		right = '1'
 
-		  		expect(checked(true)).to eq unckeckedbox
+		  		unckeckedbox = "<input type='radio' checked disabled='true'>"
+
+		  		expect(checked(right)).to eq unckeckedbox
 		  	end
 	   end
 
