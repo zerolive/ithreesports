@@ -11,15 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160224151450) do
+ActiveRecord::Schema.define(version: 20160226132732) do
+
+  create_table "answers", force: :cascade do |t|
+    t.integer  "question_id"
+    t.string   "title"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.string   "right"
+  end
 
   create_table "completed_exams", force: :cascade do |t|
     t.integer  "user_id"
-    t.integer  "answers"
     t.integer  "score"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "exam_id"
+    t.integer  "questions"
   end
 
   create_table "exams", force: :cascade do |t|
@@ -34,7 +42,6 @@ ActiveRecord::Schema.define(version: 20160224151450) do
 
   create_table "questions", force: :cascade do |t|
     t.string   "title"
-    t.boolean  "answer"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "exam_id"
