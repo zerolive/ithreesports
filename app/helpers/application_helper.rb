@@ -1,8 +1,8 @@
 module ApplicationHelper
 
-	def checked boolean
-		result = "<input type='checkbox'>"
-		result = "<input type='checkbox' checked>" if boolean
+	def checked right
+		result = "<input type='radio' disabled='true'>"
+		result = "<input type='radio' checked disabled='true'>" if right == '1'
 		result.html_safe
 	end
 
