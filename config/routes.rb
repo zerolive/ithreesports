@@ -33,6 +33,7 @@ Rails.application.routes.draw do
   post '/create_answer/:id' => 'admin#create_answer', as: :create_answer
   get '/edit_answer/:id' => 'admin#edit_answer', as: :edit_answer
   patch '/update_answer/:id' => 'admin#update_answer', as: :update_answer
+  delete '/delete_answer/:id' => 'admin#delete_answer', as: :delete_answer
 
   get '/user' => 'user#index'
   get '/user_exam/:id' => 'user#user_exam', as: :user_exam
