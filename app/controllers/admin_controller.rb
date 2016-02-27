@@ -3,6 +3,7 @@ class AdminController < ApplicationController
 	before_action :set_exam, only: [:edit_exam, :update_exam, :delete_exam, :new_question, :exam_questions, :preview_exam]
 	before_action :set_user, only: [:delete_user, :edit_user, :update_user]
 	before_action :set_question, only: [:edit_question, :update_question, :delete_question, :new_answer, :create_answer]
+	before_action :set_answer, only: [:edit_answer, :update_answer, :delete_answer]
 
 	def index
 	end
@@ -108,25 +109,26 @@ class AdminController < ApplicationController
 	end
 
 	def edit_answer
-		@answer = Answer.find(params[:id])
 		@question = Question.find(@answer.question_id)
 	end
 
 	def update_answer
-		@answer = Answer.find(params[:id])
 		@question = Question.find(@answer.question_id)
 		@answer.update_attributes(answer_params)
 		redirect_to exam_questions_path(@question.id)
 	end
 
 	def delete_answer
-		@answer = Answer.find(params[:id])
 		@question = Question.find(@answer.question_id)
 		@answer.destroy
 		redirect_to exam_questions_path(@question.id)
 	end
 
 	private
+
+		def set_answer
+			@answer = Answer.find(params[:id])
+		end
 
 		def set_question
 			@question = Question.find(params[:id])
