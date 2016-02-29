@@ -4,17 +4,36 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title><%= content_for?(:title) ? yield(:title) : "foundation-rails" %></title>
-
+    <title><%= content_for?(:title) ? yield(:title) : "i3sport" %></title>
     <%= stylesheet_link_tag    "application" %>
     <%= javascript_include_tag "vendor/modernizr" %>
     <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
   </head>
-
   <body>
+    <div id="container">
+      <div id="content">
+        <%= render 'shared/menu' %>
 
-    <%= yield %>
+        <nav class="top-bar toplogo-background-color" data-topbar role="navigation">
+          <ul class="title-area">
+            <li class="name">
+              <%= image_tag "logo-i3-asd.png", class: "logo-separator"%>
+            </li>
+          </ul>
+          <section class="top-bar-section">
+            <div class="right">
+            </div>
+          </section>
+        </nav>
 
+        <div class="main-container">
+          <%= yield %>
+        </div>
+      </div>
+    </div>
+    <div id="footer">
+      <%= render 'shared/footer' %>
+    </div>
   </body>
 </html>

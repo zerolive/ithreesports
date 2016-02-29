@@ -1,0 +1,63 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ *= require foundation_and_overrides
+
+ */
+
+@import 'foundation-icons';
+
+.topbar-background-color{
+	background: #00577d !important;
+};
+
+.toplogo-background-color{
+	background: #ffffff !important;
+};
+
+.logo-separator{
+	margin-top: 10px !important;
+};
+
+.input-login-text{
+	text-align: center !important;
+};
+
+.social-media-text{
+	font-size: 1em !important;
+	margin-right: 20px !important;
+	padding-top: 5px !important;
+};
+
+.social-media-icon{
+	font-size: 1.5em !important;
+	margin-right: 20px !important;
+};
+
+.social-media-top-color{
+	color: #ffffff !important;
+};
+
+html, body, #container { height: 100%; };
+body > #container { height: auto; min-height: 100%; };
+
+#footer{
+    clear: both;
+    position: relative;
+    z-index: 10;
+    height: 6em;
+    margin-top: -6em;
+};
+
+#content { padding-bottom: 6em; };

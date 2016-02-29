@@ -1,11 +1,17 @@
-<p>
-	<%= form_tag signin_path do %>
-	  <%= label_tag :email %>
-	  <%= text_field_tag :email, nil, required: true %>
-	  <%= label_tag :password_digest, t(:password) %>
-	  <%= password_field_tag :password_digest, nil, required: true %>
-	  <%= submit_tag value="#{t(:sign_in)}" %>
-	<% end %>
-</p>
-<p><%= link_to t(:forgot_your_password), reset_password_path %></p>
-<p><%= link_to t(:buy_course), buy_path %></p>
+<div class="row">
+  <div class="small-3 small-centered columns">
+  		<center>
+			<p>
+				<%= form_tag signin_path do %>
+				  <%= label_tag :email %>
+				  <%= text_field_tag :email, nil, required: true, class: "input-login-text" %>
+				  <%= label_tag :password_digest, t(:password) %>
+				  <%= password_field_tag :password_digest, nil, required: true, class: "input-login-text" %>
+				  <%= submit_tag value="#{t(:sign_in)}" %>
+				<% end %>
+			</p>
+			<%= link_to t(:forgot_your_password), reset_password_path %>
+			<p><%= link_to t(:buy_course), buy_path %></p>
+		</center>
+  </div>
+</div>
