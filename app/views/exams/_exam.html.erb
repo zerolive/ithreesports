@@ -1,10 +1,10 @@
-<p>
-	<%= t(:position) %> : <%= exam.position %> - 
-	<%= exam.title %> - 
-	<%= t(:level) %>: <%= exam.level %> - 
-	<%= t(:numer_of_questions)%>: <%= exam.questions.count %> - 
-	<%= link_to t(:edit_exam), edit_exam_path(exam) %> - 
-	<%= link_to t(:delete_exam), delete_exam_path(exam), method: :delete, data: { confirm: "#{t(:are_you_sure)}" } %> - 
-	<%= link_to t(:exam_questions), exam_questions_path(exam) %> - 
-	<%= link_to t(:preview), preview_exam_path(exam) %>
-</p>
+  <tr>
+    <td><center><%= exam.position %></center></td>
+    <td><%= exam.title %></td>
+    <td><center><%= exam.level %></center></td>
+    <td><center><%= exam.questions.count %></center></td>
+    <td><center><%= link_to "<span class='fi-pencil'></span>".html_safe, edit_exam_path(exam) %></center></td>
+    <td><center><%= link_to "<span class='fi-trash delete-button'>".html_safe, delete_exam_path(exam), method: :delete, data: { confirm: "#{t(:are_you_sure)}" } %></center></td>
+    <td><center><%= link_to "<span class='fi-plus'></span>".html_safe, exam_questions_path(exam) %></center></td>
+    <td><center><%= link_to "<span class='fi-magnifying-glass'></span>".html_safe, preview_exam_path(exam) %></center></td>
+  </tr>

@@ -36,3 +36,8 @@ en:
   false: "False"
   edit_question: "Edit question"
   edit_answer: "Edit answer"
+  administration_panel: "Administration panel"
+  user_administration: "Users administration"
+  name: "Name"
+  email: "Email"
+  exams_adminitration: "Exams administration"

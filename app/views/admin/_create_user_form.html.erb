@@ -7,5 +7,5 @@
 	<%= f.text_field :password_digest, required: true %>
 	<%= f.label :level %>
 	<%= f.select :level, options_for_select(@levels, @levels[0]) %>
-	<%= submit_tag value="#{t(:create_user)}" %>
+	<center><%= submit_tag value="#{t(:create_user)}" %></center>
 <% end %>

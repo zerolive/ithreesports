@@ -13,20 +13,8 @@
   <body>
     <div id="container">
       <div id="content">
-        <%= render 'shared/menu' %>
-
-        <nav class="top-bar toplogo-background-color" data-topbar role="navigation">
-          <ul class="title-area">
-            <li class="name">
-              <%= image_tag "logo-i3-asd.png", class: "logo-separator"%>
-            </li>
-          </ul>
-          <section class="top-bar-section">
-            <div class="right">
-            </div>
-          </section>
-        </nav>
-
+          <%= render 'shared/menu' %>
+          <%= render 'shared/logo' %>
         <div class="main-container">
           <%= yield %>
         </div>

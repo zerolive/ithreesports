@@ -1,6 +1,6 @@
 class UserController < ApplicationController
 	before_action :user_logged?
-	before_action :set_user, only: [:index, :change_password, :update_password, :user_edit_info, :user_update_info]
+	before_action :set_user
 
 	def index
 		@exams = exams_belonging_user

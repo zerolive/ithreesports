@@ -1,16 +1,26 @@
-<h1><%= @exam.title %></h1>
+<center>
+	<h1><%= @exam.title %></h1>
+	<p><%= youtube_iframe @video %></p>
+</center>
 
-<p><%= youtube_iframe @video %></p>
 
-<p><%= @exam.comment if @exam.comment %></p>
-
-<%= form_tag user_exam_save_path(@exam.id) do %>
-	<% @questions.each do |question| %>
-		<p><%= label_tag question.title %></p>
-			<% question.answer.each do |answer| %>
-				<p><%= answer.title %> - <%= radio_button_tag "#{question.id}", "#{answer.id}" %></p>
+<div class="row">
+  <div class="small-6 large-centered columns">
+		<p><%= @exam.comment if @exam.comment %></p>
+  </div>
+</div>
+<div class="row">
+  <div class="large-3 columns"></div>
+  <div class="large-6 columns">
+		<%= form_tag user_exam_save_path(@exam.id) do %>
+			<% @questions.each do |question| %>
+				<p><%= label_tag question.title %></p>
+					<% question.answer.each do |answer| %>
+						<p><%= answer.title %> - <%= radio_button_tag "#{question.id}", "#{answer.id}" %></p>
+					<% end %>
 			<% end %>
-	<% end %>
-	<%= submit_tag t(:evaluate) %>
-<% end %>
-<p><%= link_to t(:back), user_path %></p>
+			<%= submit_tag t(:evaluate) %>
+		<% end %>
+  </div>
+  <div class="large-3 columns"></div>
+</div>

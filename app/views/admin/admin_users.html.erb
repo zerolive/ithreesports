@@ -1,5 +1,20 @@
-<h1>ADMIN USERS</h1>
+<center><h1><%= t(:user_administration) %></h1></center>
 
-<p><%= link_to t(:home), admin_path%> <%= link_to t(:log_out), logout_path %></p>
-<p><%= render 'create_user_form' %></p>
-<p><%= render @users %></p>
+<div class="row">
+  <div class="small-6 large-centered columns">
+  		<p><%= render 'create_user_form' %></p>
+  </div>
+</div>
+<br>
+<center>
+	<table>
+		 <tr>
+		   <td><%= t(:name) %></td>
+		   <td><%= t(:email) %></td>
+		   <td><%= t(:level) %></td>
+		   <td><%= t(:edit_user) %></td>
+		   <td><%= t(:delete_user) %></td>
+		 </tr>
+			<%= render @users %>
+	</table>
+</center>

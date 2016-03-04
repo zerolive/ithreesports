@@ -1,13 +1,18 @@
-<%= form_for @user, url: user_update_info_path(@user) do |f| %>
-<p>
-	<%= f.label :name %><%= f.text_field :name %>
-</p>
-<p>
-	<%= f.label :gender %>
-	<%= f.select :gender, options_for_select(@genders, @user.gender) %>
-</p>
-<p><%= f.submit value="#{t(:update_info)}" %></p>
-<% end %>
-<p><%= link_to t(:change_password), change_password_path %></p>
-
-<p><%= link_to t(:back), user_path %></p>
+<center><h1><%= t(:update_info) %></h1></center>
+<div class="row">
+	<div class="small-6 large-centered columns">
+		<%= form_for @user, url: user_update_info_path(@user) do |f| %>
+		<p>
+			<%= f.label :name %><%= f.text_field :name %>
+		</p>
+		<p>
+			<%= f.label :gender %>
+			<%= f.select :gender, options_for_select(@genders, @user.gender) %>
+		</p>
+		<center>
+		<p><%= f.submit value="#{t(:update_info)}" %></p>
+		<% end %>
+		<p><%= link_to t(:change_password), change_password_path %></p>
+		</center>
+	</div>
+</div>

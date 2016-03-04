@@ -1,7 +1,7 @@
-<p>
-	<%= user.name%> - 
-	<%= user.email%> - 
-	<%= user.level %> - 
-	<%= link_to t(:edit_user), edit_user_path(user) %> - 
-	<%= link_to t(:delete_user), delete_user_path(user), method: :delete, data: { confirm: "#{t(:are_you_sure)}" } %>
-</p>
+<tr>
+	<td><%= user.name%></td>
+	<td><%= user.email%></td>
+	<td><%= user.level %></td>
+	<td><%= link_to "<center><span class='fi-pencil'></span></center>".html_safe, edit_user_path(user) %></td>
+	<td><%= link_to "<center><span class='fi-trash delete-button'></span></center>".html_safe, delete_user_path(user), method: :delete, data: { confirm: "#{t(:are_you_sure)}" } %></td>
+</tr>

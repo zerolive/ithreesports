@@ -61,3 +61,27 @@ body > #container { height: auto; min-height: 100%; };
 };
 
 #content { padding-bottom: 6em; };
+
+.logo-buttons{
+	margin-right: 20px;
+};
+
+.logo-button{
+	margin-top: 10px !important;
+	padding-left: 10px;
+	padding-right: 10px;
+};
+
+.user-profile{
+	margin-top: 15px;
+};
+
+.top-social-media{
+	float: none !important;
+	position: absolute;
+	right: 0;
+};
+
+.delete-button{
+	color: red;
+};

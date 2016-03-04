@@ -1,7 +1,10 @@
-<h1><%= @exam.title %> QUESTIONS</h1>
-
-<p><%= link_to t(:add_question), new_question_path(@exam) %></p>
-
-<%= render @questions %>
-
-<p><%= link_to t(:back), admin_exams_path %></p>
+<center>
+	<h1><%= @exam.title %> QUESTIONS</h1>
+	<p><%= link_to "<h2>#{t(:add_question)}</h2>".html_safe, new_question_path(@exam) %></p>
+</center>
+<div class="row">
+	<div class="small-6 large-centered columns">
+		<%= render @questions %>
+	</div>
+</div>
+<center><p><%= link_to t(:back), admin_exams_path %></p></center>

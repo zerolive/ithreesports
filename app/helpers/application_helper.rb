@@ -22,6 +22,15 @@ module ApplicationHelper
 		'hombre'
 	end
 
+	def show_logout
+		link_to t(:log_out), logout_path if session[:user_id]
+	end
+
+	def show_home
+			return (link_to t(:home), admin_path, class: "logo-button") if @admin
+			return (link_to t(:home), user_path, class: "logo-button") if @user
+	end
+
 	private
 
 	def item_text(quantity)

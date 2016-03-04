@@ -9,7 +9,6 @@ Rails.application.routes.draw do
   post '/send_password' => 'sessions#send_password', as: :send_password
 
   get '/admin' => 'admin#index'
-
   get '/admin_users' => 'admin#admin_users'
   post '/create_user' => 'admin#create_user'
   delete '/delete_user/:id' => 'admin#delete_user', as: :delete_user

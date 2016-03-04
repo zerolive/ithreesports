@@ -1,9 +1,19 @@
-<h1><%= @exam.title %></h1>
+<center>
+	<h1><%= @exam.title %></h1>
+	<p><%= youtube_iframe @video %></p>
+</center>
 
-<p><%= youtube_iframe @video %></p>
+<div class="row">
+  <div class="small-6 large-centered columns">
+		<p><%= @exam.comment if @exam.comment %></p>
+	</div>
+</div>
 
-<p><%= @exam.comment if @exam.comment %></p>
-
-<%= render partial: 'questions_preview' %>
-
-<p><%= link_to t(:back), admin_exams_path %></p>
+<div class="row">
+  <div class="large-3 columns"></div>
+  <div class="large-6 columns">
+		<%= render partial: 'questions_preview' %>
+	</div>
+	<div class="large-3 columns"></div>
+</div>
+<center><p><%= link_to t(:back), admin_exams_path %></p></center>
