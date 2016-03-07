@@ -41,3 +41,6 @@ en:
   name: "Name"
   email: "Email"
   exams_adminitration: "Exams administration"
+  buy_courses: "Buy courses"
+  buy_text: "Send an email with user and password to paypal email when paypal confirm the pay"
+  thanks: "THANKS FOR YOUR PURCHARSE"
