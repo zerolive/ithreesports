@@ -4,16 +4,14 @@
 </center>
 
 <div class="row">
-  <div class="small-6 large-centered columns">
+  <div class="small-8 large-centered columns">
 		<p><%= @exam.comment if @exam.comment %></p>
 	</div>
 </div>
 
 <div class="row">
-  <div class="large-3 columns"></div>
-  <div class="large-6 columns">
+	<div class="small-8 large-centered columns">
 		<%= render partial: 'questions_preview' %>
 	</div>
-	<div class="large-3 columns"></div>
 </div>
 <center><p><%= link_to t(:back), admin_exams_path %></p></center>

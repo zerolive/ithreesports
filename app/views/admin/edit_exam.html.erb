@@ -1,24 +1,31 @@
-<%= form_for @exam, url: update_exam_path(@exam) do |f| %>
-	<p>
-		<%= f.label :position %>
-		<%= f.number_field :position, required: true %>
-	</p>
-	<p>
-		<%= f.label :title %>
-		<%= f.text_field :title, required: true %>
-	</p>
-	<p>
-		<%= f.label :video %>
-		<%= f.text_field :video, required: true %>
-	</p>
-	<p>
-		<%= f.label :level %>
-		<%= f.select :level, options_for_select(@levels, @exam.level) %>
-	</p>
-	<p>
-		<%= f.label :comment %>
-		<%= f.text_area :comment %>
-	</p>
-	<p><%= submit_tag value="#{t(:update_exam)}" %></p>
-<% end %>
-<%= link_to t(:back), admin_exams_path %>
+<center><h1><%= t(:edit_exam) %></h1></center>
+<div class="row">
+	<div class="small-6 large-centered columns">
+		<%= form_for @exam, url: update_exam_path(@exam) do |f| %>
+			<p>
+				<%= f.label :position %>
+				<%= f.number_field :position, required: true %>
+			</p>
+			<p>
+				<%= f.label :title %>
+				<%= f.text_field :title, required: true %>
+			</p>
+			<p>
+				<%= f.label :video %>
+				<%= f.text_field :video, required: true %>
+			</p>
+			<p>
+				<%= f.label :level %>
+				<%= f.select :level, options_for_select(@levels, @exam.level) %>
+			</p>
+			<p>
+				<%= f.label :comment %>
+				<%= f.text_area :comment %>
+			</p>
+			<center>
+				<p><%= submit_tag value="#{t(:edit_exam)}" %></p>
+			</center>
+		<% end %>
+<center><%= link_to t(:back), admin_exams_path %></center>
+	</div>
+</div>

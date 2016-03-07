@@ -1,9 +1,20 @@
-<h1>Buy course</h1>
+<center>
+	<h1><%= t(:buy_courses) %></h1>
 
-<p>Send an email with user and password to paypal email when paypal confir the pay</p>
+	<p>
+		<h3><%= t(:buy_text) %></h3>
+	</p>
 
-<p>
-	<%= paypal_url(10) %>
-	<%= paypal_url(15) %>
-	<%= paypal_url(25) %>
-</p> 
+	<p>
+		<%= paypal_url(10) %>
+	</p>
+	<p>
+		<%= paypal_url(15) %>
+	</p>
+	<p>
+		<%= paypal_url(25) %>
+	</p>
+	<p>
+		<%= link_to t(:back), signin_path %>
+	</p>
+</center>

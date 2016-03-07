@@ -1,14 +1,20 @@
-<%= form_for @answer, url: update_answer_path(@answer) do |f| %>
-	<p>
-		<%= f.label :title %>
-		<%= f.text_field :title %>
-	</p>
-	<p>
-		<%= f.label :right %>
-		<%= f.select :right, options_for_select({ t(:false)=>"0", t(:true)=>"1" }, @answer.right) %>
-	</p>
-	<p>
-		<%= f.submit t(:edit_answer) %>
-	</p>
-<% end %>
-<p><%= link_to t(:back), exam_questions_path(@question.exam_id) %></p>
+<center><h1><%= t(:edit_answer) %></h1></center>
+
+<div class="row">
+	<div class="small-6 large-centered columns">
+		<%= form_for @answer, url: update_answer_path(@answer) do |f| %>
+			<p>
+				<%= f.label :title %>
+				<%= f.text_field :title %>
+			</p>
+			<p>
+				<%= f.label :right %>
+				<%= f.select :right, options_for_select({ t(:false)=>"0", t(:true)=>"1" }, @answer.right) %>
+			</p>
+			<p>
+				<center><%= f.submit t(:edit_answer) %></center>
+			</p>
+		<% end %>
+		<center><p><%= link_to t(:back), exam_questions_path(@question.exam_id) %></p></center>
+	</div>
+</div>

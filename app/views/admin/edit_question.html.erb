@@ -1,10 +1,15 @@
-<%= form_for @question, url: update_question_path(@question) do |f| %>
-	<p>
-		<%= f.label :title %>
-		<%= f.text_field :title, required: true %>
-	</p>
-	<p>
-		<%= f.submit %>
-	</p>
-<% end %>
-<%= link_to t(:back), exam_questions_path(@question.exam) %>
+<center><h1><%= t(:edit_question) %></h1></center>
+<div class="row">
+	<div class="small-6 large-centered columns">
+		<%= form_for @question, url: update_question_path(@question) do |f| %>
+			<p>
+				<%= f.label :title %>
+				<%= f.text_field :title, required: true %>
+			</p>
+			<p>
+				<center><%= f.submit value="#{t(:edit_question)}" %></center>
+			</p>
+		<% end %>
+		<center><%= link_to t(:back), exam_questions_path(@question.exam) %></center>
+	</div>
+</div>
