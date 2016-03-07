@@ -28,5 +28,8 @@ RSpec.describe Course, type: :model do
 		it 'has many exams' do
 			expect(Course.reflect_on_association(:exam).macro).to eq(:has_many)
 		end
+		it 'has many media files' do
+			expect(Course.reflect_on_association(:media_file).macro).to eq(:has_many)
+		end
 	end
 end
