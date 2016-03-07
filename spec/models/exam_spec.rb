@@ -56,6 +56,9 @@ RSpec.describe Exam, type: :model do
 
       expect(exam_with_questions.questions.count).to eq 10
     end
+    it 'belongs to course' do
+      expect(Exam.reflect_on_association(:course).macro).to eq(:belongs_to)
+    end
   end
 
   describe "Methods" do
