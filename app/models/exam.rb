@@ -7,6 +7,7 @@ class Exam < ActiveRecord::Base
 	validates :level, presence: true, inclusion: LEVELS
 
 	has_many :questions
+	belongs_to :course
 
 	def self.levels
 		LEVELS
