@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160307162427) do
+ActiveRecord::Schema.define(version: 20160307170035) do
 
   create_table "answers", force: :cascade do |t|
     t.integer  "question_id"
@@ -48,6 +48,7 @@ ActiveRecord::Schema.define(version: 20160307162427) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "position"
+    t.integer  "course_id"
   end
 
   create_table "media_files", force: :cascade do |t|
