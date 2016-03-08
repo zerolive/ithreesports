@@ -7,6 +7,7 @@ FactoryGirl.define do
     video Faker::Internet.url
     comment Faker::Lorem.characters(200)
     level '1'
+    course_id 1
     factory :exam_with_questions do
       transient do
         questions_count 10
