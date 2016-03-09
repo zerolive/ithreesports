@@ -1,9 +1,11 @@
 <% if @exams %>
 	<% @exams.each do |exam| %>
 		<p>
-			<%= link_to exam.title, user_exam_path(exam) %> - 
-			<% @completed_exam.each do |ce| %>
-				<%= "#{ce.score}/#{ce.questions}" if ce.exam_id == exam.id %>
+			<% if exam.level == @user.level %>
+				<%= link_to exam.title, user_exam_path(exam) %> - 
+				<% @completed_exam.each do |ce| %>
+					<%= "#{ce.score}/#{ce.questions}" if ce.exam_id == exam.id %>
+				<% end %>
 			<% end %>
 		</p>
 	<% end %>
