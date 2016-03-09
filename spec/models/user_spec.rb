@@ -59,18 +59,8 @@ RSpec.describe User, type: :model do
 			expect(newuser.save).to eq false
 		end
 
-		it 'can create a user with level 1' do
-			newuser = build(:user, level: '1')
-			expect(newuser.save).to eq true
-		end
-
-		it 'can create a user with level 2' do
-			newuser = build(:user, level: '2')
-			expect(newuser.save).to eq true
-		end
-
-		it 'can create a user with level 3' do
-			newuser = build(:user, level: '3')
+		it 'can create a user with level User' do
+			newuser = build(:user, level: 'User')
 			expect(newuser.save).to eq true
 		end
 
@@ -95,7 +85,7 @@ RSpec.describe User, type: :model do
 
 	describe 'Methods' do
 		it 'knows the differents levels' do
-			expect(User.levels).to eq([ '1', '2', '3', 'Admin'])
+			expect(User.levels).to eq([ 'User', 'Admin'])
 		end
 
 		it 'knows the differents genders' do
