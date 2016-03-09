@@ -1,0 +1,22 @@
+<center><h1><%= t(:admin_courses) %></h1></center>
+<div class="row">
+  <div class="small-6 large-centered columns">
+		<%= form_for @course, url: create_course_path do |f| %>
+			<%= f.label :name %>
+			<%= f.text_field :name %>
+			<%= f.label :image_url %>
+			<%= f.text_field :imageurl %>
+			<%= f.label :video_url %>
+			<%= f.text_field :videourl %>
+			<%= f.label :price %>
+			<%= f.number_field :price %>
+			<%= f.label :description %>
+			<%= f.text_area :description %>
+			<center><%= f.submit value="#{t(:create_exam)}" %></center>
+		<% end %>
+	</div>
+</div>
+
+<center>
+	<%= render @courses %>
+</center>
