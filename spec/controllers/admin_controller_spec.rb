@@ -56,6 +56,26 @@ RSpec.describe AdminController, type: :controller do
 			end
 		end
 
+		describe 'get#admin_courses' do
+			it 'redirects to signin path' do
+				get :admin_courses
+				
+				expect(response.status).to eq(302)
+				expect(response).to redirect_to signin_path
+			end
+		end
+
+		describe 'post#create_course' do
+			let(:new_course){ create(:course) }
+
+			it 'redirects to signin path' do
+				post :create_course, course: { name: new_course.name, imageurl: new_course.imageurl, price: new_course.price, description: new_course.description, videourl: new_course.videourl}
+
+				expect(response.status).to eq(302)
+				expect(response).to redirect_to signin_path
+			end
+		end
+
 		describe 'get#admin_exams' do
 			it 'redirects to signin path' do
 				get :admin_exams
@@ -351,6 +371,50 @@ RSpec.describe AdminController, type: :controller do
 				expect(response.status).to eq 302
 				expect(response).to redirect_to admin_users_path
 				expect(assigns(:user).errors.size).to_not eq 0
+			end
+		end
+
+		describe "get#admin_courses" do
+			it "responses with status OK" do
+				get :admin_courses
+
+				expect(response.status).to eq 200
+			end
+		end
+
+		describe "post#create_course" do
+			let(:new_course){ build(:course) }
+
+			it "can create a course and redirects to admin courses" do
+				post :create_course, course: { name: new_course.name, imageurl: new_course.imageurl, price: new_course.price, description: new_course.description, videourl: new_course.videourl}
+
+				expect(response.status).to eq 302
+				expect(response).to redirect_to admin_courses_path
+			end
+
+			it "cannot create a course without name" do
+				post :create_course, course: { name: nil, imageurl: new_course.imageurl, price: new_course.price, description: new_course.description, videourl: new_course.videourl}
+
+				expect(assigns(:course).errors.size).to_not eq 0
+				expect(response.status).to eq 302
+				expect(response).to redirect_to admin_courses_path
+			end
+
+			it "cannot create a course without price" do
+				post :create_course, course: { name: new_course.name, imageurl: new_course.imageurl, price: nil, description: new_course.description, videourl: new_course.videourl}
+
+				expect(assigns(:course).errors.size).to_not eq 0
+				expect(response.status).to eq 302
+				expect(response).to redirect_to admin_courses_path
+			end
+
+			it "cannot create two courses with same price" do
+				second_course = create(:course)
+				post :create_course, course: { name: new_course.name, imageurl: new_course.imageurl, price: second_course.price, description: new_course.description, videourl: new_course.videourl}
+
+				expect(assigns(:course).errors.size).to_not eq 0
+				expect(response.status).to eq 302
+				expect(response).to redirect_to admin_courses_path
 			end
 		end
 
