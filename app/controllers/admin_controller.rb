@@ -4,6 +4,7 @@ class AdminController < ApplicationController
 	before_action :set_user, only: [:delete_user, :edit_user, :update_user]
 	before_action :set_question, only: [:edit_question, :update_question, :delete_question, :new_answer, :create_answer]
 	before_action :set_answer, only: [:edit_answer, :update_answer, :delete_answer]
+	before_action :set_course, only: [:edit_course, :update_course]
 
 	def index
 	end
@@ -45,6 +46,12 @@ class AdminController < ApplicationController
 		@course = Course.new(course_params)
 		@course.save
 		redirect_to admin_courses_path
+	end
+
+	def edit_course
+	end
+
+	def update_course
 	end
 
 	def admin_exams
@@ -137,8 +144,12 @@ class AdminController < ApplicationController
 
 	private
 
+		def set_course
+			@course = Course.find(params[:id])
+		end
+
 		def course_params
-			permit.require(:course).params(:name, :imageurl, :videourl, :price, :description)
+			params.require(:course).permit(:name, :imageurl, :videourl, :price, :description)
 		end
 
 		def set_answer
