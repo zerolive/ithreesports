@@ -1,7 +1,7 @@
 class Exam < ActiveRecord::Base
 	YOUTUBE_SORT = 'youtu.be'
 	YOUTUBE_LONG = 'youtube.'
-	LEVELS = [ '1', '2', '3']
+	LEVELS = ['User', 'Admin']
 
 	validates :title, presence: true
 	validates :level, presence: true, inclusion: LEVELS
