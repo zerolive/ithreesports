@@ -26,20 +26,8 @@ RSpec.describe Exam, type: :model do
   			expect(new_exam.save).to_not eq true
   		end
 
-  		it 'cannot create an exam with level 1' do
-  			new_exam.level = '1'
-  			
-  			expect(new_exam.save).to eq true
-  		end
-
-  		it 'cannot create an exam with level 2' do
-  			new_exam.level = '2'
-  			
-  			expect(new_exam.save).to eq true
-  		end
-
-  		it 'cannot create an exam with level 3' do
-  			new_exam.level = '3'
+  		it 'cannot create an exam with level User' do
+  			new_exam.level = 'User'
   			
   			expect(new_exam.save).to eq true
   		end
@@ -65,7 +53,7 @@ RSpec.describe Exam, type: :model do
     it 'knows its levels' do
       levels = Exam.levels
 
-      expect(levels).to eq [ '1', '2', '3']
+      expect(levels).to eq [ 'User', 'Admin' ]
     end
 
     it 'knows extrac an id from youtube video' do
