@@ -5,7 +5,7 @@ FactoryGirl.define do
     sequence(:email) { |n| "admin#{n}@admin.com" }
     name Faker::Lorem.characters(8)
     password_digest Faker::Internet.password(8)
-    level '1'
+    level 'User'
   end
 end
 
