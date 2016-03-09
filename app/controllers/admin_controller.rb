@@ -36,6 +36,17 @@ class AdminController < ApplicationController
 		redirect_to admin_users_path
 	end
 
+	def admin_courses
+		@course = Course.new
+		@courses = Course.all
+	end
+
+	def create_course
+		@course = Course.new(course_params)
+		@course.save
+		redirect_to admin_courses_path
+	end
+
 	def admin_exams
 		@exam = Exam.new
 		@exams = Exam.order_by_position
@@ -125,6 +136,10 @@ class AdminController < ApplicationController
 	end
 
 	private
+
+		def course_params
+			permit.require(:course).params(:name, :imageurl, :videourl, :price, :description)
+		end
 
 		def set_answer
 			@answer = Answer.find(params[:id])
