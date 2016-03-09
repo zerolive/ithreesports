@@ -17,6 +17,8 @@ Rails.application.routes.draw do
 
   get '/admin_courses' => 'admin#admin_courses'
   post '/create_course' => 'admin#create_course'
+  get '/edit_course/:id' => 'admin#edit_course', as: :edit_course
+  patch '/update_course/:id' => 'admin#update_course', as: :update_course
 
   get '/admin_exams' => 'admin#admin_exams'
   post '/create_exam' => 'admin#create_exam'
