@@ -6,7 +6,7 @@ FactoryGirl.define do
     position Faker::Number.number(1)
     video Faker::Internet.url
     comment Faker::Lorem.characters(200)
-    level '1'
+    level 'User'
     course_id 1
     factory :exam_with_questions do
       transient do
