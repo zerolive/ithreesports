@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-	LEVELS = ['1', '2', '3', 'Admin']
+	LEVELS = ['User', 'Admin']
 	GENDER = ['Hombre', 'Mujer']
 
 	before_save :default_values
