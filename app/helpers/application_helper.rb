@@ -34,13 +34,13 @@ module ApplicationHelper
 	end
 
 	def image_url_icon(url)
-		return "<a href='#{url}' target='_blank'><i class='fi-photo'></i></a>".html_safe unless url.empty?
-		"<i class='fi-photo'></i>".html_safe
+		return "<a href='#{url}' target='_blank'><span class='fi-photo'></span></a>".html_safe unless url.empty?
+		"<span class='fi-photo'></span>".html_safe
 	end
 
 	def video_url_icon(url)
-		return "<a href='#{url}' target='_blank'><i class='fi-play-video'></i></a>".html_safe unless url.empty?
-		"<i class='fi-play-video'></i>".html_safe
+		return "<a href='#{url}' target='_blank'><span class='fi-play-video'></span></a>".html_safe unless url.empty?
+		"<span class='fi-play-video'></span>".html_safe
 	end
 
 	def max_price
