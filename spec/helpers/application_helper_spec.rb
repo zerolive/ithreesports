@@ -70,5 +70,39 @@ RSpec.describe ApplicationHelper, type: :helper do
 	   			expect(avatar_for('lalalalala')).to eq 'hombre'
 	   		end
 	   end
+
+	   describe 'max_price' do
+	   	it 'return max price number' do
+	   		expect(max_price).to eq 1000000
+	   	end
+	   end
+
+	   describe 'image_url_icon' do
+	   	it 'return a link if it has url' do
+	   		url = 'http://www.google.com'
+
+	   		expect(image_url_icon(url)).to eq "<a href='#{url}' target='_blank'><span class='fi-photo'></span></a>"
+	   	end
+
+	   	it 'return a span if it has a empty url' do
+	   		url = ''
+
+	   		expect(image_url_icon(url)).to eq "<span class='fi-photo'></span>"
+	   	end
+	   end
+
+	   describe 'video_url_icon' do
+	   	it 'return a link if it has url' do
+	   		url = 'http://www.google.com'
+
+	   		expect(video_url_icon(url)).to eq "<a href='#{url}' target='_blank'><span class='fi-play-video'></span></a>"
+	   	end
+
+	   	it 'return a span if it has a empty url' do
+	   		url = ''
+
+	   		expect(video_url_icon(url)).to eq "<span class='fi-play-video'></span>"
+	   	end
+	   end
 	end
 end
