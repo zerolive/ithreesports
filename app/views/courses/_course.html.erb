@@ -1,8 +1,9 @@
-<p>
-	<%= course.name %> - <%= image_url_icon(course.imageurl) %> - <%= video_url_icon(course.videourl) %> - <%= course.price %>
-</p>
-<p>
-	<%= link_to t(:edit_course), edit_course_path(course.id) %> - 
-	<%= link_to t(:delete_course), delete_course_path(course.id), method: :delete, data: { confirm: "#{t(:are_you_sure)}" } %> -  
-	Add media file - Add exam
-</p>
+  <tr>
+    <td><%= course.name %></td>
+    <td><center><%= image_url_icon(course.imageurl) %></center></td>
+    <td><center><%= video_url_icon(course.videourl) %></center></td>
+    <td><%= course.price %></td>
+    <td><center><%= link_to "<span class='fi-pencil'></span>".html_safe, edit_course_path(course.id) %></center></td>
+    <td><center><%= link_to "<span class='fi-trash delete-button'></span>".html_safe, delete_course_path(course.id), method: :delete, data: { confirm: "#{t(:are_you_sure)}" } %></center></td>
+    <td><center><span class='fi-magnifying-glass'></span></center></td>
+  </tr>
