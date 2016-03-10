@@ -1,0 +1,19 @@
+<div class="row">
+	<div class="small-6 large-centered columns">
+		<center><h1><%= t(:edit_course) %></h1></center>
+		<%= form_for @course, url: update_course_path(@course.id) do |f| %>
+			<%= f.label :name %>
+			<%= f.text_field :name %>
+			<%= f.label :image_url %>
+			<%= f.text_field :imageurl %>
+			<%= f.label :video_url %>
+			<%= f.text_field :videourl %>
+			<%= f.label :price %>
+			<%= f.number_field :price %>
+			<%= f.label :description %>
+			<%= f.text_area :description %>
+			<center><%= f.submit value="#{t(:edit_course)}" %></center>
+		<% end %>
+		<p><center><%= link_to t(:back), admin_courses_path %></center></p>
+	</div>
+</div>
