@@ -1,5 +1,5 @@
 <p>
-	<%= course.name %> - <%= course.imageurl %> - <%= course.videourl %> - <%= course.price %> - <%= course.description %>
+	<%= course.name %> - <%= image_url_icon(course.imageurl) %> - <%= video_url_icon(course.videourl) %> - <%= course.price %>
 </p>
 <p>
 	<%= link_to t(:edit_course), edit_course_path(course.id) %> - 
