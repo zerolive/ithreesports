@@ -76,6 +76,39 @@ RSpec.describe AdminController, type: :controller do
 			end
 		end
 
+		describe 'get#edit_course' do
+			let(:course){ create(:course) }
+
+			it 'redirects to signin path' do
+				get :edit_course, id: course.id
+				
+				expect(response.status).to eq(302)
+				expect(response).to redirect_to signin_path
+			end
+		end
+
+		describe 'patch#update_course' do
+			let(:course){ create(:course) }
+
+			it 'redirects to signin path' do
+				patch :update_course, id: course.id, course: { name: course.name, price: course.price, imageurl: "", videourl: "", comment: "" }
+
+				expect(response.status).to eq(302)
+				expect(response).to redirect_to signin_path
+			end
+		end
+
+		describe 'delete#delete_course' do
+			let(:course){ create(:course) }
+
+			it 'redirects to signin path' do
+				delete :delete_course, id: course.id
+
+				expect(response.status).to eq 302
+				expect(response).to redirect_to signin_path
+			end
+		end
+
 		describe 'get#admin_exams' do
 			it 'redirects to signin path' do
 				get :admin_exams
@@ -413,6 +446,65 @@ RSpec.describe AdminController, type: :controller do
 				post :create_course, course: { name: new_course.name, imageurl: new_course.imageurl, price: second_course.price, description: new_course.description, videourl: new_course.videourl}
 
 				expect(assigns(:course).errors.size).to_not eq 0
+				expect(response.status).to eq 302
+				expect(response).to redirect_to admin_courses_path
+			end
+		end
+
+		describe "get#edit_course" do
+			let(:course){ create(:course) }
+
+			it "responses with status OK" do
+				get :edit_course, id: course.id
+
+				expect(response.status).to eq 200
+			end
+		end
+
+		describe "patch#update_course" do
+			let(:course){ create(:course) }
+
+			it "can update a course and redirects to admin courses" do
+				patch :update_course, id: course.id, course: { name: course.name, imageurl: "", price: course.price, videourl: "", description: "" }
+
+				expect(assigns(:course).errors.size).to eq 0
+				expect(response.status).to eq 302
+				expect(response).to redirect_to admin_courses_path
+			end
+
+			it "cannot update a course without name" do
+				patch :update_course, id: course.id, course: { name: nil, imageurl: "", price: course.price, videourl: "", description: "" }
+
+				expect(assigns(:course).errors.size).to_not eq 0
+				expect(response.status).to eq 302
+				expect(response).to redirect_to admin_courses_path
+			end
+
+			it "cannot update a course without price" do
+				patch :update_course, id: course.id, course: { name: course.name, imageurl: "", price: "", videourl: "", description: "" }
+
+				expect(assigns(:course).errors.size).to_not eq 0
+				expect(response.status).to eq 302
+				expect(response).to redirect_to admin_courses_path
+			end
+
+			it "cannot update a course price that's equal than other course" do
+				second_course = create(:course, price: 100)
+
+				patch :update_course, id: course.id, course: { name: course.name, imageurl: "", price: second_course.price, videourl: "", description: "" }
+
+				expect(assigns(:course).errors.size).to_not eq 0
+				expect(response.status).to eq 302
+				expect(response).to redirect_to admin_courses_path
+			end
+		end
+
+		describe 'delete#delete_course' do
+			let(:course){ create(:course) }
+
+			it 'can delete a course' do
+				delete :delete_course, id: course.id
+
 				expect(response.status).to eq 302
 				expect(response).to redirect_to admin_courses_path
 			end
