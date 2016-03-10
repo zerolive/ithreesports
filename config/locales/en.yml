@@ -46,3 +46,5 @@ en:
   thanks: "THANKS FOR YOUR PURCHARSE"
   admin_courses: "Admin courses"
   create_exam: "Create exam"
+  edit_course: "Edit course"
+  delete_course: "Delete course"
