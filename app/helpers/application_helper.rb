@@ -1,5 +1,7 @@
 module ApplicationHelper
 
+	MAX_PRICE = 1000000
+
 	def checked right
 		result = "<input type='radio' disabled='true'>"
 		result = "<input type='radio' checked disabled='true'>" if right == '1'
@@ -31,6 +33,20 @@ module ApplicationHelper
 			return (link_to t(:home), user_path, class: "logo-button") if @user
 	end
 
+	def image_url_icon(url)
+		return "<a href='#{url}' target='_blank'><i class='fi-photo'></i></a>".html_safe unless url.empty?
+		"<i class='fi-photo'></i>".html_safe
+	end
+
+	def video_url_icon(url)
+		return "<a href='#{url}' target='_blank'><i class='fi-play-video'></i></a>".html_safe unless url.empty?
+		"<i class='fi-play-video'></i>".html_safe
+	end
+
+	def max_price
+		MAX_PRICE
+	end
+
 	private
 
 	def item_text(quantity)
@@ -44,4 +60,6 @@ module ApplicationHelper
 		return "Curso Avanzado" if quantity == 15
 		return "Curso Profesional" if quantity == 25
 	end
+
+
 end
