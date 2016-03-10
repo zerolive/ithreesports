@@ -2,5 +2,7 @@
 	<%= course.name %> - <%= course.imageurl %> - <%= course.videourl %> - <%= course.price %> - <%= course.description %>
 </p>
 <p>
-	Edit - Delete - Add media file - Add exam
+	<%= link_to t(:edit_course), edit_course_path(course.id) %> - 
+	<%= link_to t(:delete_course), delete_course_path(course.id), method: :delete, data: { confirm: "#{t(:are_you_sure)}" } %> -  
+	Add media file - Add exam
 </p>
