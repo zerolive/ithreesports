@@ -130,6 +130,18 @@ RSpec.describe AdminController, type: :controller do
 			end
 		end
 
+		describe 'post#create_media_file' do
+			let(:course){ create(:course) }
+			let(:media_file){ create(:media_file) }
+
+			it 'redirects to sign in path' do
+				post :create_media_file, id: course.id, url: media_file.url
+
+				expect(response.status).to eq 302
+				expect(response).to redirect_to signin_path
+			end
+		end
+
 		describe 'get#admin_exams' do
 			it 'redirects to signin path' do
 				get :admin_exams
@@ -548,6 +560,19 @@ RSpec.describe AdminController, type: :controller do
 				get :new_media_file, id: course.id
 
 				expect(response.status).to eq 200
+			end
+		end
+
+		describe 'post#create_media_file' do
+			let(:course){ create(:course) }
+			let(:media_file){ create(:media_file) }
+
+			it 'can create a media file' do
+				post :create_media_file, id: course.id, url: media_file.url
+
+				expect(assigns(:media_file).errors.size).to eq 0
+				expect(response.status).to eq 302
+				expect(response).to redirect_to admin_courses_path
 			end
 		end
 
