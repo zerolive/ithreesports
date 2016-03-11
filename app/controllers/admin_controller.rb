@@ -4,7 +4,7 @@ class AdminController < ApplicationController
 	before_action :set_user, only: [:delete_user, :edit_user, :update_user]
 	before_action :set_question, only: [:edit_question, :update_question, :delete_question, :new_answer, :create_answer]
 	before_action :set_answer, only: [:edit_answer, :update_answer, :delete_answer]
-	before_action :set_course, only: [:edit_course, :update_course, :delete_course, :preview_course, :new_media_file ]
+	before_action :set_course, only: [:edit_course, :update_course, :delete_course, :preview_course, :new_media_file, :create_media_file ]
 
 	def index
 	end
@@ -66,6 +66,15 @@ class AdminController < ApplicationController
 
 	def new_media_file
 		@media_file = MediaFile.new
+	end
+
+	def create_media_file
+		@media_file = MediaFile.new
+		@media_file.url = params[:url]
+		@media_file.course_id = @course.id
+		@media_file.video = is_video?(params[:url])
+		@media_file.save
+		redirect_to admin_courses_path
 	end
 
 	def admin_exams
@@ -157,6 +166,13 @@ class AdminController < ApplicationController
 	end
 
 	private
+
+		def is_video? url
+			if url
+				return "1" if url.include? "youtu"
+			end
+			"0"
+		end
 
 		def set_course
 			@course = Course.find(params[:id])
