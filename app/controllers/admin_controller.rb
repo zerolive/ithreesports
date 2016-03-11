@@ -4,7 +4,7 @@ class AdminController < ApplicationController
 	before_action :set_user, only: [:delete_user, :edit_user, :update_user]
 	before_action :set_question, only: [:edit_question, :update_question, :delete_question, :new_answer, :create_answer]
 	before_action :set_answer, only: [:edit_answer, :update_answer, :delete_answer]
-	before_action :set_course, only: [:edit_course, :update_course, :delete_course, :preview_course ]
+	before_action :set_course, only: [:edit_course, :update_course, :delete_course, :preview_course, :new_media_file ]
 
 	def index
 	end
@@ -62,6 +62,10 @@ class AdminController < ApplicationController
 	end
 
 	def preview_course
+	end
+
+	def new_media_file
+		@media_file = MediaFile.new
 	end
 
 	def admin_exams
