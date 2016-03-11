@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   get '/preview_course/:id' => 'admin#preview_course', as: :preview_course
 
   get '/new_media_file/:id' => 'admin#new_media_file', as: :new_media_file
+  post '/create_media_file/:id' => 'admin#create_media_file', as: :create_media_file
 
   get '/admin_exams' => 'admin#admin_exams'
   post '/create_exam' => 'admin#create_exam'
