@@ -4,7 +4,7 @@ class AdminController < ApplicationController
 	before_action :set_user, only: [:delete_user, :edit_user, :update_user]
 	before_action :set_question, only: [:edit_question, :update_question, :delete_question, :new_answer, :create_answer]
 	before_action :set_answer, only: [:edit_answer, :update_answer, :delete_answer]
-	before_action :set_course, only: [:edit_course, :update_course, :delete_course]
+	before_action :set_course, only: [:edit_course, :update_course, :delete_course, :preview_course ]
 
 	def index
 	end
@@ -59,6 +59,9 @@ class AdminController < ApplicationController
 	def delete_course
 		@course.destroy
 		redirect_to admin_courses_path
+	end
+
+	def preview_course
 	end
 
 	def admin_exams
