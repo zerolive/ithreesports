@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   get '/edit_course/:id' => 'admin#edit_course', as: :edit_course
   patch '/update_course/:id' => 'admin#update_course', as: :update_course
   delete '/delete_course/:id' => 'admin#delete_course', as: :delete_course
+  get '/preview_course/:id' => 'admin#preview_course', as: :preview_course
 
   get '/admin_exams' => 'admin#admin_exams'
   post '/create_exam' => 'admin#create_exam'
