@@ -109,6 +109,17 @@ RSpec.describe AdminController, type: :controller do
 			end
 		end
 
+		describe 'get#preview_course' do
+			let(:course){ create(:course) }
+
+			it 'redirects to sign in path' do
+				get :preview_course, id: course.id
+
+				expect(response.status).to eq 302
+				expect(response).to redirect_to signin_path
+			end
+		end
+
 		describe 'get#admin_exams' do
 			it 'redirects to signin path' do
 				get :admin_exams
@@ -507,6 +518,16 @@ RSpec.describe AdminController, type: :controller do
 
 				expect(response.status).to eq 302
 				expect(response).to redirect_to admin_courses_path
+			end
+		end
+
+		describe 'get#preview_course' do
+			let(:course){ create(:course) }
+
+			it 'responses with status ok' do
+				get :preview_course, id: course.id
+
+				expect(response.status).to eq 200
 			end
 		end
 
