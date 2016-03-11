@@ -1,0 +1,11 @@
+<center><h1><%= t(:new_media_file) %></h1></center>
+<p>
+	<%= form_for @media_file, url: create_media_file_path(@course.id) do |f| %>
+		<%= f.label :url %>
+		<%= f.text_field :url %>
+		<center><%= f.submit value="#{t(:new_media_file)}" %></center>
+	<% end %>
+</p>
+<center>
+	<p><%= link_to t(:back), admin_courses_path %></p>
+</center>
