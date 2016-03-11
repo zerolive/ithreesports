@@ -22,6 +22,8 @@ Rails.application.routes.draw do
   delete '/delete_course/:id' => 'admin#delete_course', as: :delete_course
   get '/preview_course/:id' => 'admin#preview_course', as: :preview_course
 
+  get '/new_media_file/:id' => 'admin#new_media_file', as: :new_media_file
+
   get '/admin_exams' => 'admin#admin_exams'
   post '/create_exam' => 'admin#create_exam'
   get '/edit_exam/:id' => 'admin#edit_exam', as: :edit_exam
