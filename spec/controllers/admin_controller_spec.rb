@@ -754,11 +754,10 @@ RSpec.describe AdminController, type: :controller do
 		end
 
 		describe 'patch#update_exam' do
-			let(:course){ create(:course) }
-			let(:exam_to_edit){ create(:exam) }
+			let(:course){ create(:course_with_exams) }
 
 			before do
-				exam_to_edit.course_id = course.id
+				exam_to_edit = course.exam.first
 			end
 
 			it 'update an exam and redirects to admin exams path' do
@@ -795,13 +794,9 @@ RSpec.describe AdminController, type: :controller do
 		end
 
 		describe 'delete#delete_exam' do
-			let(:course){ create(:course) }
-			let(:exam_to_delete){ create(:exam) }
-
 			it 'deletes an exam and redirects to admin exams' do
-				exam_to_delete.course_id = course.id
 
-				delete :delete_exam, id: exam_to_delete.id
+				delete :delete_exam, id: course.exam.first.id
 
 				expect(response.status).to eq 302
 				expect(response).to redirect_to show_exams_path(course.id)
