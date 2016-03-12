@@ -4,7 +4,8 @@ class AdminController < ApplicationController
 	before_action :set_user, only: [:delete_user, :edit_user, :update_user]
 	before_action :set_question, only: [:edit_question, :update_question, :delete_question, :new_answer, :create_answer]
 	before_action :set_answer, only: [:edit_answer, :update_answer, :delete_answer]
-	before_action :set_course, only: [:edit_course, :update_course, :delete_course, :preview_course, :new_media_file, :create_media_file ]
+	before_action :set_course, only: [:edit_course, :update_course, :delete_course, :preview_course, :new_media_file, :create_media_file, :show_media_files ]
+	before_action :set_media_file, only: [:edit_media_file, :update_media_file]
 
 	def index
 	end
@@ -69,12 +70,25 @@ class AdminController < ApplicationController
 	end
 
 	def create_media_file
-		@media_file = MediaFile.new
-		@media_file.url = params[:url]
+		@media_file = MediaFile.new(media_file_params)
 		@media_file.course_id = @course.id
-		@media_file.video = is_video?(params[:url])
+		@media_file.video = is_video?(@media_file.url)
 		@media_file.save
-		redirect_to admin_courses_path
+		redirect_to show_media_files_path(@course.id)
+	end
+
+	def show_media_files
+		@media_files = @course.media_file
+	end
+
+	def edit_media_file
+	end
+
+	def update_media_file
+		@media_file.update_attributes(media_file_params)
+		@media_file.video = is_video?(@media_file.url)
+		@media_file.save
+		redirect_to show_media_files_path(@media_file.course_id)
 	end
 
 	def admin_exams
@@ -166,6 +180,14 @@ class AdminController < ApplicationController
 	end
 
 	private
+
+		def set_media_file
+			@media_file = MediaFile.find(params[:id])
+		end
+
+		def media_file_params
+			params.require(:media_file).permit(:url, :name)
+		end
 
 		def is_video? url
 			if url

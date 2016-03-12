@@ -47,6 +47,11 @@ module ApplicationHelper
 		MAX_PRICE
 	end
 
+	def media_file_link file
+		return "<center><a href='#{file.url}' target='_blank'><span class='fi-photo'></span></a></center>".html_safe unless file.url.empty?
+		"<center><span class='fi-photo'></span></center>".html_safe
+	end
+
 	private
 
 	def item_text(quantity)

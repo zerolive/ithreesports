@@ -1,0 +1,17 @@
+<center>
+	<h1><%= @course.name %></h1>
+	<%= link_to t(:new_media_file), new_media_file_path(@course.id) %>
+<div class="row">
+	<div class="small-6 large-centered columns">
+<table>
+	<tr>
+		<th><%= t(:name) %></th>
+		<th><%= t(:open) %></th>
+		<th><%= t(:edit) %></th>
+		<th><%= t(:delete) %></th>
+	</tr>
+	<p><%= render @media_files %></p>
+</table>
+		<%= link_to t(:back), admin_courses_path %></center>
+	</div>
+</div>

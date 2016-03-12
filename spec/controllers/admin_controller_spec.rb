@@ -135,7 +135,40 @@ RSpec.describe AdminController, type: :controller do
 			let(:media_file){ create(:media_file) }
 
 			it 'redirects to sign in path' do
-				post :create_media_file, id: course.id, url: media_file.url
+				post :create_media_file, id: course.id, media_file: { url: media_file.url, name: media_file.name }
+
+				expect(response.status).to eq 302
+				expect(response).to redirect_to signin_path
+			end
+		end
+
+		describe 'get#show_media_files' do
+			let(:course){ create(:course) }
+
+			it 'redirects to sign in path' do
+				get :show_media_files, id: course.id
+
+				expect(response.status).to eq 302
+				expect(response).to redirect_to signin_path
+			end
+		end
+
+		describe 'get#edit_media_file' do
+			let(:media_file){ create(:media_file) }
+
+			it 'redirects to sign in path' do
+				get :edit_media_file, id: media_file.id, media_file: { name: media_file.name, url: media_file.url }
+
+				expect(response.status).to eq 302
+				expect(response).to redirect_to signin_path
+			end
+		end
+
+		describe 'patch#update_media_file' do
+			let(:media_file){ create(:media_file) }
+
+			it 'redirects to sign in path' do
+				patch :update_media_file, id: media_file.id
 
 				expect(response.status).to eq 302
 				expect(response).to redirect_to signin_path
@@ -568,11 +601,59 @@ RSpec.describe AdminController, type: :controller do
 			let(:media_file){ create(:media_file) }
 
 			it 'can create a media file' do
-				post :create_media_file, id: course.id, url: media_file.url
+				post :create_media_file, id: course.id, media_file: { url: media_file.url, name: media_file.name }
 
 				expect(assigns(:media_file).errors.size).to eq 0
 				expect(response.status).to eq 302
-				expect(response).to redirect_to admin_courses_path
+				expect(response).to redirect_to show_media_files_path(course.id)
+			end
+		end
+
+		describe 'get#show_media_files' do
+			let(:course){ create(:course) }
+
+			it 'response with status ok' do
+				get :show_media_files, id: course.id
+
+				expect(response.status).to eq 200
+			end
+		end
+
+		describe 'get#show_media_files' do
+			let(:media_file){ create(:media_file) }
+
+			it 'responses with status ok' do
+				get :edit_media_file, id: media_file.id
+
+				expect(response.status).to eq 200
+			end
+		end
+
+		describe 'patch#update_media_file' do
+			let(:media_file){ create(:media_file) }
+
+			it 'updates a media file and redirects to show media files' do
+				patch :update_media_file, id: media_file.id, media_file: { name: media_file.name, url: media_file.url }
+
+				expect(assigns(:media_file).errors.size).to eq 0
+				expect(response.status).to eq 302
+				expect(response).to redirect_to show_media_files_path(media_file.course_id)
+			end
+
+			it 'cannot update a media file without name' do
+				patch :update_media_file, id: media_file.id, media_file: { name: nil, url: media_file.url }
+
+				expect(assigns(:media_file).errors.size).to_not eq 0
+				expect(response.status).to eq 302
+				expect(response).to redirect_to show_media_files_path(media_file.course_id)
+			end
+
+			it 'cannot update a media file without url' do
+				patch :update_media_file, id: media_file.id, media_file: { name: media_file.name, url: nil }
+
+				expect(assigns(:media_file).errors.size).to_not eq 0
+				expect(response.status).to eq 302
+				expect(response).to redirect_to show_media_files_path(media_file.course_id)
 			end
 		end
 

@@ -24,6 +24,9 @@ Rails.application.routes.draw do
 
   get '/new_media_file/:id' => 'admin#new_media_file', as: :new_media_file
   post '/create_media_file/:id' => 'admin#create_media_file', as: :create_media_file
+  get '/show_media_files/:id' => 'admin#show_media_files', as: :show_media_files
+  get '/edit_media_file/:id' => 'admin#edit_media_file', as: :edit_media_file
+  patch '/update_media_file/:id' => 'admin#update_media_file', as: :update_media_file
 
   get '/admin_exams' => 'admin#admin_exams'
   post '/create_exam' => 'admin#create_exam'
