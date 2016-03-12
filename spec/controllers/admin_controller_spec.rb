@@ -762,7 +762,7 @@ RSpec.describe AdminController, type: :controller do
 			end
 
 			it 'update an exam and redirects to admin exams path' do
-				patch :update_exam, id: exam_to_edit.course_id, exam: { title: 'NewTitle', video: exam_to_edit.video, level: exam_to_edit.level, comment: exam_to_edit.comment }
+				patch :update_exam, id: exam_to_edit.id, exam: { title: 'NewTitle', video: exam_to_edit.video, level: exam_to_edit.level, comment: exam_to_edit.comment }
 
 				expect(response.status).to eq 302
 				expect(response).to redirect_to show_exams_path(exam_to_edit.course_id)
@@ -770,7 +770,7 @@ RSpec.describe AdminController, type: :controller do
 			end
 
 			it 'update an exam without video and comment and redirects to admin exams path' do
-				patch :update_exam, id: exam_to_edit.course_id, exam: { title: exam_to_edit.title, video: nil, level: exam_to_edit.level, comment: nil }
+				patch :update_exam, id: exam_to_edit.id, exam: { title: exam_to_edit.title, video: nil, level: exam_to_edit.level, comment: nil }
 
 				expect(response.status).to eq 302
 				expect(response).to redirect_to show_exams_path(exam_to_edit.course_id)
@@ -778,7 +778,7 @@ RSpec.describe AdminController, type: :controller do
 			end
 
 			it 'cannot update an exam without title' do
-				patch :update_exam, id: exam_to_edit.course_id, exam: { title: nil, video: exam_to_edit.video, level: exam_to_edit.level, comment: exam_to_edit.comment  }
+				patch :update_exam, id: exam_to_edit.id, exam: { title: nil, video: exam_to_edit.video, level: exam_to_edit.level, comment: exam_to_edit.comment  }
 
 				expect(response.status).to eq 302
 				expect(response).to redirect_to show_exams_path(exam_to_edit.course_id)
@@ -786,7 +786,7 @@ RSpec.describe AdminController, type: :controller do
 			end
 
 			it 'cannot update an exam without level' do
-				patch :update_exam, id: exam_to_edit.course_id, exam: { title: exam_to_edit.title, video: exam_to_edit.video, level: nil, comment: exam_to_edit.comment  }
+				patch :update_exam, id: exam_to_edit.id, exam: { title: exam_to_edit.title, video: exam_to_edit.video, level: nil, comment: exam_to_edit.comment  }
 
 				expect(response.status).to eq 302
 				expect(response).to redirect_to show_exams_path(exam_to_edit.course_id)
