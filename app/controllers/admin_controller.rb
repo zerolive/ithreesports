@@ -4,8 +4,8 @@ class AdminController < ApplicationController
 	before_action :set_user, only: [:delete_user, :edit_user, :update_user]
 	before_action :set_question, only: [:edit_question, :update_question, :delete_question, :new_answer, :create_answer]
 	before_action :set_answer, only: [:edit_answer, :update_answer, :delete_answer]
-	before_action :set_course, only: [:edit_course, :update_course, :delete_course, :preview_course, :new_media_file, :create_media_file, :show_media_files ]
-	before_action :set_media_file, only: [:edit_media_file, :update_media_file]
+	before_action :set_course, only: [:new_exam, :create_exam, :edit_course, :update_course, :delete_course, :preview_course, :new_media_file, :create_media_file, :show_media_files, :show_exams ]
+	before_action :set_media_file, only: [:edit_media_file, :update_media_file, :delete_media_file]
 
 	def index
 	end
@@ -63,6 +63,7 @@ class AdminController < ApplicationController
 	end
 
 	def preview_course
+		@media_files = @course.media_file
 	end
 
 	def new_media_file
@@ -91,16 +92,26 @@ class AdminController < ApplicationController
 		redirect_to show_media_files_path(@media_file.course_id)
 	end
 
-	def admin_exams
+	def delete_media_file
+		course_id = @media_file.course_id
+		@media_file.destroy
+		redirect_to show_media_files_path(course_id)
+	end
+
+	def new_exam
 		@exam = Exam.new
-		@exams = Exam.order_by_position
 		@levels = Exam.levels
 	end
 
 	def create_exam
 		@exam = Exam.new(exam_params)
+		@exam.course_id = @course.id
 		@exam.save
-		redirect_to admin_exams_path
+		redirect_to show_exams_path(@course.id)
+	end
+
+	def show_exams
+		@exams = @course.exam
 	end
 
 	def edit_exam
@@ -110,12 +121,13 @@ class AdminController < ApplicationController
 	def update_exam
 		@exam.update_attributes(exam_params)
 		@exam.save
-		redirect_to admin_exams_path
+		redirect_to show_exams_path(@exam.course_id)
 	end
 
 	def delete_exam
+		course_id = @exam.course_id
 		@exam.destroy
-		redirect_to admin_exams_path
+		redirect_to show_exams_path(course_id)
 	end
 
 	def new_question

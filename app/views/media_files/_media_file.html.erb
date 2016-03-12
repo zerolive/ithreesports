@@ -2,5 +2,5 @@
 	<td><%= media_file.name %></td>
 	<td><%= media_file_link(media_file) %></td>
 	<td><center><%= link_to "<span class='fi-pencil'></span>".html_safe, edit_media_file_path(media_file.id) %></center></td>
-	<td><center><%= "<span class='fi-trash delete-button'></span>".html_safe %></center></td>
+	<td><center><%= link_to "<span class='fi-trash delete-button'></span>".html_safe, delete_media_file_path(media_file.id), method: :delete, data: { confirm: "#{t(:are_you_sure)}" } %></center></td>
 </tr>

@@ -2,9 +2,8 @@
     <td><center><%= exam.position %></center></td>
     <td><%= exam.title %></td>
     <td><center><%= exam.level %></center></td>
-    <td><center><%= exam.questions.count %></center></td>
-    <td><center><%= link_to "<span class='fi-pencil'></span>".html_safe, edit_exam_path(exam) %></center></td>
-    <td><center><%= link_to "<span class='fi-trash delete-button'>".html_safe, delete_exam_path(exam), method: :delete, data: { confirm: "#{t(:are_you_sure)}" } %></center></td>
-    <td><center><%= link_to "<span class='fi-plus'></span>".html_safe, exam_questions_path(exam) %></center></td>
-    <td><center><%= link_to "<span class='fi-magnifying-glass'></span>".html_safe, preview_exam_path(exam) %></center></td>
+    <td><center><%= link_to "<span class='fi-pencil'></span>".html_safe, edit_exam_path(exam.id) %></center></td>
+    <td><center><%= link_to "<span class='fi-trash delete-button'>".html_safe, delete_exam_path(exam.id), method: :delete, data: { confirm: "#{t(:are_you_sure)}" } %></center></td>
+    <td><center><%= link_to "<span class='fi-plus'></span>".html_safe, exam_questions_path(exam.id) %></center></td>
+    <td><center><%= link_to "<span class='fi-magnifying-glass'></span>".html_safe, preview_exam_path(exam.id) %></center></td>
   </tr>

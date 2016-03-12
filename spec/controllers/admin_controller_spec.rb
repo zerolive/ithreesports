@@ -175,20 +175,25 @@ RSpec.describe AdminController, type: :controller do
 			end
 		end
 
-		describe 'get#admin_exams' do
-			it 'redirects to signin path' do
-				get :admin_exams
+		describe 'delete_media_file' do
+			let(:media_file){ create(:media_file) }
 
-				expect(response.status).to eq(302)
+			it 'redirects to sign in path' do
+				delete :delete_media_file, id: media_file.id
+
+				expect(response.status).to eq 302
 				expect(response).to redirect_to signin_path
 			end
 		end
 
 		describe 'post#create_exam' do
+			let(:course){ create(:course) }
 			let(:new_exam){ build(:exam) }
 
 			it 'redirects to signin path' do
-				post :create_exam, exam: {title: new_exam.title, video: new_exam.video, level: new_exam.level, comment: new_exam.comment }
+				new_exam.course_id = course.id
+
+				post :create_exam, id: new_exam.course_id, exam: {title: new_exam.title, video: new_exam.video, level: new_exam.level, comment: new_exam.comment }
 
 				expect(response.status).to eq(302)
 				expect(response).to redirect_to signin_path
@@ -200,6 +205,17 @@ RSpec.describe AdminController, type: :controller do
 
 			it 'redirects to signin path' do
 				get :edit_exam, id: exam_to_edit.id
+
+				expect(response.status).to eq(302)
+				expect(response).to redirect_to signin_path
+			end
+		end
+
+		describe 'get#show_exams' do
+			let(:course){ create(:course) }
+
+			it 'redirects to signin path' do
+				get :show_exams, id: course.id
 
 				expect(response.status).to eq(302)
 				expect(response).to redirect_to signin_path
@@ -657,55 +673,73 @@ RSpec.describe AdminController, type: :controller do
 			end
 		end
 
-		describe 'get#admin_exams' do
-			it 'response with status OK' do
-				get :admin_exams
+		describe 'delete_media_file' do
+			let(:media_file){ create(:media_file) }
 
-				expect(response.status).to eq 200
+			it 'delete a media file and redirects to show media files' do
+				delete :delete_media_file, id: media_file.id
+
+				expect(response.status).to eq 302
+				expect(response).to redirect_to show_media_files_path(media_file.course_id)
 			end
 		end
 
 		describe 'post#create_exam' do
+			let(:course){ create(:course) }
 			let(:new_exam){ build(:exam) }
 
+			before do
+				new_exam.course_id = course.id
+			end
+
 			it 'can create an exam and redirects to admin course' do
-				post :create_exam, exam: {title: new_exam.title, video: new_exam.video, level: new_exam.level, comment: new_exam.comment }
+				post :create_exam, id: new_exam.course_id, exam: {title: new_exam.title, video: new_exam.video, level: new_exam.level, comment: new_exam.comment }
 
 				expect(assigns(:exam).errors.size).to eq 0
 				expect(response.status).to eq 302
-				expect(response).to redirect_to admin_exams_path
+				expect(response).to redirect_to show_exams_path(new_exam.course_id)
 			end
 
 			it 'can create an exam without video and comment and redirects to admin course' do
-				post :create_exam, exam: {title: new_exam.title, video: nil, level: new_exam.level, comment: nil }
+				post :create_exam, id: new_exam.course_id, exam: {title: new_exam.title, video: nil, level: new_exam.level, comment: nil }
 
 				expect(assigns(:exam).errors.size).to eq 0
 				expect(response.status).to eq 302
-				expect(response).to redirect_to admin_exams_path
+				expect(response).to redirect_to show_exams_path(new_exam.course_id)
 			end
 
 			it 'can create an exam without video and redirects to admin course' do
-				post :create_exam, exam: {title: new_exam.title, video: nil, level: new_exam.level, comment: new_exam.comment }
+				post :create_exam, id: new_exam.course_id, exam: {title: new_exam.title, video: nil, level: new_exam.level, comment: new_exam.comment }
 
 				expect(assigns(:exam).errors.size).to eq 0
 				expect(response.status).to eq 302
-				expect(response).to redirect_to admin_exams_path
+				expect(response).to redirect_to show_exams_path(new_exam.course_id)
 			end
 
 			it 'cannot create a exam without title and redirects to admin course' do
-				post :create_exam, exam: {title: nil, video: new_exam.video, level: new_exam.level, comment: new_exam.comment }
+				post :create_exam, id: new_exam.course_id, exam: {title: nil, video: new_exam.video, level: new_exam.level, comment: new_exam.comment }
 
 				expect(assigns(:exam).errors.size).to_not eq 0
 				expect(response.status).to eq 302
-				expect(response).to redirect_to admin_exams_path
+				expect(response).to redirect_to show_exams_path(new_exam.course_id)
 			end
 
 			it 'cannot create a exam without level and redirects to admin course' do
-				post :create_exam, exam: {title: new_exam.title, video: new_exam.video, level: nil, comment: new_exam.comment }
+				post :create_exam, id: new_exam.course_id, exam: {title: new_exam.title, video: new_exam.video, level: nil, comment: new_exam.comment }
 
 				expect(assigns(:exam).errors.size).to_not eq 0
 				expect(response.status).to eq 302
-				expect(response).to redirect_to admin_exams_path
+				expect(response).to redirect_to show_exams_path(new_exam.course_id)
+			end
+		end
+
+		describe 'get#show_exams' do
+			let(:course){ create(:course) }
+
+			it 'responses with status ok' do
+				get :show_exams, id: course.id
+
+				expect(response.status).to eq(200)
 			end
 		end
 
@@ -723,46 +757,47 @@ RSpec.describe AdminController, type: :controller do
 			let(:exam_to_edit){ create(:exam) }
 
 			it 'update an exam and redirects to admin exams path' do
-				patch :update_exam, id: exam_to_edit.id, exam: { title: 'NewTitle', video: exam_to_edit.video, level: exam_to_edit.level, comment: exam_to_edit.comment }
+				patch :update_exam, id: exam_to_edit.course_id, exam: { title: 'NewTitle', video: exam_to_edit.video, level: exam_to_edit.level, comment: exam_to_edit.comment }
 
 				expect(response.status).to eq 302
-				expect(response).to redirect_to admin_exams_path
+				expect(response).to redirect_to show_exams_path(exam_to_edit.course_id)
 				expect(assigns(:exam).errors.size).to eq 0
 			end
 
 			it 'update an exam without video and comment and redirects to admin exams path' do
-				patch :update_exam, id: exam_to_edit.id, exam: { title: exam_to_edit.title, video: nil, level: exam_to_edit.level, comment: nil }
+				patch :update_exam, id: exam_to_edit.course_id, exam: { title: exam_to_edit.title, video: nil, level: exam_to_edit.level, comment: nil }
 
 				expect(response.status).to eq 302
-				expect(response).to redirect_to admin_exams_path
+				expect(response).to redirect_to show_exams_path(exam_to_edit.course_id)
 				expect(assigns(:exam).errors.size).to eq 0
 			end
 
 			it 'cannot update an exam without title' do
-				patch :update_exam, id: exam_to_edit.id, exam: { title: nil, video: exam_to_edit.video, level: exam_to_edit.level, comment: exam_to_edit.comment  }
+				patch :update_exam, id: exam_to_edit.course_id, exam: { title: nil, video: exam_to_edit.video, level: exam_to_edit.level, comment: exam_to_edit.comment  }
 
 				expect(response.status).to eq 302
-				expect(response).to redirect_to admin_exams_path
+				expect(response).to redirect_to show_exams_path(exam_to_edit.course_id)
 				expect(assigns(:exam).errors.size).to_not eq 0
 			end
 
 			it 'cannot update an exam without level' do
-				patch :update_exam, id: exam_to_edit.id, exam: { title: exam_to_edit.title, video: exam_to_edit.video, level: nil, comment: exam_to_edit.comment  }
+				patch :update_exam, id: exam_to_edit.course_id, exam: { title: exam_to_edit.title, video: exam_to_edit.video, level: nil, comment: exam_to_edit.comment  }
 
 				expect(response.status).to eq 302
-				expect(response).to redirect_to admin_exams_path
+				expect(response).to redirect_to show_exams_path(exam_to_edit.course_id)
 				expect(assigns(:exam).errors.size).to_not eq 0
 			end
 		end
 
 		describe 'delete#delete_exam' do
+			let(:course){ create(:course) }
 			let(:exam_to_delete){ create(:exam) }
 
 			it 'deletes an exam and redirects to admin exams' do
 				delete :delete_exam, id: exam_to_delete.id
 
 				expect(response.status).to eq 302
-				expect(response).to redirect_to admin_exams_path
+				expect(response).to redirect_to show_exams_path(course.id)
 			end
 		end
 

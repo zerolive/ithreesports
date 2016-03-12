@@ -5,6 +5,8 @@
 </center>
 <div class="row">
 	<div class="small-6 large-centered columns">
-			<p><%= @course.description if @course.description.empty? %></p>
+			<p><%= @course.description unless @course.description.empty? %></p>
+			<p><%= @media_files.inspect %></p>
+			<p><center><%= link_to t(:back), admin_courses_path %></center></p>
 	</div>
 </div>

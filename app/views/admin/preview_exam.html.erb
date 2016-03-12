@@ -14,4 +14,4 @@
 		<%= render partial: 'questions_preview' %>
 	</div>
 </div>
-<center><p><%= link_to t(:back), admin_exams_path %></p></center>
+<center><p><%= link_to t(:back), show_exams_path(@exam.course_id) %></p></center>

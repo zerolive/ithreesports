@@ -7,4 +7,5 @@
     <td><center><%= link_to "<span class='fi-trash delete-button'></span>".html_safe, delete_course_path(course.id), method: :delete, data: { confirm: "#{t(:are_you_sure)}" } %></center></td>
     <td><%= link_to "<center><span class='fi-magnifying-glass'></span></center>".html_safe, preview_course_path(course.id) %></td>
     <td><%= link_to "<center><span class='fi-photo'></span></center>".html_safe, show_media_files_path(course.id) %></td>
+    <td><%= link_to "<center><span class='fi-checkbox'></span></center>".html_safe, show_exams_path(course.id) %></td>
   </tr>

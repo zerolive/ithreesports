@@ -27,9 +27,11 @@ Rails.application.routes.draw do
   get '/show_media_files/:id' => 'admin#show_media_files', as: :show_media_files
   get '/edit_media_file/:id' => 'admin#edit_media_file', as: :edit_media_file
   patch '/update_media_file/:id' => 'admin#update_media_file', as: :update_media_file
+  delete '/delete_media_file/:id' => 'admin#delete_media_file', as: :delete_media_file
 
-  get '/admin_exams' => 'admin#admin_exams'
-  post '/create_exam' => 'admin#create_exam'
+  get '/new_exam/:id' => 'admin#new_exam', as: :new_exam
+  post '/create_exam/:id' => 'admin#create_exam', as: :create_exam
+  get '/show_exams/:id' => 'admin#show_exams', as: :show_exams
   get '/edit_exam/:id' => 'admin#edit_exam', as: :edit_exam
   patch '/update_exam/:id' => 'admin#update_exam', as: :update_exam
   delete '/delete_exam/:id' => 'admin#delete_exam', as: :delete_exam
