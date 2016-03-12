@@ -756,12 +756,10 @@ RSpec.describe AdminController, type: :controller do
 		describe 'patch#update_exam' do
 			let(:course){ create(:course_with_exams) }
 
-			before do
-				exam_to_edit = course.exam.first
-			end
-
 			it 'update an exam and redirects to admin exams path' do
-				patch :update_exam, id: exam_to_edit.id, exam: { title: 'NewTitle', video: exam_to_edit.video, level: exam_to_edit.level, comment: exam_to_edit.comment }
+				exam_to_edit = course.exam.first
+
+				update_exam, id: exam_to_edit.id, exam: { title: 'NewTitle', video: exam_to_edit.video, level: exam_to_edit.level, comment: exam_to_edit.comment }
 
 				expect(response.status).to eq 302
 				expect(response).to redirect_to show_exams_path(exam_to_edit.course_id)
@@ -769,6 +767,8 @@ RSpec.describe AdminController, type: :controller do
 			end
 
 			it 'update an exam without video and comment and redirects to admin exams path' do
+				exam_to_edit = course.exam.first
+
 				patch :update_exam, id: exam_to_edit.id, exam: { title: exam_to_edit.title, video: nil, level: exam_to_edit.level, comment: nil }
 
 				expect(response.status).to eq 302
@@ -777,6 +777,8 @@ RSpec.describe AdminController, type: :controller do
 			end
 
 			it 'cannot update an exam without title' do
+				exam_to_edit = course.exam.first
+
 				patch :update_exam, id: exam_to_edit.id, exam: { title: nil, video: exam_to_edit.video, level: exam_to_edit.level, comment: exam_to_edit.comment  }
 
 				expect(response.status).to eq 302
@@ -785,6 +787,8 @@ RSpec.describe AdminController, type: :controller do
 			end
 
 			it 'cannot update an exam without level' do
+				exam_to_edit = course.exam.first
+
 				patch :update_exam, id: exam_to_edit.id, exam: { title: exam_to_edit.title, video: exam_to_edit.video, level: nil, comment: exam_to_edit.comment  }
 
 				expect(response.status).to eq 302
@@ -795,6 +799,7 @@ RSpec.describe AdminController, type: :controller do
 
 		describe 'delete#delete_exam' do
 			it 'deletes an exam and redirects to admin exams' do
+				let(:course){ create(:course_with_exams) }
 
 				delete :delete_exam, id: course.exam.first.id
 
