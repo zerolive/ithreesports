@@ -1,7 +1,7 @@
 User.create!(name: "admin", email: "admin@test.com", password: "12345678", password_digest: "12345678", gender: 'Male', level: "Admin")
-User.create!(name: "user1", email: "user1@test.com", password: "12345678", password_digest: "12345678", gender: 'Male', level: "User")
-User.create!(name: "user2", email: "user2@test.com", password: "12345678", password_digest: "12345678", gender: 'Male', level: "User")
-User.create!(name: "user3", email: "user3@test.com", password: "12345678", password_digest: "12345678", gender: 'Male', level: "User")
+user1 = User.create!(name: "user1", email: "user1@test.com", password: "12345678", password_digest: "12345678", gender: 'Male', level: "User")
+user2 = User.create!(name: "user2", email: "user2@test.com", password: "12345678", password_digest: "12345678", gender: 'Male', level: "User")
+user3 = User.create!(name: "user3", email: "user3@test.com", password: "12345678", password_digest: "12345678", gender: 'Male', level: "User")
 
 first_course = Course.create!(name: "First course", imageurl: "http://thumbs1.ebaystatic.com/d/l225/pict/281952688656_-1.jpg", price: 10, description: "Description for first course", videourl: "https://www.youtube.com/watch?v=iL0m5XRkdtg")
 								MediaFile.create!( name: "First file for first course", course_id: first_course.id, url: "http://thumbs1.ebaystatic.com/d/l225/pict/281952688656_-1.jpg", video: "0")
@@ -24,3 +24,10 @@ first_exam = Exam.create!(position: 1, title: "First exam for course", level: "U
 		Answer.create!(question_id: second_question_first_exam.id, title: 'Answer 2', right: '0')
 		Answer.create!(question_id: second_question_first_exam.id, title: 'Answer 3', right: '1')
 		Answer.create!(question_id: second_question_first_exam.id, title: 'Answer 4', right: '0')
+
+Purchased.create!(user_id: user1.id, course_id: first_course.id )
+Purchased.create!(user_id: user2.id, course_id: first_course.id )
+Purchased.create!(user_id: user2.id, course_id: second_course.id )
+Purchased.create!(user_id: user3.id, course_id: first_course.id )
+Purchased.create!(user_id: user3.id, course_id: second_course.id )
+Purchased.create!(user_id: user3.id, course_id: third_course.id )
