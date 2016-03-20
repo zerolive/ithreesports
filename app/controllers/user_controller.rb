@@ -5,6 +5,11 @@ class UserController < ApplicationController
 	def index
 		@exams = exams_belonging_user
 		@completed_exam = CompletedExam.where(user_id: @user.id)
+		purchases = Purchased.where(user_id: @user.id)
+		@purchased_courses = []
+		purchases.to_a.each do |p|
+			@purchased_courses << Course.find(p.course_id)
+		end
 	end
 
 	def user_exam
