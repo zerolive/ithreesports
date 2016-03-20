@@ -81,6 +81,9 @@ RSpec.describe User, type: :model do
       it 'has many completed exam' do
         	expect(User.reflect_on_association(:completed_exam).macro).to eq(:has_many)
       end
+      it 'has many completed exam' do
+        	expect(User.reflect_on_association(:purchased).macro).to eq(:has_many)
+      end
    end 
 
 	describe 'Methods' do

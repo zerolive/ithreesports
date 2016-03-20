@@ -2,6 +2,16 @@ module ApplicationHelper
 
 	MAX_PRICE = 1000000
 
+	def buy_link name, price
+		url_name = name.parameterize("%20")
+		"<a href='https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_xclick&business=antonioc3brian%2dfacilitator%40gmail%2ecom&lc=US&item_name=#{url_name}&item_number=1&amount=#{price.to_s}%2e00&currency_code=USD&notify_url=https%3a%2f%2fgentle%2dwaters%2d42879%2eherokuapp%2ecom%2fpayed%2f&return=https%3a%2f%2fgentle%2dwaters%2d42879%2eherokuapp%2ecom%2fpayed%2f&button_subtype=services&no_note=0&bn=PP%2dBuyNowBF%3abtn_buynowCC_LG%2egif%3aNonHostedGuest'>#{name}</a>".html_safe
+	end
+
+	def file_icon video
+		return "<span class='fi-play-video'></span>".html_safe if video == "1"
+		"<span class='fi-page'></span>".html_safe
+	end
+
 	def checked right
 		result = "<input type='radio' disabled='true'>"
 		result = "<input type='radio' checked disabled='true'>" if right == '1'

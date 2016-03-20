@@ -5,15 +5,9 @@
 		<h3><%= t(:buy_text) %></h3>
 	</p>
 
-	<p>
-		<%= paypal_url(10) %>
-	</p>
-	<p>
-		<%= paypal_url(15) %>
-	</p>
-	<p>
-		<%= paypal_url(25) %>
-	</p>
+	<% @courses.each do |course| %>
+		<p><%= buy_link(course.name, course.price) %></p>
+	<% end %>
 	<p>
 		<%= link_to t(:back), signin_path %>
 	</p>

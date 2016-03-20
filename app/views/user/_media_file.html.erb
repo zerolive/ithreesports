@@ -1,0 +1,12 @@
+<table>
+	  <tr>
+	    <th><center><%= t(:name) %></center></th>
+	    <th><center><%= t(:file) %></center></th>
+	  </tr>
+	<% @media_files.each do |m| %>
+	  <tr>
+			<td><%= m.name %></td>
+			<td><center><%= link_to file_icon(m.video), m.url, target: "_blank" %></center></td>
+		</tr>
+	<% end %>
+</table>

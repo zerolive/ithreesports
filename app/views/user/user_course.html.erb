@@ -1,0 +1,26 @@
+<center>
+	<h1><%= @course.name %></h1>
+	<div><%= youtube_iframe(@course.videourl) unless @course.videourl.empty? %></div>
+</center>
+<div class="row">
+	<div class="small-6 large-centered columns">
+			<p><%= @course.description unless @course.description.empty? %></p>
+			<p><%= render partial: 'media_file' %></p>
+			<p>
+				<% if @exams %>
+					<p><%= t(:exams) %></p>
+					<% @exams.each do |exam| %>
+						<p>
+							<% if exam.level == @user.level %>
+								<%= link_to exam.title, user_exam_path(exam) %> - 
+								<% @completed_exam.each do |ce| %>
+									<%= "#{ce.score}/#{ce.questions}" if ce.exam_id == exam.id %>
+								<% end %>
+							<% end %>
+						</p>
+					<% end %>
+				<% end %>
+			</p>
+			<p><center><%= link_to t(:back), user_path %></center></p>
+	</div>
+</div>

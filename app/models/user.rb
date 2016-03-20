@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
 	validates :email, presence: true, uniqueness: true
 
 	has_many :completed_exam
+	has_many :purchased
 
 	def default_values
 	  self.gender ||= GENDER[0]

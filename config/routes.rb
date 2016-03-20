@@ -61,6 +61,8 @@ Rails.application.routes.draw do
   get '/user_edit_info' => 'user#user_edit_info', as: :user_edit_info
   patch '/user_update_info/:id' => 'user#user_update_info', as: :user_update_info
 
+  get '/user_course/:id' => 'user#user_course', as: :user_course
+
   match 'payed', to: 'payment#payed', via: [:get, :post], as: :payed
   get '/thanks' => 'payment#thanks', as: :thanks
 

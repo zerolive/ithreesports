@@ -6,7 +6,7 @@
 		<% @purchased_courses.each do |p| %>
 		<tr>
 		  <td><%= p.name %></td>
-		  <td>VIEW</td>
+		  <td><%= link_to "<center><span class='fi-magnifying-glass'></span></center>".html_safe, user_course_path(p.id) %></td>
 		</tr>
 		<% end %>
 </table>

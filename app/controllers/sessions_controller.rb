@@ -21,6 +21,7 @@ class SessionsController < ApplicationController
 	end
 
 	def buy
+		@courses = Course.all
 	end
 
 	def reset_password

@@ -79,6 +79,17 @@ RSpec.describe UserController, type: :controller do
 				expect(response).to redirect_to signin_path
 			end
 		end
+
+		describe 'get#user_course' do
+			let(:course){ create(:course) }
+
+			it 'redirects to sign path' do
+				get :user_course, id: course.id
+
+				expect(response.status).to eq 302
+				expect(response).to redirect_to signin_path
+			end
+		end
 	end
 
 	context 'If user is logged' do
@@ -189,6 +200,16 @@ RSpec.describe UserController, type: :controller do
 
 				expect(assigns(:user).name).to eq  'new_name'
 				expect(assigns(:user).gender).to eq  'Mujer'
+			end
+		end
+
+		describe 'get#user_course' do
+			let(:course){ create(:course) }
+
+			it 'responses with status ok' do
+				get :user_course, id: course.id
+
+				expect(response.status).to eq 200
 			end
 		end
 	end

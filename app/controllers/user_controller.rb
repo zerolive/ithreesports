@@ -53,6 +53,13 @@ class UserController < ApplicationController
 		redirect_to user_path
 	end
 
+	def user_course
+		@course = Course.find(params[:id])
+		@completed_exam = CompletedExam.where(user_id: @user.id)
+		@media_files = @course.media_file
+		@exams = @course.exam
+	end
+
 	private
 
 	def set_user
