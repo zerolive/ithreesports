@@ -1,0 +1,10 @@
+<% @purchased_courses.each do |course| %>
+	<tr>
+		<td>
+			<%= course.name %>
+		</td>
+		<td>
+			<%= link_to "<center><span class='fi-trash delete-button'></span></center>".html_safe, delete_purchased_path(id: @user.id, course_id: course.id), method: :delete, data: { confirm: "#{t(:are_you_sure)}" } %>
+		</td>
+	</tr>
+<% end %>

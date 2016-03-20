@@ -4,4 +4,7 @@
 	<td><%= user.level %></td>
 	<td><%= link_to "<center><span class='fi-pencil'></span></center>".html_safe, edit_user_path(user) %></td>
 	<td><%= link_to "<center><span class='fi-trash delete-button'></span></center>".html_safe, delete_user_path(user), method: :delete, data: { confirm: "#{t(:are_you_sure)}" } %></td>
+	<td>
+		<%= link_to "<center><span class='fi-magnifying-glass'></span></center>".html_safe, new_purchased_path(user.id) %>
+	</td>
 </tr>

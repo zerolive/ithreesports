@@ -380,6 +380,45 @@ RSpec.describe AdminController, type: :controller do
 				expect(response).to redirect_to signin_path
 			end
 		end
+
+		describe 'get#new_purchased' do
+			let(:user){ create(:user) }
+
+			it 'redirects to signin path' do
+				get :new_purchased, id: user.id
+
+				expect(response.status).to eq(302)
+				expect(response).to redirect_to signin_path
+			end
+		end
+
+		describe 'post#create_purchased' do
+			let(:user){ create(:user) }
+			let(:course){ create(:course) }
+
+			it 'redirects to signin path' do
+				post :create_purchased, id: user.id, purchased: { course_id: course.id }
+
+				expect(response.status).to eq(302)
+				expect(response).to redirect_to signin_path
+			end
+		end
+
+		describe 'delete#delete_purchased' do
+			let(:user){ create(:user) }
+			let(:course){ create(:course) }
+			let(:purchased){ create(:purchased) }
+
+			it 'redirects to signin path' do
+				purchased.course_id = course.id
+				purchased.user_id = user.id
+
+				delete :delete_purchased, id: user.id, course_id: course.id
+
+				expect(response.status).to eq(302)
+				expect(response).to redirect_to signin_path
+			end
+		end
 	end
 
 	context 'If admin is logged' do
@@ -979,6 +1018,55 @@ RSpec.describe AdminController, type: :controller do
 
 				expect(question_with_answers.answer.count).to_not eq 10
 			end	
+		end
+
+		describe 'get#new_purchased' do
+			let(:user){ create(:user) }
+
+			it 'response with status OK' do
+				get :new_purchased, id: user.id
+
+				expect(response.status).to eq 200
+			end
+		end
+
+		describe 'post#create_purchased' do
+			let(:user){ create(:user) }
+			let(:course){ create(:course) }
+
+			it 'response with status OK' do
+				post :create_purchased, id: user.id, purchased: { course_id: course.id }
+
+				expect(response.status).to eq 302
+				expect(response).to redirect_to new_purchased_path(user.id)
+			end
+
+			it 'can create a new purchased' do
+				post :create_purchased, id: user.id, purchased: { course_id: course.id }
+
+				expect(assigns(:purchased).errors.size).to eq 0
+			end
+
+			it 'cannot create a new purchased with out course id' do
+				course.id = nil
+
+				post :create_purchased, id: user.id, purchased: { course_id: course.id }
+
+				expect(assigns(:purchased).errors.size).to_not eq 0
+			end
+		end
+
+		describe 'delete#delete_purchased' do
+			let(:user){ create(:user) }
+			let(:course){ create(:course) }
+			let(:purchased){create_answer(:purchased, course_id: course.id, user_id: user.id)}
+
+			xit 'deletes a purchase and redirects to new_purchased' do
+				delete :delete_purchased, id: user.id, course_id: course.id
+
+				expect(response.status).to eq(302)
+				expect(response).to redirect_to new_purchased_path(user.id)
+			end
 		end
 	end
 end

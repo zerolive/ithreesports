@@ -1,0 +1,19 @@
+<center>
+	<h1><%= "#{t(:courses_of)} #{@user.name}"  %></h1>
+
+	<%= form_for @purchased, url: create_purchased_path(@user.id) do |f| %>
+		<%= f.label :course_id %>
+		<%= f.collection_select :course_id, Course.all, :id, :name %>
+		<%= submit_tag value="#{t(:add_course)}" %>
+	<% end %>
+	<p/>
+	<table>
+	  <tr>
+	    <th><%= t(:course) %></th>
+	    <th><%= t(:delete) %></th>
+	  </tr>
+	  		<%= render partial: 'purchased_courses' %>
+	</table>
+
+	<p><%= link_to t(:back), admin_users_path %></p>
+</center>

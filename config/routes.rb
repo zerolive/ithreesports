@@ -49,6 +49,10 @@ Rails.application.routes.draw do
   patch '/update_answer/:id' => 'admin#update_answer', as: :update_answer
   delete '/delete_answer/:id' => 'admin#delete_answer', as: :delete_answer
 
+  get '/new_purchased/:id' => 'admin#new_purchased', as: :new_purchased
+  post '/create_purchased/:id' => 'admin#create_purchased', as: :create_purchased
+  delete '/delete_purchased/:id/:course_id' => 'admin#delete_purchased', as: :delete_purchased
+
   get '/user' => 'user#index'
   get '/user_exam/:id' => 'user#user_exam', as: :user_exam
   post '/user_exam_save/:id' => 'user#user_exam_save', as: :user_exam_save

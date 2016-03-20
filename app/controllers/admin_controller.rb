@@ -1,7 +1,7 @@
 class AdminController < ApplicationController
 	before_action :authenticate_admin
 	before_action :set_exam, only: [:edit_exam, :update_exam, :delete_exam, :new_question, :exam_questions, :preview_exam]
-	before_action :set_user, only: [:delete_user, :edit_user, :update_user]
+	before_action :set_user, only: [:delete_purchased, :create_purchased, :delete_user, :edit_user, :update_user, :new_purchased]
 	before_action :set_question, only: [:edit_question, :update_question, :delete_question, :new_answer, :create_answer]
 	before_action :set_answer, only: [:edit_answer, :update_answer, :delete_answer]
 	before_action :set_course, only: [:new_exam, :create_exam, :edit_course, :update_course, :delete_course, :preview_course, :new_media_file, :create_media_file, :show_media_files, :show_exams ]
@@ -191,7 +191,34 @@ class AdminController < ApplicationController
 		redirect_to exam_questions_path(@question.exam_id)
 	end
 
+	def new_purchased
+		@purchased = Purchased.new
+		@courses = Course.all
+		@purchases = Purchased.where(user_id: @user.id)
+		@purchased_courses = []
+		@purchases.to_a.each do |p|
+			@purchased_courses << Course.find(p.course_id)
+		end
+	end
+
+	def create_purchased
+		@purchased = Purchased.new(purchased_params)
+		@purchased.user_id = @user.id
+		@purchased.save
+		redirect_to new_purchased_path(@user.id)
+	end
+
+	def delete_purchased
+		@purchased = Purchased.where(user_id: @user.id).where(course_id: params[:course_id])
+		@purchased.first.destroy
+		redirect_to new_purchased_path(@user.id)
+	end
+
 	private
+
+		def purchased_params
+			params.require(:purchased).permit(:course_id)
+		end
 
 		def set_media_file
 			@media_file = MediaFile.find(params[:id])
