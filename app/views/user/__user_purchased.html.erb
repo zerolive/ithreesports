@@ -1,12 +1,27 @@
 <table>
-  <tr>
-	   <th><%= t(:course) %></th>
-	   <th><%= t(:view) %></th>
-  </tr>
-		<% @purchased_courses.each do |p| %>
-		<tr>
-		  <td><%= p.name %></td>
-		  <td><%= link_to "<center><span class='fi-magnifying-glass'></span></center>".html_safe, user_course_path(p.id) %></td>
-		</tr>
-		<% end %>
+	<tr>
+	<% @purchased_courses.each do |course| %>
+		<th>
+			<table>
+		  <tr>
+		    <th>
+		    	<center>
+		    		<%= link_to "<center>#{course.name}</span></center>".html_safe, user_course_path(course.id) %>
+		    	</center>
+		    </th>
+		  </tr>
+		  <tr>
+		    <td><center><%= image_tag course.imageurl, size: "200x100" %></center></td>
+		  </tr>
+		  <tr>
+		    <td>
+		    	<center>
+		    		<%= link_to "<center><span class='fi-magnifying-glass'></span></center>".html_safe, user_course_path(course.id) %>
+		    	</center>
+		    </td>
+		  </tr>
+		</table>
+		</th>
+	<% end %>
+	</tr>
 </table>

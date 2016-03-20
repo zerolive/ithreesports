@@ -4,10 +4,29 @@
 	<p>
 		<h3><%= t(:buy_text) %></h3>
 	</p>
-
+<table>
+	<tr>
 	<% @courses.each do |course| %>
-		<p><%= buy_link(course.name, course.price) %></p>
+		<th>
+			<table>
+		  <tr>
+		    <th><center><%= buy_link(course.name, course.price, course.name) %></center></th>
+		  </tr>
+		  <tr>
+		    <td><center><%= image_tag course.imageurl, size: "200x100" %></center></td>
+		  </tr>
+		  <tr>
+		    <td>
+		    	<center>
+		    		<%= buy_link(course.name, course.price, "Comprar") %>
+		    	</center>
+		    </td>
+		  </tr>
+		</table>
+		</th>
 	<% end %>
+	</tr>
+</table>
 	<p>
 		<%= link_to t(:back), signin_path %>
 	</p>
