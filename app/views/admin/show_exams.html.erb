@@ -1,21 +1,17 @@
 <center>
 	<h1><%= @course.name %></h1>
 	<%= link_to t(:new_exam), new_exam_path(@course.id) %>
+<table>
+	<tr>
+		<th><%= t(:position) %></th>
+		<th><%= t(:title) %></th>
+		<th><%= t(:level) %></th>
+		<th><%= t(:edit) %></th>
+		<th><%= t(:delete) %></th>
+		<th><%= t(:questions) %></th>
+		<th><%= t(:preview) %></th>
+	</tr>
+	<p><%= render @exams %></p>
+</table>
+<%= link_to t(:back), admin_courses_path %>
 </center>
-<div class="row">
-	<div class="small-6 large-centered columns">
-		<table>
-			<tr>
-				<th><%= t(:position) %></th>
-				<th><%= t(:title) %></th>
-				<th><%= t(:level) %></th>
-				<th><%= t(:edit) %></th>
-				<th><%= t(:delete) %></th>
-				<th><%= t(:questions) %></th>
-				<th><%= t(:preview) %></th>
-			</tr>
-			<p><%= render @exams %></p>
-		</table>
-		<center><%= link_to t(:back), admin_courses_path %></center>
-	</div>
-</div>

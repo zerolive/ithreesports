@@ -64,6 +64,7 @@ class AdminController < ApplicationController
 
 	def preview_course
 		@media_files = @course.media_file
+		@exams = @course.exam
 	end
 
 	def new_media_file

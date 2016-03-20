@@ -1,29 +1,21 @@
-<div class="row">
-  <div class="small-6 large-centered columns">
-			<table class="user-profile">
-			  <tr>
-			    <th rowspan="3">
-			    	<%= image_tag "#{avatar_for(@user.gender)}.png", size: "150x150" %>
-			    </th>
-			    <th><h1><%= @user.name %></h1></th>
-			  </tr>
-			  <tr>
-			    <td><%= @user.email %></td>
-			  </tr>
-			  <tr>
-			    <td>
-			    	<%= link_to t(:edit_profile), user_edit_info_path %>
-			   </td>
-			  </tr>
-			</table>
-  </div>
-</div>
-<div class="row">
-  <div class="large-3 columns"></div>
-  <div class="large-6 columns">
-		<br>
-		<%= render partial: '_user_purchased' %>
-		<br>
-  </div>
-  <div class="large-3 columns"></div>
-</div>
+<center>
+	<table class="user-profile">
+	  <tr>
+	    <th rowspan="3">
+	    	<%= image_tag "#{avatar_for(@user.gender)}.png", size: "150x150" %>
+	    </th>
+	    <th><h1><%= @user.name %></h1></th>
+	  </tr>
+	  <tr>
+	    <td><%= @user.email %></td>
+	  </tr>
+	  <tr>
+	    <td>
+	    	<%= link_to t(:edit_profile), user_edit_info_path %>
+	   </td>
+	  </tr>
+	</table>
+	<br>
+	<%= render partial: '_user_purchased' %>
+	<br>
+</center>

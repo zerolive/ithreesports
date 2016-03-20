@@ -2,11 +2,36 @@
 	<h3><%= t(:preview_course) %></h3>
 	<h1><%= @course.name %></h1>
 	<div><%= youtube_iframe(@course.videourl) unless @course.videourl.empty? %></div>
-</center>
 <div class="row">
 	<div class="small-6 large-centered columns">
 			<p><%= @course.description unless @course.description.empty? %></p>
-			<p><%= @media_files.inspect %></p>
-			<p><center><%= link_to t(:back), admin_courses_path %></center></p>
+	</div>
+</div>
+		<p>
+			<table>
+				  <tr>
+				    <th><center><%= t(:name) %></center></th>
+				    <th><center><%= t(:file) %></center></th>
+				  </tr>
+				<% @media_files.each do |m| %>
+				  <tr>
+						<td><%= m.name %></td>
+						<td><center><%= link_to file_icon(m.video), m.url, target: "_blank" %></center></td>
+					</tr>
+				<% end %>
+			</table>
+		</p>
+</center>
+<div class="row">
+	<div class="small-6 large-centered columns">
+			<% unless @exams.empty? %>
+				<p><%= t(:exams) %></p>
+				<% @exams.each do |exam| %>
+					<p>
+						<%= link_to exam.title, preview_exam_path(exam.id) %> - 
+					</p>
+				<% end %>
+			<% end %>
+		<p><center><%= link_to t(:back), admin_courses_path %></center></p>
 	</div>
 </div>
