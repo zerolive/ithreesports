@@ -26,6 +26,6 @@
 				<p><%= submit_tag value="#{t(:edit_exam)}" %></p>
 			</center>
 		<% end %>
-<center><%= link_to t(:back), admin_exams_path %></center>
+<center><%= link_to t(:back), show_exams_path(@exam.course_id) %></center>
 	</div>
 </div>
