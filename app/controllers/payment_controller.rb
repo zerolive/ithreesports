@@ -22,8 +22,9 @@ class PaymentController < ApplicationController
 				end
 			end
 			redirect_to thanks_path
+		else
+			redirect_to signin_path
 		end
-		redirect_to signin_path
 	end
 
 	def thanks
