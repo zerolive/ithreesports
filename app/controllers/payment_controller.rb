@@ -22,13 +22,7 @@ class PaymentController < ApplicationController
 			#redirect_to thanks_path
 		#end
 		#redirect_to signin_path
-		if params[:payer_email]
-			@user.email = "params[:payer_email]"
-			@user.name = "LOL"
-			@user.password_digest = "12345678"
-			@user.level = "User"
-			@user.save
-		end
+		@parametros = params
 		render 'thanks'
 	end
 
