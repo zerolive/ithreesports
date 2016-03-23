@@ -3,16 +3,16 @@ class PaymentController < ApplicationController
 
 	def payed
 		if has_params
-			@user = User.find_by(email: params[:payer_email])
-			@course = Course.find_by(price: params[:payment_gross].to_i)
+			@user = User.find_by(email: params["payer_email"])
+			@course = Course.find_by(price: params["payment_gross"].to_i)
 			if @user.nil?
-				@user.email = params[:payer_email]
-				@user.name = params[:first_name] + " " + params[:last_name]
+				@user.email = params["payer_email"]
+				@user.name = params["first_name"] + " " + params["last_name"]
 				@user.password_digest = new_password
 				@user.level = User.LEVELS[0]
 			end
 
-			if params[:payment_status] == 'Completed'
+			if params["payment_status"] == 'Completed'
 				if @user.save
 					UserMailer.welcome_email(@user).deliver_later
 					@purchased = Purchased.new(user_id: @user.id, course_id: @course.id)
