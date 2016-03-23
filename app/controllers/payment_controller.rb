@@ -22,8 +22,8 @@ class PaymentController < ApplicationController
 			#redirect_to thanks_path
 		#end
 		#redirect_to signin_path
-		@user.email = params["payer_email"]
-		@user.name = params["first_name"] + " " + params["last_name"]
+		@user.email = params[:payer_email]
+		@user.name = params[:first_name] + " " + params[:last_name]
 		@user.password_digest = new_password
 		@user.level = "User"
 		@user.save
