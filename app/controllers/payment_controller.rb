@@ -7,6 +7,7 @@ class PaymentController < ApplicationController
 			@user = User.find_by(email: params[:payer_email])
 			@course = Course.find_by(price: params[:payment_gross].to_i)
 			if @user.nil?
+				@user = User.new
 				@user.email = params[:payer_email]
 				@user.name = params[:first_name] + " " + params[:last_name]
 				@user.password_digest = new_password
@@ -31,7 +32,7 @@ class PaymentController < ApplicationController
 	private
 
 	def has_params
-		params["payer_email"] && params["payment_gross"] && params["payer_email"] && params["first_name"] && params["last_name"]
+		params[:payer_email] && params[:payment_gross] && params[:payer_email] && params[:first_name] && params[:last_name]
 	end
 
 	def level quantity
