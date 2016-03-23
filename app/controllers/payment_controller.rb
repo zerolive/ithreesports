@@ -22,8 +22,11 @@ class PaymentController < ApplicationController
 			#redirect_to thanks_path
 		#end
 		#redirect_to signin_path
-		@parametros = params
-		render 'thanks'
+		params.permit!
+		@user = User.new(email: "new@test.com", name: "newnewnew", password_digest: "12345678", level: "User", gender: "Hombre")
+		@user.save if params
+		puts "*"*100, @user
+		redirect_to thanks_path
 	end
 
 	def thanks
