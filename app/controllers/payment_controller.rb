@@ -30,7 +30,7 @@ class PaymentController < ApplicationController
 	private
 
 	def has_params
-		params[:payer_email] && params[:payment_gross] && params[:payer_email] && params[:first_name] && params[:last_name]
+		params["payer_email"] && params["payment_gross"] && params["payer_email"] && params["first_name"] && params["last_name"]
 	end
 
 	def level quantity
