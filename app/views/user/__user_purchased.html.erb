@@ -1,27 +1,25 @@
-<table>
-	<tr>
-	<% @purchased_courses.each do |course| %>
-		<th>
-			<table>
-		  <tr>
-		    <th>
-		    	<center>
-		    		<%= link_to "<center>#{course.name}</span></center>".html_safe, user_course_path(course.id) %>
-		    	</center>
-		    </th>
-		  </tr>
-		  <tr>
-		    <td><center><%= image_tag course.imageurl, size: "200x100" %></center></td>
-		  </tr>
-		  <tr>
-		    <td>
-		    	<center>
-		    		<%= link_to "<center><span class='fi-magnifying-glass'></span></center>".html_safe, user_course_path(course.id) %>
-		    	</center>
-		    </td>
-		  </tr>
+		<table>
+		  <% @purchased_courses.each_slice(@number_of_columns) do |course| %>   
+		    <tr>
+		      <% course.each do |course| %>
+		        <td> 
+						<table>
+						  <tr>
+						    <th><center><%= link_to "<center>#{course.name}</span></center>".html_safe, user_course_path(course.id) %></center></th>
+						  </tr>
+						  <tr>
+						    <td><center><%= image_tag course.imageurl, size: "200x100" %></center></td>
+						  </tr>
+						  <tr>
+						    <td>
+						    	<center>
+						    		<%= link_to "<center><span class='fi-magnifying-glass'></span></center>".html_safe, user_course_path(course.id) %>
+						    	</center>
+						    </td>
+						  </tr>
+						</table>
+		        </td>
+		      <% end %>
+		    </tr>
+		  <% end %>
 		</table>
-		</th>
-	<% end %>
-	</tr>
-</table>

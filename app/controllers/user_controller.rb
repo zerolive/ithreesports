@@ -2,6 +2,8 @@ class UserController < ApplicationController
 	before_action :user_logged?
 	before_action :set_user
 
+	NUMBER_OF_COLUMNS = 3
+
 	def index
 		@exams = exams_belonging_user
 		@completed_exam = CompletedExam.where(user_id: @user.id)
@@ -10,6 +12,7 @@ class UserController < ApplicationController
 		purchases.to_a.each do |p|
 			@purchased_courses << Course.find(p.course_id)
 		end
+		@number_of_columns = NUMBER_OF_COLUMNS
 	end
 
 	def user_exam

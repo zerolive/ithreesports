@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+	NUMBER_OF_COLUMNS = 3
+
 	before_action :set_user, only: [:create, :send_password]
 
 	def new
@@ -22,6 +24,7 @@ class SessionsController < ApplicationController
 
 	def buy
 		@courses = Course.all
+		@number_of_columns = NUMBER_OF_COLUMNS
 	end
 
 	def reset_password
