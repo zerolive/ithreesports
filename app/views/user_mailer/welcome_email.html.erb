@@ -4,11 +4,11 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h1>Bienvenido a i3sporst.com, <%= @ user.name %></h1>
+    <h1>Bienvenido a i3sporst.com, <%= @user.name %></h1>
     <p>
       Se ha registrado con éxito,<br>
-      su nombre de usuario es: <%= @ user.email %><br>
-      y su contraseña es: <%= @ user.password_digest %>.<br>
+      su nombre de usuario es: <%= @user.email %><br>
+      y su contraseña es: <%= @user.password_digest %>.<br>
     </p>
     <p>
       Para acceder al sitio, sólo tienes que seguir este enlace: <%= @url %>.

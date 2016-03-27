@@ -9,7 +9,7 @@
 			<%= f.label t(:video_url) %>
 			<%= f.text_field :videourl %>
 			<%= f.label t(:price) %>
-			<%= f.number_field :price, max: max_price %>
+			<%= f.number_field :price, max: max_price, step: "0.01" %>
 			<%= f.label t(:description) %>
 			<%= f.text_area :description %>
 			<center><%= f.submit value="#{t(:create_exam)}" %></center>

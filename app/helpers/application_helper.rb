@@ -1,10 +1,11 @@
 module ApplicationHelper
 
-	MAX_PRICE = 1000000
+	MAX_PRICE = 1000000.111
 
 	def buy_link name, price, link_name
 		url_name = name.parameterize("%20")
-		"<a href='https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_xclick&business=antonioc3brian%2dfacilitator%40gmail%2ecom&lc=US&item_name=#{url_name}&item_number=1&amount=#{price.to_s}%2e00&currency_code=USD&notify_url=https://gentle-waters-42879.herokuapp.com/payed/&return=https://gentle-waters-42879.herokuapp.com/payed/&button_subtype=services&no_note=0&bn=PP%2dBuyNowBF%3abtn_buynowCC_LG%2egif%3aNonHostedGuest'>#{link_name}</a>".html_safe
+		url_price = price.to_s.sub(".", "%2e")
+		"<a href='https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_xclick&business=antonioc3brian%2dfacilitator%40gmail%2ecom&lc=US&item_name=#{url_name}&item_number=1&amount=#{price.to_s}&currency_code=USD&notify_url=https://gentle-waters-42879.herokuapp.com/payed/&return=https://gentle-waters-42879.herokuapp.com/payed/&button_subtype=services&no_note=0&bn=PP%2dBuyNowBF%3abtn_buynowCC_LG%2egif%3aNonHostedGuest'>#{link_name}</a>".html_safe
 	end
 
 	def file_icon video

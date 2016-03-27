@@ -73,7 +73,7 @@ RSpec.describe ApplicationHelper, type: :helper do
 
 	   describe 'max_price' do
 	   	it 'return max price number' do
-	   		expect(max_price).to eq 1000000
+	   		expect(max_price).to eq 1000000.111
 	   	end
 	   end
 

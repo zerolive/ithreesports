@@ -4,7 +4,7 @@ FactoryGirl.define do
   factory :course do
   	name Faker::Name.title
   	imageurl Faker::Internet.url
-  	price Faker::Number.number(2)
+  	price Faker::Number.decimal(2)
   	description Faker::Lorem.characters(200)
   	videourl Faker::Internet.url
   	factory :course_with_exams do
