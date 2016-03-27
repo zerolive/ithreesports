@@ -4,11 +4,11 @@
 	<div class="small-6 large-centered columns">
 		<%= form_for @answer, url: update_answer_path(@answer) do |f| %>
 			<p>
-				<%= f.label :title %>
+				<%= f.label t(:title) %>
 				<%= f.text_field :title %>
 			</p>
 			<p>
-				<%= f.label :right %>
+				<%= f.label t(:right) %>
 				<%= f.select :right, options_for_select({ t(:false)=>"0", t(:true)=>"1" }, @answer.right) %>
 			</p>
 			<p>

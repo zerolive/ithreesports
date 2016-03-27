@@ -3,18 +3,18 @@
   <div class="small-6 large-centered columns">
 		<%= form_for @user, url: update_user_path do |u| %>
 			<p>
-				<%= u.label :email %>
+				<%= u.label t(:email) %>
 				<%= u.text_field :email, required: true %>
 			</p>
 			<p>
-				<%= u.label :name %>
+				<%= u.label t(:name) %>
 				<%= u.text_field :name, required: true %>
 			</p>
 			<p>
-				<%= u.label :password_digest %>
+				<%= u.label t(:password) %>
 				<%= u.password_field :password_digest, required: true, value: "#{@user.password_digest}" %>
 			<p>
-				<%= u.label :level %>
+				<%= u.label t(:level) %>
 				<%= u.select :level, options_for_select(@levels, @user.level) %>
 			</p>
 			<center><p><%= u.submit value="#{t(:save)}" %></p></center>

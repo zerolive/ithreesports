@@ -4,11 +4,11 @@
 	<div class="small-6 large-centered columns">
 		<%= form_for @media_file, url: update_media_file_path(@media_file) do |f| %>
 			<p>
-				<%= f.label :name %>
+				<%= f.label t(:name) %>
 				<%= f.text_field :name %>
 			</p>
 			<p>
-				<%= f.label :url %>
+				<%= f.label t(:url) %>
 				<%= f.text_field :url %>
 			</p>
 			<p>

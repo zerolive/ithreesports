@@ -1,11 +1,11 @@
 <%= form_for @user, url: create_user_path(@user) do |f|%>
-	<%= f.label :email %>
+	<%= f.label t(:email) %>
 	<%= f.text_field :email, required: true %>
-	<%= f.label :name %>
+	<%= f.label t(:name) %>
 	<%= f.text_field :name, required: true %>
-	<%= f.label :password %>
+	<%= f.label t(:password) %>
 	<%= f.text_field :password_digest, required: true %>
-	<%= f.label :level %>
+	<%= f.label t(:level) %>
 	<%= f.select :level, options_for_select(@levels, @levels[0]) %>
 	<center><%= submit_tag value="#{t(:create_user)}" %></center>
 <% end %>

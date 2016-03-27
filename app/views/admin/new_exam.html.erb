@@ -3,15 +3,15 @@
 	<div class="small-6 large-centered columns">
 		<p>
 			<%= form_for @exam, url: create_exam_path(@course.id) do |f| %>
-				<%= f.label :title %>
+				<%= f.label t(:title) %>
 				<%= f.text_field :title, required: true %>
-				<%= f.label :position %>
+				<%= f.label t(:position) %>
 				<%= f.number_field :position, required: true, value: 1 %>
-				<%= f.label :video %>
+				<%= f.label t(:video_url) %>
 				<%= f.text_field :video, required: true %>
-				<%= f.label :level %>
+				<%= f.label t(:level) %>
 				<%= f.select :level, options_for_select(@levels, @levels[0]) %>
-				<%= f.label :comment %>
+				<%= f.label t(:description) %>
 				<%= f.text_field :comment %>
 				<center><%= submit_tag value="#{t(:create_exam)}" %></center>
 			<% end %>

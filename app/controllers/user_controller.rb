@@ -101,7 +101,7 @@ class UserController < ApplicationController
 				:score => score, 
 				:exam_id => exam.id 
 			})
-		completed_exam.save
+		UserMailer.completed_exam_email(@user, exam, completed_exam).deliver_later if completed_exam.save
 	end
 
 	def user_logged?

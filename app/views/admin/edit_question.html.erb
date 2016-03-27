@@ -3,7 +3,7 @@
 	<div class="small-6 large-centered columns">
 		<%= form_for @question, url: update_question_path(@question) do |f| %>
 			<p>
-				<%= f.label :title %>
+				<%= f.label t(:title) %>
 				<%= f.text_field :title, required: true %>
 			</p>
 			<p>

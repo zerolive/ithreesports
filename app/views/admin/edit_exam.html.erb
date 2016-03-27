@@ -3,23 +3,23 @@
 	<div class="small-6 large-centered columns">
 		<%= form_for @exam, url: update_exam_path(@exam) do |f| %>
 			<p>
-				<%= f.label :position %>
+				<%= f.label t(:position) %>
 				<%= f.number_field :position, required: true %>
 			</p>
 			<p>
-				<%= f.label :title %>
+				<%= f.label t(:title) %>
 				<%= f.text_field :title, required: true %>
 			</p>
 			<p>
-				<%= f.label :video %>
+				<%= f.label t(:video) %>
 				<%= f.text_field :video, required: true %>
 			</p>
 			<p>
-				<%= f.label :level %>
+				<%= f.label t(:level) %>
 				<%= f.select :level, options_for_select(@levels, @exam.level) %>
 			</p>
 			<p>
-				<%= f.label :comment %>
+				<%= f.label t(:dexcription) %>
 				<%= f.text_area :comment %>
 			</p>
 			<center>

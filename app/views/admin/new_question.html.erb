@@ -1,8 +1,12 @@
+<div class="row">
+	<div class="small-6 large-centered columns">
 <%= form_for @question, url: create_question_path(@exam) do |f| %>
 	<p>
-		<%= f.label :title %>
+		<%= f.label t(:title) %>
 		<%= f.text_field :title, required: true %>
 	</p>
-	<p><%= f.submit %></p>
+	<p><center><%= f.submit %></center></p>
 <% end %>
-<%= link_to t(:back), exam_questions_path(@exam) %>
+	</div>
+</div>
+<p><center><%= link_to t(:back), exam_questions_path(@exam) %><center></p>
