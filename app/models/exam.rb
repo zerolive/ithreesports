@@ -6,7 +6,7 @@ class Exam < ActiveRecord::Base
 	validates :title, presence: true
 	validates :level, presence: true, inclusion: LEVELS
 
-	has_many :questions
+	has_many :questions, :dependent => :destroy
 	belongs_to :course
 
 	def self.levels
