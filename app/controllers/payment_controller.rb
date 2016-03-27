@@ -5,7 +5,7 @@ class PaymentController < ApplicationController
 		params.permit!
 		if has_params
 			@user = User.find_by(email: params[:payer_email])
-			@course = Course.find_by(price: params[:payment_gross].to_i)
+			@course = Course.find_by(price: params[:payment_gross].to_f)
 			if @user.nil?
 				@user = User.new
 				@user.email = params[:payer_email]
