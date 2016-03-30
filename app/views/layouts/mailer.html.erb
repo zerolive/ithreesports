@@ -1,5 +1,68 @@
 <html>
+  <style type="text/css">
+
+  body{
+    background-color: black;
+    max-width: 100%;
+  }
+
+  .row{
+    max-width: 50%;
+    min-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    background-color: white;
+
+    box-shadow: 1px 1px 3px;
+  }
+
+  .mailer-body{
+    padding: 0px 30px 30px 30px;
+  }
+
+  a{
+    color:#4E4A4B;
+    text-decoration: none;
+  }
+
+  .mailer-title{
+    background-color: #00577d;
+    color: white;
+    font-weight: 700;
+    font-size:24px;
+    line-height: 50px;
+    color: black;
+    padding-left: 30px;
+  }
+
+  .title{
+    display: block;
+    color: white;
+    text-align: center;
+    font-weight: 600;
+    font-size: 24px;
+    margin-top: 40px;
+  }
+
+  .mailer-footer{
+    color: #AAAAAA;
+    font-size: 0.7em;
+    border-top: 1px solid #D0D0D0;
+    padding: 10px 10px 10px 20px;
+  }
+
+  .mailer-footer a{
+    color: #AAAAAA;
+    text-decoration: none;
+  }
+
+  </style>
   <body>
-    <%= yield %>
+    <span class="title">i3sport.com</span>
+    <div class="row">
+      <%= yield %>
+    </div>
   </body>
 </html>
