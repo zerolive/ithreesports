@@ -1,11 +1,12 @@
 require 'rails_helper'
+require 'jwt'
 
 RSpec.describe AdminController, type: :controller do
 
 	context 'If admin is not logged' do
 
 		before do
-			session[:user_id] = nil
+			session[:user_token] = nil
 		end
 
 		describe 'get#index' do
@@ -425,7 +426,8 @@ RSpec.describe AdminController, type: :controller do
 		let(:logged_admin){create(:admin)}
 
 		before do
-			session[:user_id] = logged_admin.id
+	    payload = {:data => logged_admin.id}
+	    session[:user_token] = JWT.encode payload, ENV['HMAC_SECRET'], 'HS256'
 		end
 
 		describe 'get#index' do

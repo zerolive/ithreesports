@@ -277,10 +277,11 @@ class AdminController < ApplicationController
 		end
 
 		def authenticate_admin
-			redirect_to signin_path unless session[:user_id]
-				
-			if session[:user_id]
-				@admin = User.find(session[:user_id])
+			redirect_to signin_path unless session[:user_token]
+
+			if session[:user_token]
+				user_id = decode_token(session[:user_token])
+				@admin = User.find(user_id)
 				redirect_to signin_path unless @admin.level == 'Admin'				
 			end
 		end

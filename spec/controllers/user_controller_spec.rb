@@ -5,7 +5,7 @@ RSpec.describe UserController, type: :controller do
 	context 'If user is not logged' do
 
 		before do
-			session[:user_id] = nil
+			session[:user_token] = nil
 		end
 
 		describe 'get#index' do
@@ -96,7 +96,8 @@ RSpec.describe UserController, type: :controller do
 		let(:logged_user){create(:user)}
 
 		before do
-			session[:user_id] = logged_user.id
+	    payload = {:data => logged_user.id}
+	    session[:user_token] = JWT.encode payload, ENV['HMAC_SECRET'], 'HS256'
 		end
 
 		describe 'get#index' do

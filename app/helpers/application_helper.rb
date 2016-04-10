@@ -36,7 +36,7 @@ module ApplicationHelper
 	end
 
 	def show_logout
-		link_to t(:log_out), logout_path if session[:user_id]
+		link_to t(:log_out), logout_path if session[:user_token]
 	end
 
 	def show_home

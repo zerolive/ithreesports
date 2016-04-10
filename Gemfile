@@ -13,6 +13,7 @@ gem 'rails', '4.2.4'
 gem 'jquery-rails'
 gem 'turbolinks'
 gem 'puma'
+gem 'jwt'
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.0'

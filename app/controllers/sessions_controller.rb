@@ -4,12 +4,12 @@ class SessionsController < ApplicationController
 	before_action :set_user, only: [:create, :send_password]
 
 	def new
-		session.delete(:user_id) if session[:user_id]
+		session.delete(:user_token) if session[:user_token]
 	end
 
 	def create
 		if user_authenticate
-			session[:user_id] = @user.id
+			session[:user_token] = user_authenticate
 			redirect_to admin_path if @user.level == 'Admin'
 			redirect_to user_path if @user.level != 'Admin'
 		else
@@ -18,7 +18,7 @@ class SessionsController < ApplicationController
 	end
 
 	def destroy
-   		session.delete(:user_id)
+   		session.delete(:user_token)
    		redirect_to root_path
 	end
 
@@ -43,7 +43,7 @@ class SessionsController < ApplicationController
 	def user_authenticate
 		return false unless @user
 		return false unless @user.password_digest == params[:password_digest]
-		true
+		create_token(@user.id)
 	end
 
 	def set_user

@@ -66,7 +66,8 @@ class UserController < ApplicationController
 	private
 
 	def set_user
-		@user = User.find(session[:user_id])
+		user_id = decode_token(session[:user_token])
+		@user = User.find(user_id)
 	end
 
 	def can_change_password?
@@ -108,7 +109,7 @@ class UserController < ApplicationController
 	end
 
 	def user_logged?
-		redirect_to signin_path unless session[:user_id]
+		redirect_to signin_path unless session[:user_token]
 	end
 
 	def exams_belonging_user
