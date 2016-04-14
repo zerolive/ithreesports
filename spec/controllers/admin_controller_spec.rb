@@ -1061,10 +1061,11 @@ RSpec.describe AdminController, type: :controller do
 		describe 'delete#delete_purchased' do
 			let(:user){ create(:user) }
 			let(:course){ create(:course) }
-			let(:purchased){create_answer(:purchased, course_id: course.id, user_id: user.id)}
+			let(:purchased){ create(:purchased) }
 
-			xit 'deletes a purchase and redirects to new_purchased' do
-				delete :delete_purchased, id: user.id, course_id: course.id
+			it 'deletes a purchase and redirects to new_purchased' do
+				user.id = purchased.user_id
+				delete :delete_purchased, id: purchased.user_id, course_id: purchased.course_id
 
 				expect(response.status).to eq(302)
 				expect(response).to redirect_to new_purchased_path(user.id)
