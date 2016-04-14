@@ -11,15 +11,15 @@ class AdminController < ApplicationController
 	end
 
 	def admin_users
-		@users = User.all.order(:level).reverse_order
+		@users = User.ordered_by_level
 		@user = User.new
 		@levels = User.levels
 	end
 
 	def create_user
 		@user = User.new(user_params)
-		@user.name = @user.name.downcase if @user.name
-		UserMailer.welcome_email(@user).deliver_later if @user.save
+		downcase_users_name
+		send_welcome_mail
 		redirect_to admin_users_path
 	end
 
@@ -137,7 +137,7 @@ class AdminController < ApplicationController
 
 	def create_question
 		@question = Question.new(question_params)
-		@question.exam_id = params[:id]
+		@question.exam_id = exam_id
 		@question.save
 		redirect_to exam_questions_path(@question.exam_id)
 	end
@@ -195,11 +195,7 @@ class AdminController < ApplicationController
 	def new_purchased
 		@purchased = Purchased.new
 		@courses = Course.all
-		@purchases = Purchased.where(user_id: @user.id)
-		@purchased_courses = []
-		@purchases.to_a.each do |p|
-			@purchased_courses << Course.find(p.course_id)
-		end
+		@purchased_courses = Purchased.for(@user)
 	end
 
 	def create_purchased
@@ -210,12 +206,24 @@ class AdminController < ApplicationController
 	end
 
 	def delete_purchased
-		@purchased = Purchased.where(user_id: @user.id).where(course_id: params[:course_id])
-		@purchased.first.destroy
+		@purchased = Purchased.find_by @user.id, params[:course_id]
+		@purchased.destroy
 		redirect_to new_purchased_path(@user.id)
 	end
 
 	private
+
+		def exam_id
+			params[:id]
+		end
+
+		def send_welcome_mail
+			UserMailer.welcome_email(@user).deliver_later if @user.save
+		end
+
+		def downcase_users_name
+			@user.name = @user.name.downcase if @user.name
+		end
 
 		def purchased_params
 			params.require(:purchased).permit(:course_id)

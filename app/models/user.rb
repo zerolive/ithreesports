@@ -17,6 +17,10 @@ class User < ActiveRecord::Base
 	  self.gender ||= GENDER[0]
 	end
 
+	def self.ordered_by_level
+		all.order(:level).reverse_order
+	end
+
 	def self.levels
 		LEVELS
 	end

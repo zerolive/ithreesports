@@ -18,6 +18,6 @@ class ApplicationController < ActionController::Base
 	private
 
 	def new_password
-		(Random.rand(100) + Time.now.to_i).to_s
+		(Random.rand(100000000) + Time.now.to_i).to_s
 	end
 end
