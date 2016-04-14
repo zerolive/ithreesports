@@ -18,4 +18,13 @@ class Purchased < ActiveRecord::Base
     purchased = self.where(user_id: user_id).where(course_id: course_id)
     purchased.first
   end
+
+  def self.find_by_user_id user_id
+    purchases = self.where(user_id: user_id)
+    purchased_courses = []
+    purchases.to_a.each do |p|
+      purchased_courses << Course.find(p.course_id)
+    end
+    purchased_courses
+  end
 end

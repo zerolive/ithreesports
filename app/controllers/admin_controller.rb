@@ -19,7 +19,7 @@ class AdminController < ApplicationController
 	def create_user
 		@user = User.new(user_params)
 		downcase_users_name
-		send_welcome_mail
+		send_welcome_mail if @user.save
 		redirect_to admin_users_path
 	end
 
@@ -218,7 +218,7 @@ class AdminController < ApplicationController
 		end
 
 		def send_welcome_mail
-			UserMailer.welcome_email(@user).deliver_later if @user.save
+			UserMailer.welcome_email(@user).deliver_later
 		end
 
 		def downcase_users_name
