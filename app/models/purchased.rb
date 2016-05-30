@@ -14,8 +14,8 @@ class Purchased < ActiveRecord::Base
     purchased_courses
   end
 
-  def find_by user_id, course_id
-    purchased = self.where(user_id: user_id).where(course_id: course_id)
+  def self.find_by user_id, course_id
+    purchased = where(user_id: user_id).where(course_id: course_id)
     purchased.first
   end
 
